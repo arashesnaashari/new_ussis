@@ -6,3 +6,6 @@ export default {
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
 };
+// future: {
+//   v2_routeConvention: true,
+// },
