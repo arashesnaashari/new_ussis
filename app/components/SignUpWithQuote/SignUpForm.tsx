@@ -139,7 +139,7 @@ export const SignUpForm = () => {
               mt={{ base: "1.2rem", md: "" }}
               fontFamily={"pinar"}
             >
-              خوش اومدین
+              {/* خوش اومدین */}
             </Heading>
             {/* <Text color="muted">انتخاب نقش</Text> */}
             <HStack justify="center" spacing="1">
@@ -150,8 +150,8 @@ export const SignUpForm = () => {
               >
                 <Button
                   width="full"
-                  height={{ base: "2rem", md: "2rem" }}
-                  fontSize={{ base: "0.8rem", md: "" }}
+                  height={{ base: "2rem", md: "2.5rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   onClick={() => handleRoleChange("creator")}
                   background={role == "creator" ? "gray.200" : "white"}
                 >
@@ -160,8 +160,8 @@ export const SignUpForm = () => {
 
                 <Button
                   width="full"
-                  height={{ base: "2rem", md: "2rem" }}
-                  fontSize={{ base: "0.8rem", md: "" }}
+                  height={{ base: "2rem", md: "2.5rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   onClick={() => handleRoleChange("editor")}
                   background={role == "editor" ? "gray.200" : "white"}
                 >
