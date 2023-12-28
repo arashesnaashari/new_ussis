@@ -6,6 +6,8 @@ import { IoStop } from "react-icons/io5/index.js";
 import { ImCross } from "react-icons/im/index.js";
 import { FaMicrophone } from "react-icons/fa/index.js";
 import type { MetaFunction } from "@remix-run/node";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 import {
   Avatar,
   Box,
@@ -26,10 +28,7 @@ import {
 import { useNavigate } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "create" },
-    { name: "description", content: "create voice!" },
-  ];
+  return [{ title: "edit" }, { name: "description", content: "edit voice!" }];
 };
 
 export default function App() {
@@ -78,7 +77,11 @@ export default function App() {
   };
 
   React.useEffect(() => {
-    if (!localStorage.getItem("userIdussisstant")) {
+    if (
+      !localStorage.getItem(
+        "userIdussisstant" || !localStorage.getItem("userIdussisstantRole")
+      )
+    ) {
       navigate("/");
     } else {
       getText();
@@ -108,7 +111,9 @@ export default function App() {
   // };
 
   const handleSendAudio = () => {
-    let url = `https://asr-api2.ussistant.ir/collect/voice/set_annotate/${text?.query_id}`;
+    let url = `https://asr-api2.ussistant.ir/collect/voice/set_annotate/${
+      text?.query_id
+    }?user_id=${localStorage.getItem("userIdussisstant")}`;
 
     fetch(url, {
       method: "PUT",
@@ -134,7 +139,7 @@ export default function App() {
       .then((d) => {
         if (d.message == "Annotations set successfully") {
           setFinish(false);
-          setNext(true);
+          location.reload();
         }
       })
       .catch((err) => console.log());
@@ -180,6 +185,15 @@ export default function App() {
                 <Stack spacing="6" align="center">
                   <audio style={{ width: "93%" }} controls>
                     {text?.voice_link && (
+                      //      <AudioPlayer
+                      //      autoPlay
+                      //      src={`https://asr-api2.ussistant.ir/collect/voice/download/${
+                      //        text?.voice_link.split("/")[5].split(".")[0]
+                      //      }`}
+                      //      showJumpControls={false}
+                      //      customVolumeControls={[]}
+                      //      customAdditionalControls={[]}
+                      //    />
                       <source
                         src={`https://asr-api2.ussistant.ir/collect/voice/download/${
                           text?.voice_link.split("/")[5].split(".")[0]
@@ -192,10 +206,12 @@ export default function App() {
                 </Stack>
 
                 <Stack spacing={"3"} align={"center"}>
+                  <Text textAlign={"left"}>متن اصلی</Text>
                   <Textarea
                     onChange={(v) => setText1(v.target.value)}
                     value={text1}
                   />
+                  <Text textAlign={"right"}>متن جنریت شده</Text>
                   <Textarea
                     onChange={(v) => setText2(v.target.value)}
                     value={text2}

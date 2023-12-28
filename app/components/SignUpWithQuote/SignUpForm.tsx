@@ -67,12 +67,24 @@ export const SignUpForm = () => {
             console.log(d);
 
             if (d.detail) {
-              setError(d.detail[0].msg);
+              setError(d.detail);
             } else if (d.id) {
               //set it to localStorage
               localStorage.setItem("userIdussisstant", d.id);
+              localStorage.setItem("userIdussisstantRole", d.is_annotator);
+              // {
+              //   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiY2QiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJpc19hbm5vdGF0b3IiOnRydWUsImV4cCI6MTcwMzc0MDg4MX0.kcqt90xXWc2bv0V7dSKRxaP248ht5laJRoT6lJeXNQg",
+              //   "token_type": "bearer",
+              //   "id": 1,
+              //   "username": "abcd",
+              //   "is_annotator": true
+              // }
               //redirect
-              navigate("/create");
+              if (d.is_annotator) {
+                navigate("/edit");
+              } else {
+                navigate("/create");
+              }
             }
           })
           .catch((e) => console.log(e));

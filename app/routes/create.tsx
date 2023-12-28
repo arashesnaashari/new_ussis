@@ -34,6 +34,7 @@ export const meta: MetaFunction = () => {
 export default function App() {
   const [a, setA] = React.useState(false);
   const [finish, setFinish] = React.useState(false);
+  const [count, setCount] = React.useState("");
   const [next, setNext] = React.useState(false);
   const [text, setText] = React.useState<{
     detail: string;
@@ -68,6 +69,21 @@ export default function App() {
         console.log(d), setText(d);
       })
       .catch((err) => console.log(err));
+
+    fetch(
+      `https://asr-api2.ussistant.ir/collect/voice/count_voice/${localStorage.getItem(
+        "userIdussisstant"
+      )}`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          "X-API-Key": "c5ac5392-1cd1-477e-b9ae-6fd61d21da01",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => setCount(data.count_voice_id));
   };
 
   React.useEffect(() => {
@@ -128,7 +144,7 @@ export default function App() {
       .then((d) => {
         if (d.message == "صوت دریافت شد") {
           setFinish(false);
-          setNext(true);
+          location.reload();
         }
       })
       .catch((err) => console.log());
@@ -153,6 +169,26 @@ export default function App() {
     setFinish(true);
     recorderControls.stopRecording();
   };
+  const addAudioElement = (blob: Blob) => {
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.controls = true;
+    document.body.querySelector(".playme").appendChild(audio);
+  };
+  const handleSkip = () => {
+    fetch(
+      `https://asr-api2.ussistant.ir/collect/voice/set_skip_text/${text?.id}`,
+      {
+        method: "PUT",
+        headers: {
+          accept: "application/json",
+          "X-API-Key": "c5ac5392-1cd1-477e-b9ae-6fd61d21da01",
+        },
+      }
+    );
+    location.reload();
+  };
   return (
     <>
       <Box py={{ base: "12", md: "24" }} maxW="7xl" mx="auto">
@@ -169,7 +205,33 @@ export default function App() {
               bg={useBreakpointValue({ base: "white", sm: "white" })}
               boxShadow={{ base: "sm", sm: useColorModeValue("sm", "md-dark") }}
               borderRadius={{ base: "md", sm: "xl" }}
+              position={"relative"}
             >
+              <Button
+                right={"12px"}
+                position={"absolute"}
+                bottom={"12px"}
+                p={"3"}
+                border={"1px #242e59 solid"}
+                bgColor={"white"}
+                color={"#242e59"}
+                onClick={() => handleSkip()}
+              >
+                رد کردن
+              </Button>
+              {count && (
+                <Button
+                  left={"12px"}
+                  position={"absolute"}
+                  bottom={"12px"}
+                  p={"3"}
+                  // border={"1px #242e59 solid"}
+                  bgColor={"white"}
+                  color={"#242e59"}
+                >
+                  تعداد ویس های شما: {count}
+                </Button>
+              )}
               <Stack spacing="8">
                 <Stack spacing="6" align="center">
                   <Box
@@ -205,6 +267,7 @@ export default function App() {
                           // downloadOnSavePress={true}
                           downloadFileExtension="mp3"
                           showVisualizer={true}
+                          onRecordingComplete={addAudioElement}
                         />
                       </Box>
                       {!recorderControls.isRecording && (
@@ -219,7 +282,7 @@ export default function App() {
                               ? "1px solid #242e59"
                               : "none"
                           }
-                          boxShadow={"sl"}
+                          boxShadow={"sm"}
                           p={"3"}
                           onClick={handleStart}
                         >
@@ -287,6 +350,7 @@ export default function App() {
                       </Button> */}
                         </HStack>
                       )}
+                      <div className="playme"></div>
                     </VStack>
                   )}
                 </Stack>
