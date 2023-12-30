@@ -20,10 +20,18 @@ import {
   Container,
   Button,
   useColorModeValue,
+  useDisclosure,
   Stack,
   Text,
   VStack,
   HStack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 
@@ -32,6 +40,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [a, setA] = React.useState(false);
   const [text1, setText1] = React.useState("");
   const [text2, setText2] = React.useState("");
@@ -167,7 +176,7 @@ export default function App() {
     <>
       <Box py={{ base: "12", md: "24" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
-          <Flex flex="1" overflowX={"hidden"}>
+          <Flex flexFlow={"column"} overflowX={"hidden"}>
             <Container
               border={"#242e59 1px solid"}
               fontFamily={"pinar"}
@@ -207,11 +216,13 @@ export default function App() {
                 <Stack spacing={"3"} align={"center"}>
                   <Text textAlign={"left"}>متن اصلی</Text>
                   <Textarea
+                    style={{ direction: "rtl" }}
                     onChange={(v) => setText1(v.target.value)}
                     value={text1}
                   />
                   <Text textAlign={"right"}>متن جنریت شده</Text>
                   <Textarea
+                    style={{ direction: "rtl" }}
                     onChange={(v) => setText2(v.target.value)}
                     value={text2}
                   />
@@ -275,6 +286,224 @@ export default function App() {
                   </Button>
                 </Stack>
                 <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
+              </Stack>
+            </Container>
+            <Container
+              mt={"3rem"}
+              border={"#242e59 1px solid"}
+              fontFamily={"pinar"}
+              float={"right"}
+              maxW="3000px"
+              w={{ base: "90%", md: "40%" }}
+              py={{ base: "0", sm: "8" }}
+              px={{ base: "0", sm: "10" }}
+              bg={useBreakpointValue({ base: "white", sm: "white" })}
+              boxShadow={{ base: "sm", sm: useColorModeValue("sm", "md-dark") }}
+              borderRadius={{ base: "md", sm: "xl" }}
+              position={"relative"}
+            >
+              <Stack mt={"2rem"} spacing="8">
+                <Box style={{ direction: "rtl" }} p={{ base: "20px", md: "" }}>
+                  <Text mb={"1rem"}>دستورالعمل چک و تایید داده‌ها</Text>
+                  <Box lineHeight={"32px"}>
+                    در این بخش در هر صفحه یک صوت و دو متن متناظر آن برای شما
+                    نمایش داده می‌شود. هدف این است که این دو متن هردو محتوای
+                    صوتی را نمایش دهند. متن اول: متن رفرنس متن اول فقط در صورتی
+                    نیاز به تغییر دارد که محتوای متفاوتی با صوت گفته شده داشته
+                    باشد. به طور کلی فرض این است که صوت‌ها از روی متن اول ادا
+                    شده و لذا انتظار داریم که تفاوت‌ بسیار کمی مشاهده شود. متن
+                    دوم: تبدیل دقیق صوت به کاراکترهای فارسی هدف متن دوم تبدیل
+                    صوت به متن با کاراکترهای فقط فارسی است. چالش اصلی این است که
+                    بسیاری از عبارات گفته شده در صوت‌ها حاوی کلمات انگلیسی و
+                    فارسی هستند و هدف متن دوم این است که حتی کلمات انگلیسی را
+                    فقط با کاراکترهای فارسی نمایش دهد. مثلا iphone → آیفون، LED→
+                    ال ای دی، sportlight → اسپورت لایت این کاراکترها باید به طور
+                    دقیق منعکس کننده عبارات گفته شده باشد. مثلا ultra ممکن است
+                    توسط افراد به صورت آلترا یا اولترا تلفظ شود. در این حالت ما
+                    به دنبال تلفظ درست یا استاندارد نیستیم و صرفا می‌خواهیم آنچه
+                    کاربر گفته را پیاده کنیم.
+                  </Box>
+                  <Text my={"1rem"}>قوانین زیرنویس نویسی:</Text>
+                  <Box lineHeight={"32px"}>
+                    <ul>
+                      <li>
+                        <span>
+                          در صورت عدم وجود صدای انسان در صوت پخش شده در فیلد
+                          علامت '_' را قرار دهید تا ما آن را حذف کنیم
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          در صورتی که صوت و دستور فرد ناقص است و به نظر می آید
+                          که قبل از اتمام صحبت گوینده ضبط صدا متوقف شده
+                          است&nbsp; در فیلد علامت '_' را قرار دهید تا ما آن را
+                          حذف کنیم
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          توجه داشته باشید با زدن گزینه "ثبت" جمله بعدی نمایش
+                          داده شده و صوت به صورت اتوماتیک پخش می شود. در صورتی
+                          که صدایی نشنیدید از شبکه اینترنت خود و نیز روشن بودن
+                          بلندگوی دستگاه خود اطمینان حاصل نمایید و بر روی گزینه
+                          پلی کلیک کنید.
+                        </span>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        <span>
+                          همزه ها رو ی بنویسیم: آلوئه ورا &rarr; آلویه ورا،
+                          شیائومی =&gt; شیایومی
+                        </span>
+                      </li>
+                      <li>
+                        <span>اعداد حروفی نوشته بشه&nbsp;</span>
+                      </li>
+                      <li>
+                        <span>
+                          در کلماتی که ها ی جمع دارند، ها با فاصله نوشته
+                          شود.&nbsp;
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>دستها =&gt; دست ها</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          نیم فاصله ها به فاصله تبدیل شوند. مثال :&nbsp;
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>نیم&zwnj;سکه =&gt; نیم سکه</span>
+                    </p>
+                    <p>
+                      <span>تی&zwnj;شرت =&gt; تی شرت</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          در کلمات تنوین دار، تنوین به صورت الف ساده نوشته شود.
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>حتماً =&gt; حتما</span>
+                    </p>
+                    <p>
+                      <span>لطفاً =&gt; لطفا</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>ای نکره به صورت جدا نوشته شود&nbsp;</span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>مثال: </span>
+                      <span>شلوار مردانه پارچه ای</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          در کلماتی مانند مدل دستگاه که چند حرف انگلیسی پشت سر
+                          هم دارد، حروف با کاراکترهای فارسی و جدا جدا نوشته
+                          شوند.
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>اسپیکر JBL &rarr; اسپیکر جی بی ال</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          همزه یا ی که بعد از کلمات منتهی به ه، به عنوان کسره
+                          اضافه می شود لازم نیست به هیچ صورتی مکتوب شود.
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>سکه ی بهار آزادی =&gt; سکه بهار آزادی</span>
+                    </p>
+                    <p>
+                      <span>سکهٔ بهار آزادی =&gt; سکه بهار آزادی</span>
+                    </p>
+                    <p>
+                      <span>
+                        (توجه: ی کسره اضافه شده در سایر کلمات، نوشته&nbsp; می
+                        شود. مثلا کتابای من)
+                      </span>
+                    </p>
+                    <p>&nbsp;</p>
+                    <ul>
+                      <li>
+                        <span>
+                          تا جاییکه که امکانش هست و معنا بدهد کلمات دو بخشی مرکب
+                          به صورت جدا نوشته شوند مثل:&nbsp;
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>دستکش دروازه بانی پسرانه</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          اعداد به صورت حروف و با املای درست نوشتاری نوشته شوند
+                          :&nbsp;
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>شیش =&gt; شش</span>
+                    </p>
+                    <p>
+                      <span>هژده =&gt; هجده</span>
+                    </p>
+                    <p>
+                      <span>چار =&gt; چهار</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          در صورتیکه جمله یا عبارت شنیده شده ناقص است، اگر آخرین
+                          کلمه تا حد خوبی ادا شده به طوری که برای شما به عنوان
+                          کاربر انسانی قابل تشخیص است آن را بنویسید، وگرنه تا
+                          همانجا که قابل تشخیص است نوشته شود.
+                        </span>
+                      </li>
+                    </ul>
+                    <p>
+                      <span>مثلا:&nbsp;</span>
+                    </p>
+                    <p>
+                      <span>قیمت سکه ب =&gt; قیمت سکه</span>
+                    </p>
+                    <p>
+                      <span>قیمت سکه بها =&gt; قیمت سکه بهار</span>
+                    </p>
+                    <p>
+                      <span>
+                        قیمت سکه بهار آزاد =&gt; قیمت سکه بهار آزادی&nbsp;
+                      </span>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                      <strong>نکته کمک کننده:</strong>
+                    </p>
+                    <p>
+                      <span>
+                        هر جا شک داشتید، عبارت مورد نظر را در سرچ&zwnj;باکس دیجی
+                        کالا جستجو کنید و نوشتار را منطبق با نتیجه&zwnj;های
+                        نمایش داده شده انجام دهید (کماکان با محدودیت فارسی
+                        نویسی)
+                      </span>
+                    </p>
+                  </Box>
+                </Box>
               </Stack>
             </Container>
           </Flex>

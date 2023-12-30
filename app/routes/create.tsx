@@ -21,6 +21,15 @@ import {
   Text,
   VStack,
   HStack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  useDisclosure,
+  ModalBody,
+  ModalCloseButton,
+  Divider,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 
@@ -32,6 +41,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [a, setA] = React.useState(false);
   const [finish, setFinish] = React.useState(false);
   const [count, setCount] = React.useState("");
@@ -200,7 +210,7 @@ export default function App() {
     <>
       <Box py={{ base: "12", md: "24" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
-          <Flex flex="1" overflowX={"hidden"}>
+          <Flex flexFlow={"column"} overflowX={"hidden"}>
             <Container
               border={"#242e59 1px solid"}
               fontFamily={"pinar"}
@@ -405,6 +415,78 @@ export default function App() {
                   </Button>
                 </Stack>
                 <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
+              </Stack>
+            </Container>
+
+            <Container
+              mt={"3rem"}
+              border={"#242e59 1px solid"}
+              fontFamily={"pinar"}
+              float={"right"}
+              maxW="3000px"
+              w={{ base: "90%", md: "40%" }}
+              py={{ base: "0", sm: "8" }}
+              px={{ base: "0", sm: "10" }}
+              bg={useBreakpointValue({ base: "white", sm: "white" })}
+              boxShadow={{ base: "sm", sm: useColorModeValue("sm", "md-dark") }}
+              borderRadius={{ base: "md", sm: "xl" }}
+              position={"relative"}
+            >
+              <Stack mt={"2rem"} spacing="8">
+                <Box style={{ direction: "rtl" }} p={{ base: "20px", md: "" }}>
+                  <Text mb={"1rem"}>دستورالعمل ضبط صدا</Text>
+                  <Box lineHeight={"32px"}>
+                    <ul>
+                      <li>
+                        <p>
+                          <span>
+                            در این بخش در هر صفحه یک صوت و دو متن متناظر آن برای
+                            شما نمایش داده می&zwnj;شود. هدف این است که این دو
+                            متن هردو محتوای صوتی را نمایش دهند.&nbsp;
+                          </span>
+                        </p>
+                        <br />
+                        <p>
+                          <span>متن اول: متن رفرنس</span>
+                        </p>
+                        <p>
+                          <span>
+                            متن اول فقط در صورتی نیاز به تغییر دارد که محتوای
+                            متفاوتی با صوت گفته شده داشته باشد. به طور کلی فرض
+                            این است که صوت&zwnj;ها از روی متن اول ادا شده و لذا
+                            انتظار داریم که تفاوت&zwnj; بسیار کمی مشاهده شود.
+                          </span>
+                        </p>
+                        <br />
+                        <p>
+                          <span>
+                            متن دوم: تبدیل دقیق صوت به کاراکترهای فارسی
+                          </span>
+                        </p>
+                        <p>
+                          <span>
+                            هدف متن دوم تبدیل صوت به متن با کاراکترهای فقط فارسی
+                            است. چالش اصلی این است که بسیاری از عبارات گفته شده
+                            در صوت&zwnj;ها حاوی کلمات انگلیسی و فارسی هستند و
+                            هدف متن دوم این است که حتی کلمات انگلیسی را فقط با
+                            کاراکترهای فارسی نمایش دهد. مثلا iphone &rarr;
+                            آیفون، LED&rarr; ال ای دی، sportlight &rarr; اسپورت
+                            لایت
+                          </span>
+                        </p>
+                        <p>
+                          <span>
+                            این کاراکترها باید به طور دقیق منعکس کننده عبارات
+                            گفته شده باشد. مثلا ultra ممکن است توسط افراد به
+                            صورت&nbsp; آلترا یا اولترا تلفظ شود. در این حالت ما
+                            به دنبال تلفظ درست یا استاندارد نیستیم و صرفا
+                            می&zwnj;خواهیم آنچه کاربر گفته را پیاده کنیم.
+                          </span>
+                        </p>
+                      </li>
+                    </ul>
+                  </Box>
+                </Box>
               </Stack>
             </Container>
           </Flex>
