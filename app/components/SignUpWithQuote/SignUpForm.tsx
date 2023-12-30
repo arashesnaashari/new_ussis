@@ -110,6 +110,8 @@ export const SignUpForm = () => {
               setError(Array.isArray(d.detail) ? d.detail[0].msg : d.detail);
             } else if (d.id) {
               //set it to localStorage
+              localStorage.removeItem("userIdussisstantRole");
+
               localStorage.setItem("userIdussisstant", d.id);
               //redirect
               navigate("/create");
