@@ -109,7 +109,7 @@ export default function App() {
 
   // };
 
-  const handleSendAudio = () => {
+  const handleSendAudio = (clear: boolean) => {
     let url = `https://asr-api2.ussistant.ir/collect/voice/set_annotate/${
       text?.query_id
     }?user_id=${localStorage.getItem("userIdussisstant")}`;
@@ -131,12 +131,12 @@ export default function App() {
         asr_text: text?.asr_text,
         edited_query_text: text1,
         edited_asr_text: text2,
-        valid_voice: true,
+        valid_voice: clear,
       }),
     })
       .then((x) => x.json())
       .then((d) => {
-        if (d.message == "Annotations set successfully") {
+        if (d.message == "برچسب گذاری انجام شد") {
           setFinish(false);
           location.reload();
         }
@@ -224,7 +224,7 @@ export default function App() {
                   mt={"3rem"}
                 >
                   <Button
-                    onClick={() => handleSendAudio()}
+                    onClick={() => handleSendAudio(true)}
                     w="80%"
                     color={"whitesmoke"}
                     bgColor={"#242e59"}
@@ -236,6 +236,21 @@ export default function App() {
                     }}
                   >
                     ! ارسال
+                  </Button>
+                  <Button
+                    onClick={() => handleSendAudio(false)}
+                    w="80%"
+                    color={"#242e59"}
+                    bgColor={"white"}
+                    border={"1px solid #242e59"}
+                    fontFamily={"pinar"}
+                    _hover={{
+                      bgColor: "white",
+                      color: "black",
+                      border: "1px solid #242e59",
+                    }}
+                  >
+                    فایل صوتی نامشخص
                   </Button>
                 </Stack>
                 <Stack
