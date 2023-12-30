@@ -174,11 +174,18 @@ export default function App() {
     const audio = document.createElement("audio");
     audio.src = url;
     audio.controls = true;
+    let myNode = document.body.querySelector(".playme");
+    while (myNode?.firstChild) {
+      myNode.removeChild(myNode?.lastChild);
+    }
+
     document.body.querySelector(".playme").appendChild(audio);
   };
   const handleSkip = () => {
     fetch(
-      `https://asr-api2.ussistant.ir/collect/voice/set_skip_text/${text?.id}`,
+      `https://asr-api2.ussistant.ir/collect/voice/set_skip_text/${
+        text?.id ? text.id.toString() : ""
+      }`,
       {
         method: "PUT",
         headers: {
@@ -219,7 +226,7 @@ export default function App() {
               >
                 رد کردن
               </Button>
-              {count && (
+              {true && (
                 <Button
                   left={"12px"}
                   position={"absolute"}

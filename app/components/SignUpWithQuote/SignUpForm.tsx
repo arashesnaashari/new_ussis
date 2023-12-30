@@ -43,7 +43,7 @@ export const SignUpForm = () => {
       email: "email@gmail.com",
       age: age ?? "",
       gender: gender == "man" ? true : false,
-      is_annotator: role == "creator" ? false : true,
+      is_annotator: false,
       password: pass,
     };
     console.log(userName);
@@ -107,7 +107,7 @@ export const SignUpForm = () => {
             console.log(d);
 
             if (d.detail) {
-              setError(d.detail[0].msg);
+              setError(Array.isArray(d.detail) ? d.detail[0].msg : d.detail);
             } else if (d.id) {
               //set it to localStorage
               localStorage.setItem("userIdussisstant", d.id);
