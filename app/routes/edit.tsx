@@ -88,7 +88,7 @@ export default function App() {
   React.useEffect(() => {
     if (
       !localStorage.getItem("userIdussisstant") ||
-      !localStorage.getItem("userIdussisstantRole")
+      localStorage.getItem("userIdussisstantRole") == "false"
     ) {
       navigate("/");
     } else {
