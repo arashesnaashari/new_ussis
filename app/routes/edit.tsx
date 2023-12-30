@@ -78,9 +78,8 @@ export default function App() {
 
   React.useEffect(() => {
     if (
-      !localStorage.getItem(
-        "userIdussisstant" || !localStorage.getItem("userIdussisstantRole")
-      )
+      !localStorage.getItem("userIdussisstant") ||
+      !localStorage.getItem("userIdussisstantRole")
     ) {
       navigate("/");
     } else {
@@ -125,7 +124,7 @@ export default function App() {
         // "Content-Type":
         //   "multipart/form-data; charset=utf-8; boundary=" +
         //   Math.random().toString().substring(2),
-        // "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/x-w"ww-form-urlencoded",
       },
       body: JSON.stringify({
         voice_id: text?.query_id.toString(),
