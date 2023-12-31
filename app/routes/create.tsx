@@ -433,8 +433,13 @@ export default function App() {
               position={"relative"}
             >
               <Stack mt={"2rem"} spacing="8">
-                <Box style={{ direction: "rtl" }} p={{ base: "20px", md: "" }}>
-                  <Text mb={"1rem"}>دستورالعمل ضبط صدا</Text>
+                <Box
+                  style={{ direction: "rtl" }}
+                  p={{ base: "20px", md: "10px" }}
+                >
+                  <Text mb={"1rem"} fontWeight={"600"} fontSize={"1.1rem"}>
+                    دستورالعمل ضبط صدا
+                  </Text>
                   <Box lineHeight={"32px"}>
                     <p>
                       <span>
@@ -465,11 +470,9 @@ export default function App() {
                     <p>&nbsp;</p>
                     <p>
                       <span>
-                        ۱- اگر ضبط صدا بدون مشکل انجام شد، با لمس دکمه{" "}
-                      </span>
-                      <span>ارسال</span>
+                        ۱- اگر ضبط صدا بدون مشکل انجام شد، با لمس دکمه ارسال
+                      </span>{" "}
                       <span>
-                        {" "}
                         فایل صوتی رو ارسال کنید و به سراغ عبارت بعدی برید.
                       </span>
                     </p>

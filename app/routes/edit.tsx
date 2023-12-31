@@ -42,6 +42,7 @@ export const meta: MetaFunction = () => {
 export default function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [a, setA] = React.useState(false);
+  const [count, setCount] = React.useState("");
   const [text1, setText1] = React.useState("");
   const [text2, setText2] = React.useState("");
   const [finish, setFinish] = React.useState(false);
@@ -50,6 +51,7 @@ export default function App() {
     query_id: number;
     query_text: string;
     asr_text: string;
+    message?: string;
     voice_link: string;
   }>();
   //   {
@@ -77,18 +79,30 @@ export default function App() {
     })
       .then((x) => x.json())
       .then((d) => {
-        console.log(d),
-          setText(d),
-          setText1(d.query_text),
-          setText2(d.asr_text);
+        setText(d), setText1(d.query_text), setText2(d.asr_text);
       })
       .catch((err) => console.log(err));
+
+    fetch(
+      `https://asr-api2.ussistant.ir/collect/voice/count_annotated_voice/${localStorage.getItem(
+        "userIdussisstant"
+      )}`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          "X-API-Key": "c5ac5392-1cd1-477e-b9ae-6fd61d21da01",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => setCount(data.count_voice_id));
   };
 
   React.useEffect(() => {
     if (
       !localStorage.getItem("userIdussisstant") ||
-      localStorage.getItem("userIdussisstantRole") == "false"
+      localStorage.getItem("userIdussisstantRole") !== "true"
     ) {
       navigate("/");
     } else {
@@ -188,105 +202,136 @@ export default function App() {
               bg={useBreakpointValue({ base: "white", sm: "white" })}
               boxShadow={{ base: "sm", sm: useColorModeValue("sm", "md-dark") }}
               borderRadius={{ base: "md", sm: "xl" }}
+              pos={"relative"}
             >
-              <Stack width={"93%"} mx="auto" spacing="8">
-                <Stack spacing="6" align="center">
-                  <audio style={{ width: "93%" }} controls>
-                    {text?.voice_link && (
-                      //      <AudioPlayer
-                      //      autoPlay
-                      //      src={`https://asr-api2.ussistant.ir/collect/voice/download/${
-                      //        text?.voice_link.split("/")[5].split(".")[0]
-                      //      }`}
-                      //      showJumpControls={false}
-                      //      customVolumeControls={[]}
-                      //      customAdditionalControls={[]}
-                      //    />
-                      <source
-                        src={`https://asr-api2.ussistant.ir/collect/voice/download/${
-                          text?.voice_link.split("/")[5].split(".")[0]
-                        }`}
-                        type="audio/mp3"
-                      />
-                    )}
-                    Your browser does not support the audio element.
-                  </audio>
-                </Stack>
-
-                <Stack spacing={"3"} align={"center"}>
-                  <Text textAlign={"left"}>متن اصلی</Text>
-                  <Textarea
-                    style={{ direction: "rtl" }}
-                    onChange={(v) => setText1(v.target.value)}
-                    value={text1}
-                  />
-                  <Text textAlign={"right"}>متن جنریت شده</Text>
-                  <Textarea
-                    style={{ direction: "rtl" }}
-                    onChange={(v) => setText2(v.target.value)}
-                    value={text2}
-                  />
-                </Stack>
-
-                <Stack
-                  hidden={finish ? true : false}
-                  align={"center"}
-                  spacing={"6"}
-                  mt={"3rem"}
+              {text?.message ? (
+                <></>
+              ) : (
+                <Button
+                  left={"12px"}
+                  position={"absolute"}
+                  bottom={"12px"}
+                  p={"3"}
+                  // border={"1px #242e59 solid"}
+                  bgColor={"white"}
+                  color={"#242e59"}
                 >
-                  <Button
-                    onClick={() => handleSendAudio(true)}
-                    w="80%"
-                    color={"whitesmoke"}
-                    bgColor={"#242e59"}
-                    fontFamily={"pinar"}
-                    _hover={{
-                      bgColor: "white",
-                      color: "black",
-                      border: "1px solid #242e59",
-                    }}
+                  تعداد ویس های شما: {count}
+                </Button>
+              )}
+
+              {text?.message ? (
+                <Stack width={"93%"} mx="auto" spacing="8">
+                  <Stack
+                    width={"100%"}
+                    height={"4rem"}
+                    spacing="6"
+                    align="center"
                   >
-                    ! ارسال
-                  </Button>
-                  <Button
-                    onClick={() => handleSendAudio(false)}
-                    w="80%"
-                    color={"#242e59"}
-                    bgColor={"white"}
-                    border={"1px solid #242e59"}
-                    fontFamily={"pinar"}
-                    _hover={{
-                      bgColor: "white",
-                      color: "black",
-                      border: "1px solid #242e59",
-                    }}
-                  >
-                    فایل صوتی نامشخص
-                  </Button>
+                    {" "}
+                    <Text>{text.message}</Text>{" "}
+                  </Stack>
                 </Stack>
-                <Stack
-                  hidden={next ? false : true}
-                  align={"center"}
-                  spacing={"6"}
-                  mt="3rem"
-                >
-                  <Button
-                    color={"whitesmoke"}
-                    // w="80%"
-                    bgColor={"#242e59"}
-                    fontFamily={"pinar"}
-                    onClick={() => handleNext()}
-                    _hover={{
-                      bgColor: "white",
-                      color: "black",
-                      border: "1px solid #242e59",
-                    }}
+              ) : (
+                <Stack width={"93%"} mx="auto" spacing="8">
+                  <Stack spacing="6" align="center">
+                    <audio autoPlay style={{ width: "93%" }} controls>
+                      {text?.voice_link && (
+                        //      <AudioPlayer
+                        //      autoPlay
+                        //      src={`https://asr-api2.ussistant.ir/collect/voice/download/${
+                        //        text?.voice_link.split("/")[5].split(".")[0]
+                        //      }`}
+                        //      showJumpControls={false}
+                        //      customVolumeControls={[]}
+                        //      customAdditionalControls={[]}
+                        //    />
+                        <source
+                          src={`https://asr-api2.ussistant.ir/collect/voice/download/${
+                            text?.voice_link.split("/")[5].split(".")[0]
+                          }`}
+                          type="audio/mp3"
+                        />
+                      )}
+                      Your browser does not support the audio element.
+                    </audio>
+                  </Stack>
+
+                  <Stack spacing={"3"} align={"center"}>
+                    <Text textAlign={"left"}>متن اصلی</Text>
+                    <Textarea
+                      style={{ direction: "rtl" }}
+                      onChange={(v) => setText1(v.target.value)}
+                      value={text1}
+                    />
+                    <Text textAlign={"right"}>متن جنریت شده</Text>
+                    <Textarea
+                      style={{ direction: "rtl" }}
+                      onChange={(v) => setText2(v.target.value)}
+                      value={text2}
+                    />
+                  </Stack>
+
+                  <Stack
+                    hidden={finish ? true : false}
+                    align={"center"}
+                    spacing={"6"}
+                    mt={"3rem"}
                   >
-                    ! بعدی
-                  </Button>
+                    <Button
+                      onClick={() => handleSendAudio(true)}
+                      w="80%"
+                      color={"whitesmoke"}
+                      bgColor={"#242e59"}
+                      fontFamily={"pinar"}
+                      _hover={{
+                        bgColor: "white",
+                        color: "black",
+                        border: "1px solid #242e59",
+                      }}
+                    >
+                      ! ثبت
+                    </Button>
+                    <Button
+                      onClick={() => handleSendAudio(false)}
+                      w="80%"
+                      color={"#242e59"}
+                      bgColor={"white"}
+                      border={"1px solid #242e59"}
+                      fontFamily={"pinar"}
+                      _hover={{
+                        bgColor: "white",
+                        color: "black",
+                        border: "1px solid #242e59",
+                      }}
+                    >
+                      فایل صوتی نامشخص
+                    </Button>
+                  </Stack>
+                  <Stack
+                    hidden={next ? false : true}
+                    align={"center"}
+                    spacing={"6"}
+                    mt="3rem"
+                  >
+                    <Button
+                      color={"whitesmoke"}
+                      // w="80%"
+                      bgColor={"#242e59"}
+                      fontFamily={"pinar"}
+                      onClick={() => handleNext()}
+                      _hover={{
+                        bgColor: "white",
+                        color: "black",
+                        border: "1px solid #242e59",
+                      }}
+                    >
+                      ! بعدی
+                    </Button>
+                  </Stack>
+                  <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
                 </Stack>
-                <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
-              </Stack>
+              )}
             </Container>
             <Container
               mt={"3rem"}
@@ -304,61 +349,99 @@ export default function App() {
             >
               <Stack mt={"2rem"} spacing="8">
                 <Box style={{ direction: "rtl" }} p={{ base: "20px", md: "" }}>
-                  <Text mb={"1rem"}>دستورالعمل چک و تایید داده‌ها</Text>
+                  <Text fontWeight={"500"} fontSize={"1.1rem"} mb={"1rem"}>
+                    دستورالعمل چک و تایید داده‌ها
+                  </Text>
                   <Box lineHeight={"32px"}>
-                    در این بخش در هر صفحه یک صوت و دو متن متناظر آن برای شما
-                    نمایش داده می‌شود. هدف این است که این دو متن هردو محتوای
-                    صوتی را نمایش دهند. متن اول: متن رفرنس متن اول فقط در صورتی
-                    نیاز به تغییر دارد که محتوای متفاوتی با صوت گفته شده داشته
-                    باشد. به طور کلی فرض این است که صوت‌ها از روی متن اول ادا
-                    شده و لذا انتظار داریم که تفاوت‌ بسیار کمی مشاهده شود. متن
-                    دوم: تبدیل دقیق صوت به کاراکترهای فارسی هدف متن دوم تبدیل
-                    صوت به متن با کاراکترهای فقط فارسی است. چالش اصلی این است که
-                    بسیاری از عبارات گفته شده در صوت‌ها حاوی کلمات انگلیسی و
-                    فارسی هستند و هدف متن دوم این است که حتی کلمات انگلیسی را
-                    فقط با کاراکترهای فارسی نمایش دهد. مثلا iphone → آیفون، LED→
-                    ال ای دی، sportlight → اسپورت لایت این کاراکترها باید به طور
-                    دقیق منعکس کننده عبارات گفته شده باشد. مثلا ultra ممکن است
-                    توسط افراد به صورت آلترا یا اولترا تلفظ شود. در این حالت ما
-                    به دنبال تلفظ درست یا استاندارد نیستیم و صرفا می‌خواهیم آنچه
-                    کاربر گفته را پیاده کنیم.
+                    <p>
+                      <span>
+                        در این بخش در هر صفحه یک صوت و دو متن متناظر آن برای شما
+                        نمایش داده می&zwnj;شود. هدف این است که این دو متن هردو
+                        محتوای صوتی را نمایش دهند.&nbsp;
+                      </span>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                      <span>متن اول: متن رفرنس</span>
+                    </p>
+                    <p>
+                      <span>
+                        متن اول فقط در صورتی نیاز به تغییر دارد که محتوای
+                        متفاوتی با صوت گفته شده داشته باشد. به طور کلی فرض این
+                        است که صوت&zwnj;ها از روی متن اول ادا شده و لذا انتظار
+                        داریم که تفاوت&zwnj; بسیار کمی مشاهده شود.
+                      </span>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                      <span>متن دوم: تبدیل دقیق صوت به کاراکترهای فارسی</span>
+                    </p>
+                    <p>
+                      <span>
+                        هدف متن دوم تبدیل صوت به متن با کاراکترهای فقط فارسی
+                        است. چالش اصلی این است که بسیاری از عبارات گفته شده در
+                        صوت&zwnj;ها حاوی کلمات انگلیسی و فارسی هستند و هدف متن
+                        دوم این است که حتی کلمات انگلیسی را فقط با کاراکترهای
+                        فارسی نمایش دهد. مثلا iphone =&gt; آیفون، LED =&gt; ال
+                        ای دی، sportlight =&gt; اسپورت لایت
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        این کاراکترها باید به طور دقیق منعکس کننده عبارات گفته
+                        شده باشد. مثلا ultra ممکن است توسط افراد به صورت&nbsp;
+                        آلترا یا اولترا تلفظ شود. در این حالت ما به دنبال تلفظ
+                        درست یا استاندارد نیستیم و صرفا می&zwnj;خواهیم آنچه
+                        کاربر گفته را پیاده کنیم.
+                      </span>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                      <span>نکات کار با سامانه:</span>
+                    </p>
+                    <ul>
+                      <li>
+                        <span>
+                          در صورت عدم وجود صدای انسان در صوت پخش شده گزینه "فایل
+                          صوتی نامشخص" را انتخاب کنید
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          در صورتی که صوت و دستور فرد از ابتدا یا انتها ناقص است
+                          یا به نظر می آید که قبل از اتمام صحبت گوینده ضبط صدا
+                          متوقف شده است&nbsp; گزینه "فایل صوتی نامشخص" را انتخاب
+                          کنید
+                        </span>
+                      </li>
+                    </ul>
                   </Box>
-                  <Text my={"1rem"}>قوانین زیرنویس نویسی:</Text>
+                  <Text fontWeight={"500"} fontSize={"1.1rem"} my={"1rem"}>
+                    قوانین زیرنویس نویسی:
+                  </Text>
                   <Box lineHeight={"32px"}>
                     <ul>
                       <li>
                         <span>
-                          در صورت عدم وجود صدای انسان در صوت پخش شده در فیلد
-                          علامت '_' را قرار دهید تا ما آن را حذف کنیم
-                        </span>
-                      </li>
-                      <li>
-                        <span>
-                          در صورتی که صوت و دستور فرد ناقص است و به نظر می آید
-                          که قبل از اتمام صحبت گوینده ضبط صدا متوقف شده
-                          است&nbsp; در فیلد علامت '_' را قرار دهید تا ما آن را
-                          حذف کنیم
-                        </span>
-                      </li>
-                      <li>
-                        <span>
-                          توجه داشته باشید با زدن گزینه "ثبت" جمله بعدی نمایش
-                          داده شده و صوت به صورت اتوماتیک پخش می شود. در صورتی
-                          که صدایی نشنیدید از شبکه اینترنت خود و نیز روشن بودن
-                          بلندگوی دستگاه خود اطمینان حاصل نمایید و بر روی گزینه
-                          پلی کلیک کنید.
+                          همزه ها رو ی بنویسیم: آلوئه ورا =&gt; آلویه ورا،
+                          شیائومی =&gt; شیایومی
                         </span>
                       </li>
                     </ul>
                     <ul>
                       <li>
-                        <span>
-                          همزه ها رو ی بنویسیم: آلوئه ورا &rarr; آلویه ورا،
-                          شیائومی =&gt; شیایومی
-                        </span>
+                        <span>اعداد به صورت حرف نوشته بشه:&nbsp;</span>
                       </li>
+                    </ul>
+                    <p>
+                      <span>آیفون ۱۵ =&gt; آیفون پانزده/ آیفون پانزده</span>
+                    </p>
+                    <p>
+                      <span>سامسونگ مدل A32 =&gt; سامسونگ مدل آ سی و دو</span>
+                    </p>
+                    <ul>
                       <li>
-                        <span>اعداد حروفی نوشته بشه&nbsp;</span>
+                        <span>آی باکلاه رو با کلاه بنویسیم!</span>
                       </li>
                       <li>
                         <span>
@@ -373,7 +456,7 @@ export default function App() {
                     <ul>
                       <li>
                         <span>
-                          نیم فاصله ها به فاصله تبدیل شوند. مثال :&nbsp;
+                          نیم فاصله ها به فاصله تبدیل شوند. مثال:&nbsp;
                         </span>
                       </li>
                     </ul>
@@ -398,7 +481,7 @@ export default function App() {
                     </p>
                     <ul>
                       <li>
-                        <span>ای نکره به صورت جدا نوشته شود&nbsp;</span>
+                        <span>ای نکره یا نسبت به صورت جدا نوشته شود&nbsp;</span>
                       </li>
                     </ul>
                     <p>
@@ -437,7 +520,6 @@ export default function App() {
                         شود. مثلا کتابای من)
                       </span>
                     </p>
-                    <p>&nbsp;</p>
                     <ul>
                       <li>
                         <span>
@@ -498,8 +580,8 @@ export default function App() {
                       <span>
                         هر جا شک داشتید، عبارت مورد نظر را در سرچ&zwnj;باکس دیجی
                         کالا جستجو کنید و نوشتار را منطبق با نتیجه&zwnj;های
-                        نمایش داده شده انجام دهید (کماکان با محدودیت فارسی
-                        نویسی)
+                        نمایش داده شده انجام دهید (کماکان با این شرط که فقط از
+                        حروف فارسی استفاده می&zwnj;کنیم)
                       </span>
                     </p>
                   </Box>

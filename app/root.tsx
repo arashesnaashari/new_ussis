@@ -46,15 +46,18 @@ export default function App() {
             justifyContent={"start"}
             shadow={"sm"}
           >
-            <img
-              style={{
-                paddingLeft: "1rem",
-                width: "140px",
-                marginBottom: "-2.5rem",
-                marginTop: "-2.5rem",
-              }}
-              src="/ussis.png"
-            />
+            <a href="/">
+              {" "}
+              <img
+                style={{
+                  paddingLeft: "1rem",
+                  width: "140px",
+                  marginBottom: "-2.5rem",
+                  marginTop: "-2.5rem",
+                }}
+                src="/ussis.png"
+              />
+            </a>
           </HStack>
           <Outlet />
         </ChakraProvider>

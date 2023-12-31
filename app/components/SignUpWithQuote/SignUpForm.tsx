@@ -148,14 +148,20 @@ export const SignUpForm = () => {
             src="/ussis.png"
           />
           <Stack spacing="3" textAlign="center">
-            <Heading
+            {/* <Heading
               size="md"
               mt={{ base: "1.2rem", md: "" }}
               fontFamily={"pinar"}
             >
-              {/* خوش اومدین */}
-            </Heading>
-            {/* <Text color="muted">انتخاب نقش</Text> */}
+              خوش اومدین
+            </Heading> */}
+            <Text
+              color="muted"
+              fontWeight={"500"}
+              my={{ base: "1rem", md: "" }}
+            >
+              سامانه جمع سپاری داده صوتی{" "}
+            </Text>
             <HStack justify="center" spacing="1">
               <ButtonGroup
                 variant="outline"
