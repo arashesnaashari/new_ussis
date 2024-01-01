@@ -203,8 +203,11 @@ export default function App() {
           "X-API-Key": "c5ac5392-1cd1-477e-b9ae-6fd61d21da01",
         },
       }
-    );
-    location.reload();
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        location.reload();
+      });
   };
   return (
     <>
