@@ -214,141 +214,151 @@ export default function App() {
       <Box py={{ base: "12", md: "24" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
           <Flex flexFlow={"column"} overflowX={"hidden"}>
-            <Container
-              border={"#242e59 1px solid"}
-              fontFamily={"pinar"}
-              float={"right"}
-              maxW="3000px"
-              w={{ base: "90%", md: "40%" }}
-              py={{ base: "0", sm: "8" }}
-              px={{ base: "0", sm: "10" }}
-              bg={useBreakpointValue({ base: "white", sm: "white" })}
-              boxShadow={{ base: "sm", sm: useColorModeValue("sm", "md-dark") }}
-              borderRadius={{ base: "md", sm: "xl" }}
-              position={"relative"}
-            >
-              <Button
-                right={"12px"}
-                position={"absolute"}
-                bottom={"12px"}
-                p={"3"}
-                border={"1px #242e59 solid"}
-                bgColor={"white"}
-                color={"#242e59"}
-                onClick={() => handleSkip()}
-              >
-                رد کردن
-              </Button>
-              {true && (
-                <Button
-                  left={"12px"}
-                  position={"absolute"}
-                  bottom={"12px"}
-                  p={"3"}
-                  // border={"1px #242e59 solid"}
-                  bgColor={"white"}
-                  color={"#242e59"}
+            {+count <= 100 && (
+              <>
+                <Container
+                  border={"#242e59 1px solid"}
+                  fontFamily={"pinar"}
+                  float={"right"}
+                  maxW="3000px"
+                  w={{ base: "90%", md: "40%" }}
+                  py={{ base: "0", sm: "8" }}
+                  px={{ base: "0", sm: "10" }}
+                  bg={useBreakpointValue({ base: "white", sm: "white" })}
+                  boxShadow={{
+                    base: "sm",
+                    sm: useColorModeValue("sm", "md-dark"),
+                  }}
+                  borderRadius={{ base: "md", sm: "xl" }}
+                  position={"relative"}
                 >
-                  تعداد ویس های شما: {count}
-                </Button>
-              )}
-              <Stack spacing="8">
-                <Stack spacing="6" align="center">
-                  <Box
-                    width={{ base: "80%", md: "" }}
-                    fontWeight={"500"}
-                    textAlign={"center"}
-                    // borderRadius={{ base: "none", sm: "xl" }}
-                    borderBottom={"#242e59 1px solid"}
-                    padding={"1rem"}
-                    float={"right"}
-                    style={{ direction: "rtl" }}
+                  <Button
+                    right={"12px"}
+                    position={"absolute"}
+                    bottom={"12px"}
+                    p={"3"}
+                    border={"1px #242e59 solid"}
+                    bgColor={"white"}
+                    color={"#242e59"}
+                    onClick={() => handleSkip()}
                   >
-                    {text && text.query_text ? text.query_text : text?.detail}
-                  </Box>
-                </Stack>
-
-                <Stack spacing={"3"} align={"center"}>
-                  {/* !text?.detail */}
-                  {a && (
-                    <VStack alignItems={"center"} spacing={"3"}>
+                    رد کردن
+                  </Button>
+                  {true && (
+                    <Button
+                      left={"12px"}
+                      position={"absolute"}
+                      bottom={"12px"}
+                      p={"3"}
+                      // border={"1px #242e59 solid"}
+                      bgColor={"white"}
+                      color={"#242e59"}
+                    >
+                      تعداد ویس های شما:{" "}
+                      {"۱۰۰" + "/" + count.toLocaleString("fa-ir")}
+                    </Button>
+                  )}
+                  <Stack spacing="8">
+                    <Stack spacing="6" align="center">
                       <Box
-                        transform={{ base: "scale(0.8)", md: "scale(1)" }}
-                        filter={"grayscale(1.4)"}
+                        width={{ base: "80%", md: "" }}
+                        fontWeight={"500"}
+                        textAlign={"center"}
+                        // borderRadius={{ base: "none", sm: "xl" }}
+                        borderBottom={"#242e59 1px solid"}
+                        padding={"1rem"}
+                        float={"right"}
+                        style={{ direction: "rtl" }}
                       >
-                        <AudioRecorder
-                          classes={{
-                            AudioRecorderPauseResumeClass: "arash",
-                            AudioRecorderDiscardClass: "arash",
-                            AudioRecorderStartSaveClass: "arash",
-                          }}
-                          // onRecordingComplete={(blob) => addAudioElement(blob)}
-                          recorderControls={recorderControls}
-                          // downloadOnSavePress={true}
-                          downloadFileExtension="mp3"
-                          showVisualizer={true}
-                          onRecordingComplete={addAudioElement}
-                        />
+                        {text && text.query_text
+                          ? text.query_text
+                          : text?.detail}
                       </Box>
-                      {!recorderControls.isRecording && (
-                        <Button
-                          bgColor={
-                            recorderControls.isRecording
-                              ? "gary.100"
-                              : "#242e59"
-                          }
-                          border={
-                            recorderControls.isRecording
-                              ? "1px solid #242e59"
-                              : "none"
-                          }
-                          boxShadow={"sm"}
-                          p={"3"}
-                          onClick={handleStart}
-                        >
-                          <Icon
-                            // _hover={{
-                            //   color: "black",
-                            // }}
-                            color={
-                              recorderControls.isRecording ? "#242e59" : "white"
-                            }
-                            transform={"scale(1.2)"}
-                            as={FaMicrophone}
-                          />
-                        </Button>
-                      )}
-                      {recorderControls.isRecording && (
-                        <HStack bgColor={"white"}>
-                          <Button
-                            bgColor={"red.400"}
-                            _hover={{
-                              bgColor: "red.400",
-                            }}
-                            boxShadow={"sl"}
-                            p={"3"}
-                            onClick={handleStop}
-                          >
-                            <Icon
-                              color={"white"}
-                              transform={"scale(0.9)"}
-                              as={IoStop}
-                            />
-                          </Button>
-                          <Button
-                            bgColor={"#ebebeb"}
-                            boxShadow={"sl"}
-                            p={"3"}
-                            onClick={recorderControls.stopRecording}
-                          >
-                            <Icon
-                              color={"gray.800"}
-                              transform={"scale(0.9)"}
-                              as={ImCross}
-                            />
-                          </Button>
+                    </Stack>
 
-                          {/* <Button
+                    <Stack spacing={"3"} align={"center"}>
+                      {/* !text?.detail */}
+                      {a && (
+                        <VStack alignItems={"center"} spacing={"3"}>
+                          <Box
+                            transform={{ base: "scale(0.8)", md: "scale(1)" }}
+                            filter={"grayscale(1.4)"}
+                          >
+                            <AudioRecorder
+                              classes={{
+                                AudioRecorderPauseResumeClass: "arash",
+                                AudioRecorderDiscardClass: "arash",
+                                AudioRecorderStartSaveClass: "arash",
+                              }}
+                              // onRecordingComplete={(blob) => addAudioElement(blob)}
+                              recorderControls={recorderControls}
+                              // downloadOnSavePress={true}
+                              downloadFileExtension="mp3"
+                              showVisualizer={true}
+                              onRecordingComplete={addAudioElement}
+                            />
+                          </Box>
+                          {!recorderControls.isRecording && (
+                            <Button
+                              bgColor={
+                                recorderControls.isRecording
+                                  ? "gary.100"
+                                  : "#242e59"
+                              }
+                              border={
+                                recorderControls.isRecording
+                                  ? "1px solid #242e59"
+                                  : "none"
+                              }
+                              boxShadow={"sm"}
+                              p={"3"}
+                              onClick={handleStart}
+                            >
+                              <Icon
+                                // _hover={{
+                                //   color: "black",
+                                // }}
+                                color={
+                                  recorderControls.isRecording
+                                    ? "#242e59"
+                                    : "white"
+                                }
+                                transform={"scale(1.2)"}
+                                as={FaMicrophone}
+                              />
+                            </Button>
+                          )}
+                          {recorderControls.isRecording && (
+                            <HStack bgColor={"white"}>
+                              <Button
+                                bgColor={"red.400"}
+                                _hover={{
+                                  bgColor: "red.400",
+                                }}
+                                boxShadow={"sl"}
+                                p={"3"}
+                                onClick={handleStop}
+                              >
+                                <Icon
+                                  color={"white"}
+                                  transform={"scale(0.9)"}
+                                  as={IoStop}
+                                />
+                              </Button>
+                              <Button
+                                bgColor={"#ebebeb"}
+                                boxShadow={"sl"}
+                                p={"3"}
+                                onClick={recorderControls.stopRecording}
+                              >
+                                <Icon
+                                  color={"gray.800"}
+                                  transform={"scale(0.9)"}
+                                  as={ImCross}
+                                />
+                              </Button>
+
+                              {/* <Button
                         bgColor={"#ebebeb"}
                         boxShadow={"sl"}
                         p={"3"}
@@ -368,59 +378,93 @@ export default function App() {
                           />
                         )}
                       </Button> */}
-                        </HStack>
+                            </HStack>
+                          )}
+                          <div className="playme"></div>
+                        </VStack>
                       )}
-                      <div className="playme"></div>
-                    </VStack>
-                  )}
-                </Stack>
+                    </Stack>
 
-                <Stack
-                  hidden={finish ? false : true}
-                  align={"center"}
-                  spacing={"6"}
+                    <Stack
+                      hidden={finish ? false : true}
+                      align={"center"}
+                      spacing={"6"}
+                      mt={"3rem"}
+                    >
+                      <Button
+                        onClick={() => handleSendAudio()}
+                        w="80%"
+                        color={"whitesmoke"}
+                        bgColor={"#242e59"}
+                        fontFamily={"pinar"}
+                        _hover={{
+                          bgColor: "white",
+                          color: "black",
+                          border: "1px solid #242e59",
+                        }}
+                      >
+                        ! ارسال
+                      </Button>
+                    </Stack>
+                    <Stack
+                      hidden={next ? false : true}
+                      align={"center"}
+                      spacing={"6"}
+                      mt="3rem"
+                    >
+                      <Button
+                        color={"whitesmoke"}
+                        // w="80%"
+                        bgColor={"#242e59"}
+                        fontFamily={"pinar"}
+                        onClick={() => handleNext()}
+                        _hover={{
+                          bgColor: "white",
+                          color: "black",
+                          border: "1px solid #242e59",
+                        }}
+                      >
+                        ! بعدی
+                      </Button>
+                    </Stack>
+                    <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
+                  </Stack>
+                </Container>
+              </>
+            )}
+            {+count >= 101 && (
+              <>
+                {" "}
+                <Container
                   mt={"3rem"}
+                  border={"#242e59 1px solid"}
+                  fontFamily={"pinar"}
+                  float={"right"}
+                  maxW="3000px"
+                  w={{ base: "90%", md: "40%" }}
+                  py={{ base: "0", sm: "8" }}
+                  px={{ base: "0", sm: "10" }}
+                  bg={useBreakpointValue({ base: "white", sm: "white" })}
+                  boxShadow={{
+                    base: "sm",
+                    sm: useColorModeValue("sm", "md-dark"),
+                  }}
+                  borderRadius={{ base: "md", sm: "xl" }}
+                  position={"relative"}
                 >
-                  <Button
-                    onClick={() => handleSendAudio()}
-                    w="80%"
-                    color={"whitesmoke"}
-                    bgColor={"#242e59"}
-                    fontFamily={"pinar"}
-                    _hover={{
-                      bgColor: "white",
-                      color: "black",
-                      border: "1px solid #242e59",
-                    }}
-                  >
-                    ! ارسال
-                  </Button>
-                </Stack>
-                <Stack
-                  hidden={next ? false : true}
-                  align={"center"}
-                  spacing={"6"}
-                  mt="3rem"
-                >
-                  <Button
-                    color={"whitesmoke"}
-                    // w="80%"
-                    bgColor={"#242e59"}
-                    fontFamily={"pinar"}
-                    onClick={() => handleNext()}
-                    _hover={{
-                      bgColor: "white",
-                      color: "black",
-                      border: "1px solid #242e59",
-                    }}
-                  >
-                    ! بعدی
-                  </Button>
-                </Stack>
-                <Stack align={"center"} spacing={"6"} mt="3rem"></Stack>
-              </Stack>
-            </Container>
-
+                  <Stack mt={"2rem"} spacing="8">
+                    <Box
+                      style={{ direction: "rtl" }}
+                      p={{ base: "20px", md: "10px" }}
+                    >
+                      <Text mb={"1rem"} fontWeight={"600"} fontSize={"1.1rem"}>
+                        پایان ! از همکاری شما متشکریم :))
+                      </Text>
+                    </Box>
+                  </Stack>
+                </Container>
+              </>
+            )}
             <Container
               mt={"3rem"}
               border={"#242e59 1px solid"}
