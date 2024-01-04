@@ -8,6 +8,10 @@ import { FaMicrophone } from "react-icons/fa/index.js";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Avatar,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
   Box,
   Center,
   useBreakpointValue,
@@ -30,6 +34,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Divider,
+  AccordionIcon,
 } from "@chakra-ui/react";
 import { useNavigate } from "@remix-run/react";
 
@@ -213,14 +218,14 @@ export default function App() {
     <>
       <Box py={{ base: "12", md: "24" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
-          <Flex flexFlow={"column"} overflowX={"hidden"}>
+          <VStack w={"100%"}>
             {+count <= 100 && (
               <>
                 <Container
                   border={"#242e59 1px solid"}
                   fontFamily={"pinar"}
                   float={"right"}
-                  maxW="3000px"
+                  // maxW="3000px"
                   w={{ base: "90%", md: "40%" }}
                   py={{ base: "0", sm: "8" }}
                   px={{ base: "0", sm: "10" }}
@@ -255,7 +260,7 @@ export default function App() {
                       color={"#242e59"}
                     >
                       تعداد ویس های شما:{" "}
-                      {"۱۰۰" + "/" + count.toLocaleString("fa-ir")}
+                      {count.toLocaleString("fa-ir") + " از " + "۱۰۰"}
                     </Button>
                   )}
                   <Stack spacing="8">
@@ -440,7 +445,7 @@ export default function App() {
                   border={"#242e59 1px solid"}
                   fontFamily={"pinar"}
                   float={"right"}
-                  maxW="3000px"
+                  // maxW="3000px"
                   w={{ base: "90%", md: "40%" }}
                   py={{ base: "0", sm: "8" }}
                   px={{ base: "0", sm: "10" }}
@@ -470,7 +475,7 @@ export default function App() {
               border={"#242e59 1px solid"}
               fontFamily={"pinar"}
               float={"right"}
-              maxW="3000px"
+              // maxW="3000px"
               w={{ base: "90%", md: "40%" }}
               py={{ base: "0", sm: "8" }}
               px={{ base: "0", sm: "10" }}
@@ -479,86 +484,108 @@ export default function App() {
               borderRadius={{ base: "md", sm: "xl" }}
               position={"relative"}
             >
-              <Stack mt={"2rem"} spacing="8">
+              <Stack spacing="8">
                 <Box
                   style={{ direction: "rtl" }}
                   p={{ base: "20px", md: "10px" }}
                 >
-                  <Text mb={"1rem"} fontWeight={"600"} fontSize={"1.1rem"}>
-                    دستورالعمل ضبط صدا
-                  </Text>
-                  <Box lineHeight={"32px"}>
-                    <p>
-                      <span>
-                        ممنون از وقتی که برای کمک به جمع&zwnj;آوری داده صوتی
-                        اختصاص می&zwnj;دید.
-                      </span>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>
-                      <span>
-                        در این روند از شما می&zwnj;خوایم که شش تا ده دقیقه از
-                        وقتتون رو به ما اختصاص بدید و یکصد عبارت که براتون نمایش
-                        داده می&zwnj;شه رو بخونید. این عبارات در حوزه جستجوی
-                        صوتی کالاها هستند. لذا فرض کنید که در یک وبسایت خرید
-                        اینترنتی هستید و می&zwnj;خواید که بدون استفاده از کیبرد
-                        صرفا با نام بردن از کالا و بعضی ویژگی&zwnj;هاش، جستجو
-                        براتون انجام بشه.
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        برای راحت&zwnj;تر شدن این روند، ما عبارات رو به شما
-                        پیشنهاد می&zwnj;دیم و فقط لازمه شما با فشردن کلید ضبط
-                        صدا، به صورت طبیعی اون رو ادا کنید. در این روند لطفا این
-                        نکات رو درنظر داشته باشید.
-                      </span>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>
-                      <span>
-                        ۱- اگر ضبط صدا بدون مشکل انجام شد، با لمس دکمه ارسال
-                      </span>{" "}
-                      <span>
-                        فایل صوتی رو ارسال کنید و به سراغ عبارت بعدی برید.
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        ۲- اگر ضبط صدا ناقص موند یا به هر دلیلی اشتباهی صورت
-                        گرفت، فایل رو ارسال نکنید و دوباره عبارت رو ضبط کنید.
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        ۳- اگر عبارت براتون غیرقابل خوندن بود، مثلا کلماتی داشت
-                        که نحوه خواندنش براتون محل سوال بود یا دوست نداشتید
-                        بخونیدش، می&zwnj;تونید از روی اون عبارت بپرید و به عبارت
-                        بعدی برید.
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        ۴- اگر عبارت به نظرتون غیرطبیعی میومد، می&zwnj;تونید با
-                        تغییرات جزیی به شکل طبیعی&zwnj;تر درش بیارید و ادا کنید.
-                        ولی ترجیحا تغییرات زیاد در عبارات ایجاد
-                        نکنید.&nbsp;&nbsp;
-                      </span>
-                    </p>
-                    <p>
-                      <span>
-                        ۵- کلمات و عبارات انگلیسی رو هرجور که به نظرتون
-                        طبیعی&zwnj;تره بخونید. مثلا ultra رو ممکنه افراد آلترا
-                        یا اولترا تلفظ کنند. لازم نیست دنبال تلفظ درست یا
-                        استاندارد باشید. مهم اینه که جوری بخونید که اگر خودتون
-                        دنبال سرچ این محصول بودید، می&zwnj;خوندید.
-                      </span>
-                    </p>
-                  </Box>
+                  <Accordion
+                    defaultIndex={+count > 1 ? [1] : [0]}
+                    allowMultiple
+                  >
+                    <AccordionItem border={"none"}>
+                      <AccordionButton
+                        display={"flex"}
+                        justifyContent={"space-between"}
+                      >
+                        <Text
+                          // mb={"1rem"}
+                          fontWeight={"600"}
+                          fontSize={"1.1rem"}
+                        >
+                          دستورالعمل ضبط صدا
+                        </Text>
+                        <AccordionIcon />
+                      </AccordionButton>
+                      <AccordionPanel>
+                        <Box lineHeight={"32px"}>
+                          <p>
+                            <span>
+                              ممنون از وقتی که برای کمک به جمع&zwnj;آوری داده
+                              صوتی اختصاص می&zwnj;دید.
+                            </span>
+                          </p>
+                          <p>&nbsp;</p>
+                          <p>
+                            <span>
+                              در این روند از شما می&zwnj;خوایم که شش تا ده دقیقه
+                              از وقتتون رو به ما اختصاص بدید و یکصد عبارت که
+                              براتون نمایش داده می&zwnj;شه رو بخونید. این عبارات
+                              در حوزه جستجوی صوتی کالاها هستند. لذا فرض کنید که
+                              در یک وبسایت خرید اینترنتی هستید و می&zwnj;خواید
+                              که بدون استفاده از کیبرد صرفا با نام بردن از کالا
+                              و بعضی ویژگی&zwnj;هاش، جستجو براتون انجام بشه.
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              برای راحت&zwnj;تر شدن این روند، ما عبارات رو به
+                              شما پیشنهاد می&zwnj;دیم و فقط لازمه شما با فشردن
+                              کلید ضبط صدا، به صورت طبیعی اون رو ادا کنید. در
+                              این روند لطفا این نکات رو درنظر داشته باشید.
+                            </span>
+                          </p>
+                          <p>&nbsp;</p>
+                          <p>
+                            <span>
+                              ۱- اگر ضبط صدا بدون مشکل انجام شد، با لمس دکمه
+                              ارسال
+                            </span>{" "}
+                            <span>
+                              فایل صوتی رو ارسال کنید و به سراغ عبارت بعدی برید.
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              ۲- اگر ضبط صدا ناقص موند یا به هر دلیلی اشتباهی
+                              صورت گرفت، فایل رو ارسال نکنید و دوباره عبارت رو
+                              ضبط کنید.
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              ۳- اگر عبارت براتون غیرقابل خوندن بود، مثلا کلماتی
+                              داشت که نحوه خواندنش براتون محل سوال بود یا دوست
+                              نداشتید بخونیدش، می&zwnj;تونید از روی اون عبارت
+                              بپرید و به عبارت بعدی برید.
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              ۴- اگر عبارت به نظرتون غیرطبیعی میومد،
+                              می&zwnj;تونید با تغییرات جزیی به شکل طبیعی&zwnj;تر
+                              درش بیارید و ادا کنید. ولی ترجیحا تغییرات زیاد در
+                              عبارات ایجاد نکنید.&nbsp;&nbsp;
+                            </span>
+                          </p>
+                          <p>
+                            <span>
+                              ۵- کلمات و عبارات انگلیسی رو هرجور که به نظرتون
+                              طبیعی&zwnj;تره بخونید. مثلا ultra رو ممکنه افراد
+                              آلترا یا اولترا تلفظ کنند. لازم نیست دنبال تلفظ
+                              درست یا استاندارد باشید. مهم اینه که جوری بخونید
+                              که اگر خودتون دنبال سرچ این محصول بودید،
+                              می&zwnj;خوندید.
+                            </span>
+                          </p>
+                        </Box>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </Box>
               </Stack>
             </Container>
-          </Flex>
+          </VStack>
         </Stack>
       </Box>
     </>
