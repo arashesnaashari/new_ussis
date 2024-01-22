@@ -5,7 +5,7 @@ export const Logo = (props: HTMLChakraProps<"svg">) => (
 
   <img
     style={{ width: "150px", marginBottom: "-4rem", marginTop: "-2rem" }}
-    src="/ussis.png"
+    src="https://www.digikala.com/statics/img/svg/logo.svg"
   />
 
   // <chakra.svg
