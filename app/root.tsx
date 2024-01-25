@@ -89,26 +89,26 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider>
-        {/* <HStack
+        <HStack
           bg={"white"}
           alignItems={"center"}
           width={"100%"}
           justifyContent={"start"}
           shadow={"sm"}
         >
-          {/* <a href="/"> */}
-        {/* <img
-            style={{
-              paddingLeft: "1rem",
-              width: "145px",
-              height: "122px",
-              marginBottom: "-1.5rem",
-              marginTop: "-1.5rem",
-            }}
-            src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
-          /> */}
-        {/* </a> */}
-        {/* </HStack> */}
+          <a href="/">
+            {" "}
+            <img
+              style={{
+                paddingLeft: "1rem",
+                width: "142px",
+                marginBottom: "-2.5rem",
+                marginTop: "-2.5rem",
+              }}
+              src="/ussis.png"
+            />
+          </a>
+        </HStack>
         <Outlet />
       </ChakraProvider>
     </Document>

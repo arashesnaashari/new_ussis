@@ -72,30 +72,28 @@ export default function App() {
     (err) => console.table(err) // onNotAllowedOrFound
   );
 
-  const handleSearch = () => {
+  const handleSearch = (s: string) => {
     if (typeof window !== "undefined" && window !== null) {
-      window
-        .open(`https://www.digikala.com/search/?q=${"شال گردن"}`, "_blank")
-        .focus();
+      window.open(`https://www.digikala.com/search/?q=${s}`, "_blank").focus();
     }
   };
 
   const handleSendAudio = () => {
-    let url = "https://asr-api2.ussistant.ir/collect/voice/send_voice";
-    file = new File(
-      [recorderControls.recordingBlob ? recorderControls.recordingBlob : ""],
-      "name.webm",
-      { type: "video/webm" }
-    );
+    let url = "https://asr.ussistant.ir/api/digikala/transcript";
+    file = new File([recorderControls.recordingBlob], "name.webm", {
+      type: "video/webm",
+    });
     var fd = new FormData();
     fd.append("file", file);
-    fd.append("query_id", text?.id ?? "");
+    // fd.append("query_id", text?.id ?? "");
+    console.log("ddd");
+    console.log(file);
 
     fetch(url, {
       method: "POST",
       headers: {
-        "X-API-Key": "c5ac5392-1cd1-477e-b9ae-6fd61d21da01",
-        Accept: "application/json",
+        "X-API-Key": "akljnv13bvi2vfo0b0bw",
+        // Accept: "application/json",
         // "Content-Type": "multipart/form-data",
         // "Content-Type":
         //   "multipart/form-data; charset=utf-8; boundary=" +
@@ -106,13 +104,12 @@ export default function App() {
     })
       .then((x) => x.json())
       .then((d) => {
-        if (d.message == "صوت دریافت شد") {
-          //setText()
-          // setFinish(false);
-          // location.reload();
-        }
+        console.log(d);
+
+        setText(d.message);
+        handleSearch(d.message);
       })
-      .catch((err) => console.log());
+      .catch((err) => console.log(err));
   };
 
   const handleStart = () => {
@@ -124,19 +121,23 @@ export default function App() {
     recorderControls.stopRecording();
     //................. show loading
     setLoading(true);
-    setText("شال گردن");
     //.................  API :: send file to get test
-    //handleSendAudio()
-    setTimeout(() => {
-      handleSearch();
-      onClose();
-    }, 2000);
-    //................   cloze loading
-    // setLoading(false);
-    // .............   update text value
+    handleSendAudio();
 
     //...............  cloze modal
+    onClose();
+    //................   cloze loading
+    setLoading(false);
+    // .............   update text value
+
     // ............  search in newTab
+    // handleSearch();
+  };
+
+  const handleSubmit = (e: any) => {
+    if (e == 13) {
+      handleSearch(text ?? "");
+    }
   };
 
   return (
@@ -205,6 +206,7 @@ export default function App() {
                       )}
                     </Box>
                     <Input
+                      onKeyDown={(e) => handleSubmit(e.keyCode)}
                       onChange={(e) => setText(e.target.value)}
                       variant={"unstyled"}
                       value={text}
@@ -219,7 +221,7 @@ export default function App() {
 
                     <Box>
                       <Button
-                        onClick={handleSearch}
+                        onClick={() => handleSearch(text ?? "")}
                         bgColor={"transparent"}
                         border={"none"}
                         boxShadow={"sm"}
