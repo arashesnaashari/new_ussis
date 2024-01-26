@@ -89,11 +89,11 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider>
-        <HStack
+        {/* <HStack
           bg={"white"}
           alignItems={"center"}
           width={"100%"}
-          justifyContent={"start"}
+          justifyContentred={"start"}
           shadow={"sm"}
         >
           <a href="/">
@@ -108,7 +108,7 @@ export default function App() {
               src="/ussis.png"
             />
           </a>
-        </HStack>
+        </HStack> */}
         <Outlet />
       </ChakraProvider>
     </Document>

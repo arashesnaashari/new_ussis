@@ -341,7 +341,7 @@ export default function App() {
                                   bgColor: "red.400",
                                 }}
                                 boxShadow={"sl"}
-                                p={"3"}
+                                p={"7"}
                                 onClick={handleStop}
                               >
                                 <Icon

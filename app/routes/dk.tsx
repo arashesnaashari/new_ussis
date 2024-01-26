@@ -107,23 +107,25 @@ export default function App() {
       .then((x) => x.json())
       .then((d) => {
         setText(d.message);
-        onClose();
+        // onClose();
         setLoading(false);
-        setB(false);
-        handleSearch(d.message);
+        // setB(false);
+        // handleSearch(d.message);
 
-        location.reload();
+        // location.reload();
       })
       .catch((err) => {
-        console.log(err), onClose(), setLoading(false), location.reload();
+        console.log(err), onClose(), setLoading(false);
       });
   };
 
   const handleStart = () => {
     setText("");
     setB(true);
-    onOpen();
+    // onOpen();
+    // setTimeout(() => {
     recorderControls.startRecording();
+    // }, 2000);
   };
 
   const handleFinish = async () => {
@@ -172,7 +174,6 @@ export default function App() {
                 //   sm: "md",
                 // }}
                 borderRadius={{ base: "md", sm: "xl" }}
-                position={"relative"}
               >
                 <Img
                   mx={"auto"}
@@ -185,7 +186,7 @@ export default function App() {
                   }}
                   src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
                 />
-                <Stack spacing="8">
+                <Stack spacing="8" pos={"relative"}>
                   <HStack
                     borderRadius={"md"}
                     py={"1px"}
@@ -196,23 +197,39 @@ export default function App() {
                       {a && (
                         <Button
                           _hover={{
-                            bgColor: "gary.100",
-                            border: "1px solid #f0f0f1",
+                            bgColor: "#ef4056",
+                            border: "1px solid #ef4056",
                           }}
-                          bgColor={"#f0f0f1"}
+                          _focus={
+                            {
+                              // bgColor: "red",
+                              // border: "1px solid #f0f0f1",
+                            }
+                          }
+                          bgColor={
+                            recorderControls.isRecording ? "#ef4056" : "#f0f0f1"
+                          }
                           border={"1px solid #f0f0f1"}
                           boxShadow={"sm"}
                           p={"3"}
-                          onClick={handleStart}
+                          onMouseDown={handleStart}
+                          onTouchStart={handleStart}
+                          onTouchEnd={handleFinish}
+                          onMouseUp={handleFinish}
                         >
-                          <Icon
-                            // _hover={{
-                            //   color: "black",
-                            // }}
-                            color={"gray.500"}
-                            transform={"scale(1.2)"}
-                            as={FaMicrophone}
-                          />
+                          {loading ? (
+                            <Spinner size={"sm"} color="gray.500" />
+                          ) : (
+                            <Icon
+                              color={
+                                recorderControls.isRecording
+                                  ? "white"
+                                  : "gray.500"
+                              }
+                              transform={"scale(1.2)"}
+                              as={FaMicrophone}
+                            />
+                          )}
                         </Button>
                       )}
                     </Box>
@@ -247,6 +264,28 @@ export default function App() {
                       </Button>
                     </Box>
                   </HStack>
+                  <Box
+                    pos={"absolute"}
+                    transform={"scale(0.8)"}
+                    ml={"-10px"}
+                    mt={"48px"}
+                    display={"flex"}
+                    fontSize={"11px"}
+                    letterSpacing={"2px"}
+                    fontFamily={"sans-serif"}
+                    color={"gray.600"}
+                  >
+                    POWERD BY{" "}
+                    <img
+                      style={{
+                        paddingLeft: "5px",
+                        width: "90px",
+                        height: "90px",
+                        marginTop: "-2.4rem",
+                      }}
+                      src="/ussis.png"
+                    />
+                  </Box>
                 </Stack>
               </Container>
             </>
@@ -332,6 +371,18 @@ export default function App() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <AudioRecorder
+        classes={{
+          AudioRecorderPauseResumeClass: "arash",
+          AudioRecorderDiscardClass: "arash",
+          AudioRecorderStartSaveClass: "arash",
+          AudioRecorderTimerClass: "arash",
+        }}
+        recorderControls={recorderControls}
+        downloadFileExtension="mp3"
+        showVisualizer={true}
+        onRecordingComplete={handleSendAudio}
+      />
     </>
   );
 }
