@@ -247,6 +247,28 @@ export default function App() {
                       </Button>
                     </Box>
                   </HStack>
+                  <Box
+                    pos={"absolute"}
+                    transform={"scale(0.8)"}
+                    ml={"-10px"}
+                    mt={"48px"}
+                    display={"flex"}
+                    fontSize={"11px"}
+                    letterSpacing={"2px"}
+                    fontFamily={"sans-serif"}
+                    color={"gray.600"}
+                  >
+                    POWERD BY{" "}
+                    <img
+                      style={{
+                        paddingLeft: "5px",
+                        width: "90px",
+                        height: "90px",
+                        marginTop: "-2.4rem",
+                      }}
+                      src="/ussis.png"
+                    />
+                  </Box>
                 </Stack>
               </Container>
             </>
