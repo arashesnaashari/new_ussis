@@ -11,7 +11,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { HStack, ChakraProvider } from "@chakra-ui/react";
+import { HStack, ChakraProvider, Box } from "@chakra-ui/react";
 import styles from "~/../public/style.css";
 import { useContext, useEffect, useState } from "react";
 import PinarStyle from "~/assets/pinar.css";
@@ -109,6 +109,19 @@ export default function App() {
             />
           </a>
         </HStack> */}
+        <Box
+          backgroundImage={
+            "url(https://media.mehrnews.com/d/2022/07/31/4/4230759.jpg?ts=1659275996951)"
+          }
+          overflow={"hidden"}
+          width={"100%"}
+          height={"100%"}
+          backgroundSize={"cover"}
+          backgroundRepeat={"no-repeat"}
+          backgroundPosition={"center"}
+          pos={"fixed"}
+          filter={"blur(3px)"}
+        ></Box>
         <Outlet />
       </ChakraProvider>
     </Document>

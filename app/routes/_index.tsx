@@ -153,54 +153,67 @@ export default function App() {
   };
   return (
     <>
-      <Box py={{ base: "3", md: "12" }} maxW="7xl" mx="auto">
+      <Box py={{ base: "10rem", md: "8rem" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
           <VStack w={"100%"}>
             <>
               <Container
                 // border={"#ef4056 1px solid"}
                 fontFamily={"yekan"}
-                height={"95vh"}
+                height={{ base: "40vh", md: "50vh" }}
                 // float={"right"}
                 // maxW="3000px"
                 w={{ base: "90%", sm: "80%", md: "60%" }}
                 py={{ base: "0", sm: "8" }}
-                px={{ base: "2", sm: "10" }}
-                bg={useBreakpointValue({ base: "white", sm: "white" })}
+                px={{ base: "1rem", sm: "10" }}
+                bgColor={"white"}
+                // bg={useBreakpointValue({ base: "white", sm: "white" })}
                 // boxShadow={{
                 //   base: "sm",
                 //   sm: "md",
                 // }}
-                borderRadius={{ base: "md", sm: "xl" }}
+                borderRadius={{ base: "lg", sm: "xl" }}
                 position={"relative"}
               >
-                <Img
-                  mx={"auto"}
-                  style={{
-                    paddingLeft: "1rem",
-                    width: "145px",
-                    height: "122px",
-                    marginBottom: "-0.5rem",
-                    marginTop: "-0.5rem",
-                  }}
-                  src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
-                />
+                <Box>
+                  <Img
+                    mx={"auto"}
+                    style={{
+                      // paddingLeft: "1rem",
+                      width: "145px",
+                      height: "122px",
+                      marginBottom: "-0.5rem",
+                      marginTop: "-0.5rem",
+                    }}
+                    src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
+                  />
+                  <Box
+                    color={"gray.600"}
+                    fontFamily={"yekan"}
+                    mt={"-2.2rem"}
+                    mb={"1.2rem"}
+                    textAlign={"center"}
+                  >
+                    سرچ صوتی دیجیکالا
+                  </Box>
+                </Box>
                 <Stack spacing="8">
                   <HStack
                     borderRadius={"md"}
                     py={"1px"}
                     border={"1px solid #f0f0f1"}
                     float={"right"}
+                    background={"white"}
                   >
                     <Box>
                       {a && (
                         <Button
                           _hover={{
                             bgColor: "gary.100",
-                            border: "1px solid #f0f0f1",
+                            // border: "1px solid #f0f0f1",
                           }}
-                          bgColor={"#f0f0f1"}
-                          border={"1px solid #f0f0f1"}
+                          bgColor={"transparent"}
+                          // border={"1px solid #f0f0f1"}
                           boxShadow={"sm"}
                           p={"3"}
                           onClick={handleStart}
@@ -209,7 +222,7 @@ export default function App() {
                             // _hover={{
                             //   color: "black",
                             // }}
-                            color={"gray.500"}
+                            color={"gray.600"}
                             transform={"scale(1.2)"}
                             as={FaMicrophone}
                           />
@@ -217,6 +230,10 @@ export default function App() {
                       )}
                     </Box>
                     <Input
+                      // color={"red"}
+                      _placeholder={{
+                        color: "gray.600",
+                      }}
                       onKeyDown={(e) => handleSubmit(e.keyCode)}
                       onChange={(e) => setText(e.target.value)}
                       variant={"unstyled"}
@@ -240,7 +257,7 @@ export default function App() {
                         // onClick={handleStart}
                       >
                         <Icon
-                          color={"gray.500"}
+                          color={"gray.600"}
                           transform={"scale(1.2)"}
                           as={FiSearch}
                         />
@@ -258,7 +275,7 @@ export default function App() {
                     fontFamily={"sans-serif"}
                     color={"gray.600"}
                   >
-                    POWERD BY{" "}
+                    POWERED BY{" "}
                     <img
                       style={{
                         paddingLeft: "5px",
@@ -277,9 +294,10 @@ export default function App() {
           </VStack>
         </Stack>
       </Box>
+
       <Modal isOpen={isOpen} onClose={handleClozee}>
         <ModalOverlay />
-        <ModalContent fontFamily={"yekan"}>
+        <ModalContent bgColor={"white"} fontFamily={"yekan"}>
           {/* <ModalHeader>Modal Title</ModalHeader> */}
           <ModalCloseButton />
           <ModalBody>
