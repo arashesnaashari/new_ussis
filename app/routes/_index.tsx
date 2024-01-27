@@ -2,7 +2,7 @@ import * as React from "react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { IoPause } from "react-icons/io5/index.js";
 import { IoPlay } from "react-icons/io5/index.js";
-import { IoStop } from "react-icons/io5/index.js";
+import { LiaTimesSolid } from "react-icons/lia/index.js";
 import { FiSearch } from "react-icons/fi/index.js";
 import { FaMicrophone } from "react-icons/fa/index.js";
 import type { MetaFunction } from "@remix-run/node";
@@ -54,6 +54,7 @@ export default function App() {
   const [text, setText] = React.useState<string>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [b, setB] = React.useState<boolean>(true);
+  const [openmodal, setopenmodal] = React.useState<boolean>(false);
 
   const navigate = useNavigate();
   let file: any;
@@ -89,7 +90,7 @@ export default function App() {
     });
     var fd = new FormData();
     fd.append("file", file);
-    // fd.append("query_id", text?.id ?? "");
+    fd.append("query_id", text?.id ?? "");
 
     fetch("https://asr.ussistant.ir/api/digikala/transcript", {
       method: "POST",
@@ -107,23 +108,27 @@ export default function App() {
       .then((x) => x.json())
       .then((d) => {
         setText(d.message);
-        onClose();
+        // onClose();
         setLoading(false);
-        setB(false);
-        handleSearch(d.message);
+        // setB(false);
+        setopenmodal(false);
+        if (d.message.length > 1) {
+          handleSearch(d.message);
+        }
 
-        location.reload();
+        // location.reload();
       })
       .catch((err) => {
-        console.log(err), onClose(), setLoading(false), location.reload();
+        console.log(err), setLoading(false), location.reload();
       });
   };
 
   const handleStart = () => {
     setText("");
-    setB(true);
-    onOpen();
+    setopenmodal(true);
     recorderControls.startRecording();
+    // setB(true);
+    // onOpen();
   };
 
   const handleFinish = async () => {
@@ -148,8 +153,11 @@ export default function App() {
   };
   const handleClozee = () => {
     recorderControls.stopRecording();
-    setB(false);
-    onClose();
+    setopenmodal(false);
+    console.log("cloze");
+
+    // setB(false);
+    // onClose();
   };
   return (
     <>
@@ -294,84 +302,113 @@ export default function App() {
           </VStack>
         </Stack>
       </Box>
+      <Box
+        display={openmodal ? "flex" : "none"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        top={0}
+        left={0}
+        width={"100%"}
+        height={"100%"}
+        position={"fixed"}
+      >
+        <Box
+          onClick={handleClozee}
+          width={"100%"}
+          height={"100%"}
+          bgColor={"rgba(0, 0, 0, 0.48)"}
+        ></Box>
 
-      <Modal isOpen={isOpen} onClose={handleClozee}>
-        <ModalOverlay />
-        <ModalContent bgColor={"white"} fontFamily={"yekan"}>
-          {/* <ModalHeader>Modal Title</ModalHeader> */}
-          <ModalCloseButton />
-          <ModalBody>
-            {b && (
-              <HStack
-                py={"3rem"}
-                mt={"2rem"}
-                justifyContent={loading ? "center" : "space-between"}
-                width={"100%"}
+        <Box
+          borderRadius={"md"}
+          px={"2rem"}
+          py={"2rem"}
+          fontFamily={"yekan"}
+          zIndex={"22"}
+          pos={"absolute"}
+          width={{ base: "90vw", sm: "60vw", md: "40vw", lg: "30vw" }}
+          bgColor={"white"}
+          mb={{ base: "12rem", md: "13rem" }}
+        >
+          <Button
+            pos={"absolute"}
+            top={"6px"}
+            right={"1rem"}
+            bgColor={"transparent"}
+            // boxShadow={"sl"}
+            p={"3"}
+            onClick={handleClozee}
+          >
+            <Icon
+              color={"gray.600"}
+              transform={"scale(1.4)"}
+              as={LiaTimesSolid}
+            />
+          </Button>
+          <HStack
+            py={"4rem"}
+            // mt={"1rem"}
+            justifyContent={loading ? "center" : "space-between"}
+            width={"100%"}
+          >
+            <>
+              {" "}
+              <Box
+                transform={{ base: "scale(1.5)", md: "scale(1.5)" }}
+                filter={"grayscale(1.4)"}
+                width={"31px"}
+                overflowX={"hidden"}
+                borderRadius={"26px"}
+                // border={"1px gray solid"}
+                shadow={"sm"}
               >
-                {!loading && (
-                  <>
-                    {" "}
-                    <Box
-                      transform={{ base: "scale(1.5)", md: "scale(1.5)" }}
-                      filter={"grayscale(1.4)"}
-                      width={"31px"}
-                      overflowX={"hidden"}
-                      borderRadius={"26px"}
-                      // border={"1px gray solid"}
-                      shadow={"sm"}
-                    >
-                      <Box style={{ transform: "translateX(-8px)" }}>
-                        <AudioRecorder
-                          classes={{
-                            AudioRecorderPauseResumeClass: "arash",
-                            AudioRecorderDiscardClass: "arash",
-                            AudioRecorderStartSaveClass: "arash",
-                            AudioRecorderTimerClass: "arash",
-                          }}
-                          recorderControls={recorderControls}
-                          downloadFileExtension="mp3"
-                          showVisualizer={true}
-                          onRecordingComplete={b && handleSendAudio}
-                        />
-                      </Box>
-                    </Box>
-                    <Box transition={"opacity 2s ease"} fontSize={"1.5rem"}>
-                      {" "}
-                      ... در حال گوش دادن{" "}
-                    </Box>
-                  </>
-                )}
-                {loading && (
-                  <>
-                    <Box fontSize={"1.5rem"} mr={"15px"}>
-                      {" "}
-                      ... در حال انجام پروسه{" "}
-                    </Box>{" "}
-                    <Spinner color="red.500" />
-                  </>
-                )}
-              </HStack>
-            )}
-          </ModalBody>
-
-          <ModalFooter width={"100%"}>
-            {!loading && (
+                <Box style={{ transform: "translateX(-8px)" }}>
+                  <AudioRecorder
+                    classes={{
+                      AudioRecorderPauseResumeClass: "arash",
+                      AudioRecorderDiscardClass: "arash",
+                      AudioRecorderStartSaveClass: "arash",
+                      AudioRecorderTimerClass: "arash",
+                    }}
+                    recorderControls={recorderControls}
+                    downloadFileExtension="mp3"
+                    showVisualizer={true}
+                    onRecordingComplete={handleSendAudio}
+                  />
+                </Box>
+              </Box>
+              {!loading && (
+                <Box transition={"opacity 2s ease"} fontSize={"1.5rem"}>
+                  {" "}
+                  ... در حال گوش دادن{" "}
+                </Box>
+              )}
+            </>
+            {loading && (
               <>
-                <Button
-                  width={"100%"}
-                  mx={"auto"}
-                  colorScheme="red"
-                  mr={3}
-                  onClick={handleFinish}
-                >
-                  پایان ضبط
-                </Button>
+                <Box fontSize={"1.5rem"} mr={"15px"}>
+                  {" "}
+                  ... در حال انجام پروسه{" "}
+                </Box>{" "}
+                <Spinner color="red.500" />
               </>
             )}
-            {/* <Button variant="ghost">Secondary Action</Button> */}
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </HStack>
+          {!loading && (
+            <>
+              <Button
+                width={"100%"}
+                mx={"auto"}
+                colorScheme="red"
+                mr={3}
+                onClick={handleFinish}
+              >
+                پایان ضبط
+              </Button>
+            </>
+          )}
+        </Box>
+      </Box>
     </>
   );
 }
