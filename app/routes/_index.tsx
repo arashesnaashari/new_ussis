@@ -42,10 +42,7 @@ import {
 import { useNavigate } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "create" },
-    { name: "description", content: "create voice!" },
-  ];
+  return [{ title: "Usisstant" }, { name: "Voice Search", content: "!" }];
 };
 
 export default function App() {
@@ -89,38 +86,42 @@ export default function App() {
       type: "video/webm",
     });
     var fd = new FormData();
+
+    console.log(file.size);
+
     fd.append("file", file);
     fd.append("query_id", text?.id ?? "");
-
-    fetch("https://asr.ussistant.ir/api/digikala/transcript", {
-      method: "POST",
-      headers: {
-        "X-API-Key": "akljnv13bvi2vfo0b0bw",
-        // Accept: "application/json",
-        // "Content-Type": "multipart/form-data",
-        // "Content-Type":
-        //   "multipart/form-data; charset=utf-8; boundary=" +
-        //   Math.random().toString().substring(2),
-        // "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: fd,
-    })
-      .then((x) => x.json())
-      .then((d) => {
-        setText(d.message);
-        // onClose();
-        setLoading(false);
-        // setB(false);
-        setopenmodal(false);
-        if (d.message.length > 1) {
-          handleSearch(d.message);
-        }
-
-        // location.reload();
+    if (file.size < 2000000) {
+      fetch("https://asr.ussistant.ir/api/digikala/transcript", {
+        method: "POST",
+        headers: {
+          "X-API-Key": "akljnv13bvi2vfo0b0bw",
+          // Accept: "application/json",
+          // "Content-Type": "multipart/form-data",
+          // "Content-Type":
+          //   "multipart/form-data; charset=utf-8; boundary=" +
+          //   Math.random().toString().substring(2),
+          // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: fd,
       })
-      .catch((err) => {
-        console.log(err), setLoading(false), location.reload();
-      });
+        .then((x) => x.json())
+        .then((d) => {
+          setText(d.message);
+          setLoading(false);
+          // console.log(openmodal);
+
+          if (d.message.length > 1 && openmodal) {
+            handleSearch(d.message);
+          }
+          setopenmodal(false);
+
+          // location.reload();
+        })
+        .catch((err) => {
+          console.log(err), setLoading(false), setopenmodal(false);
+        });
+    }
   };
 
   const handleStart = () => {
@@ -161,14 +162,14 @@ export default function App() {
   };
   return (
     <>
-      <Box py={{ base: "10rem", md: "8rem" }} maxW="7xl" mx="auto">
+      <Box pt={{ base: "5rem", md: "4rem" }} maxW="7xl" mx="auto">
         <Stack direction="row" spacing="12">
           <VStack w={"100%"}>
             <>
               <Container
                 // border={"#ef4056 1px solid"}
                 fontFamily={"yekan"}
-                height={{ base: "40vh", md: "50vh" }}
+                // height={{ base: "40vh", md: "50vh" }}
                 // float={"right"}
                 // maxW="3000px"
                 w={{ base: "90%", sm: "80%", md: "60%" }}
@@ -188,11 +189,12 @@ export default function App() {
                     mx={"auto"}
                     style={{
                       // paddingLeft: "1rem",
-                      width: "145px",
-                      height: "122px",
-                      marginBottom: "-0.5rem",
-                      marginTop: "-0.5rem",
+                      width: "11rem",
+                      // height: "122px",
+                      marginBottom: "2.7rem",
+                      marginTop: "1.5rem",
                     }}
+                    // src="/digi.png"
                     src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
                   />
                   <Box
@@ -201,8 +203,9 @@ export default function App() {
                     mt={"-2.2rem"}
                     mb={"1.2rem"}
                     textAlign={"center"}
+                    // fontWeight={"600"}
                   >
-                    سرچ صوتی دیجیکالا
+                    جستجوی صوتی محصولات در دیجیکالا
                   </Box>
                 </Box>
                 <Stack spacing="8">
@@ -294,6 +297,39 @@ export default function App() {
                       src="/ussis.png"
                     />
                   </Box>
+                </Stack>
+                <Stack spacing="8">
+                  <HStack
+                    borderRadius={"md"}
+                    py={"1px"}
+                    // border={"1px solid #f0f0f1"}
+                    float={"right"}
+                    background={"white"}
+                    style={{ direction: "rtl" }}
+                    mt={"5rem"}
+                  >
+                    <Box>
+                      <Text fontWeight={"600"} color={"gray.600"} mb={"1rem"}>
+                        برای استفاده از سرچ صوتی :
+                      </Text>
+                      <li style={{ marginBottom: "10px", color: "#4A5568" }}>
+                        میکروفن را یک بار لمس کنید تا پنجره ضبط صدا نمایان شود.
+                      </li>
+                      <li style={{ color: "#4A5568", marginBottom: "10px" }}>
+                        پس از گفتن نام و مشخصات محصول مورد نظرتان , دکمه پایان
+                        ضبط را لمس کنید
+                      </li>
+                      <li style={{ color: "#4A5568", marginBottom: "10px" }}>
+                        نتیجه جستجوی عبارت گفته شده در سایت دیجیکالا در یک تب
+                        جدید به شما نمایش داده خواهد شد
+                      </li>
+                      <li style={{ color: "#4A5568", marginBottom: "4rem" }}>
+                        برای استفاده کاربران گوشی های آیفون لازم است از جستجوگر
+                        سافاری استفاده شود. همچنین در تنظیمات سافاری باید گزینه
+                        Block Pop-ups غیر فعال باشد
+                      </li>
+                    </Box>
+                  </HStack>
                 </Stack>
               </Container>
             </>
