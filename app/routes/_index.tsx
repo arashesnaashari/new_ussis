@@ -205,7 +205,7 @@ export default function App() {
                     textAlign={"center"}
                     // fontWeight={"600"}
                   >
-                    جستجوی صوتی محصولات در دیجیکالا
+                    جستجوی صوتی محصولات در دیجی کالا
                   </Box>
                 </Box>
                 <Stack spacing="8">
