@@ -39,6 +39,7 @@ export const Feature = () => (
             fontSize={{ base: "24px", md: "32px" }}
             fontFamily={"yekan"}
             color={"white"}
+            textAlign={"right"}
           >
             دقت خیره کننده در تبدیل گفتار به متن
           </Heading>

@@ -13,7 +13,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as React from "react";
-
+import { FaPhone } from "react-icons/fa/index.js";
+import { MdEmail } from "react-icons/md/index.js";
+import { FaLocationDot } from "react-icons/fa6/index.js";
 export const Pricing = () => (
   <>
     {/* Pricing */}
@@ -252,6 +254,7 @@ export const Pricing = () => (
       <Box
         id="call"
         py={"2rem"}
+        fontFamily={"yekan"}
         width={{ base: "100%", md: "70%" }}
         mx={"auto"}
         textAlign={"center"}
@@ -269,6 +272,42 @@ export const Pricing = () => (
         >
           <a href="tel:09380177320">تماس با ما</a>
         </Button>
+      </Box>
+      <Box
+        width={"100%"}
+        // bgColor={"green"}
+        mt={"2rem"}
+        display={"flex"}
+        flexFlow={{ base: "column-reverse", md: "row" }}
+        justifyContent={"space-around"}
+        alignItems={"end"}
+        color={"rgba(226, 223, 223, 0.74)"}
+      >
+        <Box display={"flex"} mt={{ base: "1rem", md: "auto" }}>
+          <Box> ussistant.ai@gmail.com</Box>
+          <Box ml={"5px"}>
+            <MdEmail transform="scale(1.1)" />
+          </Box>
+        </Box>
+
+        <Box display={"flex"} mt={{ base: "1rem", md: "auto" }}>
+          <Box style={{ direction: "rtl" }}>
+            دانشگاه صنعتی شریف – ساختمان شهید ستاری – طبقه 5 واحد 513
+          </Box>
+          <Box ml={"5px"}>
+            <FaLocationDot transform="scale(1)" />
+          </Box>
+        </Box>
+        <Box
+          display={"flex"}
+          mt={{ base: "1rem", md: "auto" }}
+          alignItems={"center"}
+        >
+          <Box>۰۹۳۸۰۱۷۷۳۲۰</Box>
+          <Box ml={"5px"}>
+            <FaPhone transform="scale(1)" />
+          </Box>
+        </Box>
       </Box>
     </Box>
   </>

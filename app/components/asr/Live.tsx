@@ -410,21 +410,21 @@ export const Live = () => {
                 mx={"auto"}
                 py={"5px"}
                 gap={"5px"}
-                px="1rem"
+                px={{ base: "5px", md: "1rem" }}
               >
                 <Button
                   py={"1rem"}
-                  zIndex={"1"}
                   fontFamily={"yekan"}
+                  _hover={{ bgColor: "#1b1a5570" }}
                   color={"white"}
                   px={"1rem"}
-                  bgColor={tab == "mic" ? "#1B1A55" : "transparent"}
-                  _hover={{ bgColor: "#1b1a5570" }}
+                  bgColor={tab == "recognate" ? "#1B1A55" : "transparent"}
                   borderRadius={"xl"}
-                  onClick={() => setTab("mic")}
+                  onClick={() => setTab("recognate")}
                 >
-                  میکروفون
+                  گفتگو
                 </Button>
+
                 <Button
                   py={"1rem"}
                   fontFamily={"yekan"}
@@ -439,15 +439,16 @@ export const Live = () => {
                 </Button>
                 <Button
                   py={"1rem"}
+                  zIndex={"1"}
                   fontFamily={"yekan"}
-                  _hover={{ bgColor: "#1b1a5570" }}
                   color={"white"}
                   px={"1rem"}
-                  bgColor={tab == "recognate" ? "#1B1A55" : "transparent"}
+                  bgColor={tab == "mic" ? "#1B1A55" : "transparent"}
+                  _hover={{ bgColor: "#1b1a5570" }}
                   borderRadius={"xl"}
-                  onClick={() => setTab("recognate")}
+                  onClick={() => setTab("mic")}
                 >
-                  گفتگو
+                  میکروفون
                 </Button>
               </Box>
             </>

@@ -53,7 +53,7 @@ export const meta: MetaFunction = () => {
 export default function App() {
   const isMobile = useIsMobile();
   return (
-    <>
+    <Box maxW={"1500px"} mx={"auto"}>
       {/* modal */} {/* Header */}
       <Header />
       {/* Container */}
@@ -80,6 +80,6 @@ export default function App() {
       <Live />
       {/* Pricing */} {/* About */}
       <Pricing />
-    </>
+    </Box>
   );
 }
