@@ -36,6 +36,7 @@ export const Live = () => {
   const [loading2, setLoading2] = React.useState<boolean>(false);
 
   const [text, setText] = React.useState<string>("");
+  const [link, setLink] = React.useState<any>("");
   const [text2, setText2] = React.useState<any>([]);
   const [uniqs, setUniqs] = React.useState<any>([]);
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
@@ -88,7 +89,7 @@ export const Live = () => {
     console.log("send");
 
     file = new File([blob], "name.webm", {
-      type: "video/webm",
+      type: "audio/webm",
     });
     var fd = new FormData();
 
@@ -137,7 +138,7 @@ export const Live = () => {
   const handleUploadFile = () => {
     const input = document.getElementById("upload");
     let file = new File([input?.files[0]], "name.webm", {
-      type: "video/webm",
+      type: "audio/wav",
     });
     var fd = new FormData();
     fd.append("file", file);
@@ -160,6 +161,7 @@ export const Live = () => {
         .then((x) => x.json())
         .then((d) => {
           setText(d.text);
+          setLink(d.download_id);
           setValue(d.text);
           setLoading2(false);
         })
@@ -232,8 +234,11 @@ export const Live = () => {
             },
           ];
 
-          setText2(d.speakers);
+          setLink(d.download_id);
           var x = d.speakers;
+          setText2(d.speakers);
+
+          // var x = xx;
           var y = x.map((t: any) => t.speaker);
           let unique = [...new Set(y)];
           setUniqs(unique);
@@ -248,7 +253,42 @@ export const Live = () => {
   };
 
   //copy and download
-  const handleDownload = () => {};
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(
+        `https://stt.ussistant.ir/api/download/${link}`,
+        {
+          method: "GET",
+          headers: {
+            "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+            Accept: "application/json",
+            // "Content-Type": "multipart/form-data",
+            // "Content-Type":
+            //   "multipart/form-data; charset=utf-8; boundary=" +
+            //   Math.random().toString().substring(2),
+            // "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("faild");
+      }
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download =
+        link.split(".")[1] == "csv"
+          ? "ussistant_file.csv"
+          : "ussistant_file.txt";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("error");
+    }
+  };
   const handleCopy = () => {};
   return (
     <>
@@ -698,6 +738,7 @@ export const Live = () => {
                   onClick={handleDownload}
                   _hover={{ bgColor: "#535C91" }}
                   border={"1px solid #535C91"}
+                  isDisabled={tab == "mic" ? true : false}
                 >
                   <Box>دانلود فایل</Box>
                   <Box pl={"4px"} transform={"scale(1.2)"}>
