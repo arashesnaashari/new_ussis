@@ -97,7 +97,15 @@ export const Live = () => {
 
     fd.append("file", file);
     fd.append("query_id", text?.id ?? "");
-    if (file.size < 2000000) {
+    if (
+      file.size < 10000000 &&
+      (file.type == "audio/wav" ||
+        file.type == "audio/mp3" ||
+        file.type == "audio/webm" ||
+        file.type == "audio/ogg" ||
+        file.type == "audio/flac" ||
+        file.type == "audio/aac")
+    ) {
       fetch("https://stt.ussistant.ir/api/transcript", {
         method: "POST",
         headers: {
@@ -137,13 +145,21 @@ export const Live = () => {
   // large file
   const handleUploadFile = () => {
     const input = document.getElementById("upload");
-    let file = new File([input?.files[0]], "name.webm", {
-      type: "audio/wav",
+    let file = new File([input?.files[0]], `filename.${input?.files[0].type}`, {
+      type: input?.files[0].type,
     });
     var fd = new FormData();
     fd.append("file", file);
     setLoading2(true);
-    if (true) {
+    if (
+      file.size < 10000000 &&
+      (file.type == "audio/wav" ||
+        file.type == "audio/mp3" ||
+        file.type == "audio/webm" ||
+        file.type == "audio/ogg" ||
+        file.type == "audio/flac" ||
+        file.type == "audio/aac")
+    ) {
       //file.size < 2000000
       fetch("https://stt.ussistant.ir/api/transcript_large", {
         method: "POST",
@@ -169,6 +185,9 @@ export const Live = () => {
           //, setLoading2(false), setopenmodal(false);
           console.log(err), setLoading2(false);
         });
+    } else {
+      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+      setLoading2(false);
     }
   };
 
@@ -178,16 +197,26 @@ export const Live = () => {
     console.log("aaaaa");
 
     const input = document.getElementById("uploadReco");
-    let file = new File([input?.files[0]], "name.webm", {
-      type: "video/webm",
+
+    let file = new File([input?.files[0]], `filename.${input?.files[0].type}`, {
+      type: input?.files[0].type,
     });
     var fd = new FormData();
     fd.append("file", file);
     fd.append("num_speakers", "");
     setLoading2(true);
+    console.log(file.type);
 
-    if (true) {
-      //file.size < 2000000
+    if (
+      file.size < 10000000 &&
+      (file.type == "audio/wav" ||
+        file.type == "audio/mp3" ||
+        file.type == "audio/webm" ||
+        file.type == "audio/ogg" ||
+        file.type == "audio/flac" ||
+        file.type == "audio/aac")
+    ) {
+      //file.size < 2 000 000
       fetch("https://stt.ussistant.ir/api/transcript_speaker", {
         method: "POST",
         headers: {
@@ -247,8 +276,11 @@ export const Live = () => {
         })
         .catch((err) => {
           //, setLoading(false), setopenmodal(false);
-          console.log(err);
+          console.log(err), setLoading2(false);
         });
+    } else {
+      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+      setLoading2(false);
     }
   };
 
@@ -289,7 +321,66 @@ export const Live = () => {
       console.error("error");
     }
   };
-  const handleCopy = () => {};
+  const audioRef = React.useRef(null);
+  const [play, setPlay] = React.useState(false);
+  const handleTestSample = (type: string) => {
+    const dataSpeaker = [
+      {
+        text_chunk: "سلام آقای جام بزرگ ممنون که پذیرفتین گفته بود شرکت کنین ",
+        start: 2.54,
+        end: 6.04,
+        speaker: 1,
+      },
+      {
+        text_chunk: "سلام عرض می کنم خدمت شما باعث افتخاره که خدمتتون به ",
+        start: 6.46,
+        end: 9.18,
+        speaker: 0,
+      },
+      {
+        text_chunk:
+          "خیلی ممنون شما بیش از یک دهه است که در  زیست بوم یا اکوسیستم اقتصاد دیجیتال ایران حضور دارین  اصلا کلا اقتصاد دیجیتال و چه تعریفی ازش داریم یا مهم تر از اون چه عناصری و چه بخش هایی در اقتصاد دیجیتال وجود داره به ",
+        start: 9.52,
+        end: 12.94,
+        speaker: 1,
+      },
+      {
+        text_chunk:
+          "عرضم به حضور شما که یک چهارچوبی رو آنکتاد استفاده می کنه توی گزارشگری هاش برای تعریف اقساط دیجیتال سه لایه  عنوان می کنند برای اقساط دیجیتال  یک لایه مرکزی یا هسته کره اقساط دیجیتال رو ",
+        start: 28.82,
+        end: 35.36,
+        speaker: 0,
+      },
+    ];
+    const excel = "2c61fcc8-e408-4a55-a8de-90ca87f5ae7e.csv";
+    const txt = "35ca296f-29d7-49ff-be01-3e7857b6ab2f.txt";
+    const dataLarge =
+      " سلام آقای جام بزرگ ممنون که پذیرفتین گفته بود شرکت کنین سلام عرض می کنم خدمت شما باعث افتخاره که خدمتتون به خیلی ممنون شما بیش از یک دهه است که در زیست بوم یا اکوسیستم اقتصاد دیجیتال ایران حضور دارین اصلا کلا اقتصاد دیجیتال و چه تعریفی ازش داریم یا مهم تر از اون چه عناصری و چه بخش هایی در اقتصاد دیجیتال وجود داره به عرضم به حضور شما که یک چهارچوبی رو آنکتاد استفاده می کنه توی گزارشگری هاش برای تعریف اقساط دیجیتال سه لایه عنوان می کنند برای اقساط دیجیتال یک لایه مرکزی یا هسته کره اقساط دیجیتال رو";
+    if (type == "large") {
+      setText(dataLarge);
+      setLink(txt);
+      setValue(dataLarge);
+    } else {
+      setLink(excel);
+      var x = dataSpeaker;
+      setText2(dataSpeaker);
+      var y = x.map((t: any) => t.speaker);
+      let unique = [...new Set(y)];
+      setUniqs(unique);
+    }
+
+    if (!play) {
+      audioRef.current?.play();
+      setPlay(true);
+    } else {
+      audioRef.current?.pause();
+      // audioRef.current?.currentTime = 0;
+      setPlay(false);
+    }
+    //set Text equls to sample
+    //play the real audio
+  };
+
   return (
     <>
       <Box
@@ -540,53 +631,106 @@ export const Live = () => {
                     )}
                   </>
                 ) : tab == "large" ? (
-                  <>
+                  <Box
+                    display={"flex"}
+                    flexFlow={"row-reverse"}
+                    alignItems={"baseline"}
+                  >
                     {" "}
-                    <Input
-                      type="file"
-                      id="upload"
-                      hidden
-                      onChange={handleUploadFile}
-                    />
-                    <label
-                      htmlFor="upload"
-                      style={{
-                        fontFamily: "yekan",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                        background: "#1B1A55",
-                        color: "white",
-                        paddingInline: "2rem",
-                        paddingBlock: "1rem",
-                        borderRadius: "10px",
-                      }}
+                    <Box>
+                      <Input
+                        type="file"
+                        id="upload"
+                        hidden
+                        onChange={handleUploadFile}
+                      />
+                      <label
+                        htmlFor="upload"
+                        style={{
+                          fontFamily: "yekan",
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          background: "#1B1A55",
+                          color: "white",
+                          paddingInline: "2rem",
+                          paddingBlock: "0.8rem",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        آپلود فایل
+                      </label>
+                    </Box>
+                    <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
+                      یا
+                    </Box>
+                    <Button
+                      onClick={() => handleTestSample("large")}
+                      _hover={{ bgColor: "#1313136e" }}
+                      fontFamily="yekan"
+                      fontWeight="bold"
+                      cursor="pointer"
+                      background="transparent"
+                      border={"1px solid #1B1A55"}
+                      color="white"
+                      paddingInline="2rem"
+                      paddingBlock="1.5rem"
+                      borderRadius="10px"
                     >
-                      آپلود فایل
-                    </label>
-                  </>
+                      {play ? "توقف" : " تست نمونه"}
+                    </Button>
+                    <audio src="/voice.wav" ref={audioRef} />
+                  </Box>
                 ) : (
                   <>
-                    <Input
-                      type="file"
-                      id="uploadReco"
-                      hidden
-                      onChange={handleUploadFileReco}
-                    />
-                    <label
-                      htmlFor="uploadReco"
-                      style={{
-                        fontFamily: "yekan",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                        background: "#1B1A55",
-                        color: "white",
-                        paddingInline: "2rem",
-                        paddingBlock: "1rem",
-                        borderRadius: "10px",
-                      }}
+                    <Box
+                      display={"flex"}
+                      flexFlow={"row-reverse"}
+                      alignItems={"baseline"}
                     >
-                      آپلود فایل گوینده
-                    </label>
+                      {" "}
+                      <Box>
+                        <Input
+                          type="file"
+                          id="uploadReco"
+                          hidden
+                          onChange={handleUploadFileReco}
+                        />
+                        <label
+                          htmlFor="uploadReco"
+                          style={{
+                            fontFamily: "yekan",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            background: "#1B1A55",
+                            color: "white",
+                            paddingInline: "2rem",
+                            paddingBlock: "0.8rem",
+                            borderRadius: "10px",
+                          }}
+                        >
+                          آپلود فایل گوینده
+                        </label>
+                      </Box>
+                      <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
+                        یا
+                      </Box>
+                      <Button
+                        onClick={() => handleTestSample("speaker")}
+                        _hover={{ bgColor: "#1313136e" }}
+                        fontFamily="yekan"
+                        fontWeight="bold"
+                        cursor="pointer"
+                        background="transparent"
+                        border={"1px solid #1B1A55"}
+                        color="white"
+                        paddingInline="2rem"
+                        paddingBlock="1.5rem"
+                        borderRadius="10px"
+                      >
+                        {play ? "توقف" : " تست نمونه"}
+                      </Button>
+                      <audio src="/voice.wav" ref={audioRef} />
+                    </Box>
                   </>
                 )}
               </Box>
