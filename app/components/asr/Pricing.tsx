@@ -46,12 +46,18 @@ export const Pricing = () => (
           textAlign={"center"}
           mx={"auto"}
           color={"white"}
+          mb={"1rem"}
         >
-          مزایای استفاده از سرویس یوسیستنت
+          هزینه خدمات صوت به متن یوسیستنت
         </Text>
       </Box>
-      <Box id="scrollH" mb="5rem" overflowX={{ base: "scroll", md: "auto" }}>
+      <Box
+        id="scrollH"
+        style={{ direction: "rtl" }}
+        overflowX={{ base: "scroll", md: "auto" }}
+      >
         <Table
+          style={{ direction: "rtl" }}
           width={{ base: "100%", md: "70%" }}
           mx={"auto"}
           bgColor={"rgba(217, 217, 217, 0.06)"}
@@ -64,36 +70,48 @@ export const Pricing = () => (
                 color={"white"}
                 fontFamily={"yekan"}
                 py={{ base: "2rem", md: "2.5rem" }}
-                px={{ base: "1rem", md: "0rem" }}
+                px={{ base: "1rem", md: "3rem" }}
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
-              ></Th>
-              <Th
-                textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
-                border={"none"}
-                color={"white"}
-                fontFamily={"yekan"}
+                fontSize={{ base: "12px", md: "15px" }}
               >
-                ۰-۱۰ ماه/دقیقه
+                نام محصول
               </Th>
               <Th
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
+                fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
                 fontFamily={"yekan"}
+                width={"200px"}
               >
-                ۱۰-۱۰۰ ماه/دقیقه
+                امکانات
               </Th>
               <Th
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
+                fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
                 fontFamily={"yekan"}
               >
-                {">"} ۱۰۰۰ ماه/دقیقه
+                ماهانه تا ۱۰ دقیقه
+              </Th>
+              <Th
+                textAlign={"center"}
+                fontSize={{ base: "12px", md: "15px" }}
+                border={"none"}
+                color={"white"}
+                fontFamily={"yekan"}
+              >
+                ماهانه ۱۰ تا ۱۰۰ دقیقه‌
+              </Th>
+              <Th
+                textAlign={"center"}
+                fontSize={{ base: "12px", md: "15px" }}
+                border={"none"}
+                color={"white"}
+                fontFamily={"yekan"}
+              >
+                ماهانه بیش از ۱۰۰ دقیقه
               </Th>
             </Tr>
           </Thead>
@@ -107,37 +125,57 @@ export const Pricing = () => (
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
+                fontSize={{ base: "12px", md: "15px" }}
               >
-                ویس به متن
+                ویس سرچ
               </Th>
               <Td
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
                 style={{ direction: "rtl" }}
+                width={"300px"}
+                display={"flex"}
+                flexFlow={"column"}
+                gap={"14px"}
+                fontSize={{ base: "15px", md: "15px" }}
+                alignItems={"center"}
+              >
+                <Box>پذیرش فایل‌های کوتاه زیر ۳۰</Box>
+                <Box>سرعت بالاتر</Box>
+                <Box>امکان اتصال به موتور جستجو</Box>
+              </Td>
+              <Td
+                style={{ direction: "rtl" }}
+                border={"none"}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
               >
                 رایگان
               </Td>
               <Td
                 style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
               >
-                ۷۰تومان/۱۵ثانیه{" "}
+                دقیقه‌ای ۲۱۰ تومان
               </Td>
               <Td
                 style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
               >
-                {" "}
-                ۵۰تومان/۱۵ثانیه{" "}
+                دقیقه‌ای ۱۵۰ تومان
               </Td>
             </Tr>
             <Tr>
@@ -149,39 +187,57 @@ export const Pricing = () => (
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
+                fontSize={{ base: "12px", md: "15px" }}
               >
-                فایل بزرگ
+                سوشال مدیا
               </Th>
+
+              <Td
+                border={"none"}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                style={{ direction: "rtl" }}
+                display={"flex"}
+                flexFlow={"column"}
+                gap={"14px"}
+                fontSize={{ base: "15px", md: "15px" }}
+                alignItems={"center"}
+              >
+                <Box>پذیرش فایل‌های صوتی از۳۰ تا ۹۰ ثانیه</Box>
+                <Box>خروجی متنی قابل ویرایش در فورمت‌‌ دلخواه</Box>
+                <Box>امکان تولید فایل زیرنویس چسبیده</Box>
+              </Td>
               <Td
                 style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
               >
-                {" "}
                 رایگان
               </Td>
               <Td
-                style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
+                style={{ direction: "rtl" }}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
               >
-                {" "}
-                ۷۰تومان/۱۵ثانیه{" "}
+                دقیقه‌ای ۲۸۰ تومان
               </Td>
               <Td
-                style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
+                style={{ direction: "rtl" }}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
               >
-                {" "}
-                ۵۰تومان/۱۵ثانیه{" "}
+                دقیقه‌ای ۲۰۰ تومان
               </Td>
             </Tr>
             <Tr>
@@ -193,43 +249,131 @@ export const Pricing = () => (
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
                 textAlign={"center"}
-                fontSize={{ base: "12px", md: "1rem" }}
+                fontSize={{ base: "12px", md: "15px" }}
               >
-                تفکیک گوینده
+                تایپ صوتی
               </Th>
               <Td
-                border={"none"}
                 style={{ direction: "rtl" }}
-                color={"white"}
+                border={"none"}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                display={"flex"}
+                flexFlow={"column"}
+                gap={"14px"}
+                fontSize={{ base: "15px", md: "15px" }}
+                alignItems={"center"}
+              >
+                <Box>پذیرش فایل‌های صوتی بالای ۹۰ ثانیه</Box>
+                <Box>مقرون به صرفه</Box>
+              </Td>
+              <Td
+                style={{ direction: "rtl" }}
+                border={"none"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
               >
-                {" "}
                 رایگان
               </Td>
               <Td
                 style={{ direction: "rtl" }}
                 border={"none"}
-                color={"white"}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
               >
-                {" "}
-                ۹۹تومان/۱۵ثانیه{" "}
+                دقیقه‌ای ۲۰۰ تومان
               </Td>
               <Td
                 style={{ direction: "rtl" }}
                 border={"none"}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
+              >
+                دقیقه‌ای ۱۴۰ تومان
+              </Td>
+            </Tr>
+            <Tr>
+              <Th
+                border={"none"}
                 color={"white"}
+                fontFamily={"yekan"}
+                bgColor={"rgba(217, 217, 217, 0.01)"}
+                py={{ base: "2rem", md: "2.5rem" }}
+                px={{ base: "1rem", md: "0rem" }}
+                textAlign={"center"}
+                fontSize={{ base: "12px", md: "15px" }}
+              >
+                مصاحبه
+              </Th>
+              <Td
+                border={"none"}
+                style={{ direction: "rtl" }}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                display={"flex"}
+                flexFlow={"column"}
+                gap={"14px"}
+                fontSize={{ base: "15px", md: "15px" }}
+                alignItems={"center"}
+              >
+                <Box>تبدیل فایل صوتی با تفکیک گوینده</Box>
+                <Box>بدون محدودیت زمانی در دریافت فایل</Box>
+                <Box>تشخیص گوینده تا ۵ نفر</Box>
+              </Td>
+              <Td
+                border={"none"}
+                style={{ direction: "rtl" }}
+                color={"#ABABAB"}
                 fontFamily={"yekan"}
                 textAlign={"center"}
               >
-                {" "}
-                ۶۰تومان/۱۵ثانیه{" "}
+                رایگان
+              </Td>
+              <Td
+                border={"none"}
+                style={{ direction: "rtl" }}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
+              >
+                دقیقه‌ای ۳۸۰ تومان
+              </Td>
+              <Td
+                border={"none"}
+                style={{ direction: "rtl" }}
+                color={"#ABABAB"}
+                fontFamily={"yekan"}
+                textAlign={"center"}
+                fontSize={{ base: "15px", md: "17px" }}
+                // fontWeight={"bold"}
+              >
+                دقیقه‌ای ۲۷۰ تومان
               </Td>
             </Tr>
           </Tbody>
         </Table>
+      </Box>
+      <Box
+        mb="5rem"
+        width={{ base: "100%", md: "70%" }}
+        mx={"auto"}
+        color={"white"}
+        textAlign={"end"}
+        fontFamily={"yekan"}
+        mt={"1rem"}
+      >
+        امکان طراحی پیشنهاد اختصاصی جهت استفاده در مقیاس‌ بالا مخصوص کسب و کارها
       </Box>
     </Box>
 

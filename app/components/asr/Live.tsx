@@ -36,7 +36,9 @@ export const Live = () => {
   const [loading2, setLoading2] = React.useState<boolean>(false);
 
   const [text, setText] = React.useState<string>("");
+  const [textMic, setTextMic] = React.useState<string>("");
   const [link, setLink] = React.useState<any>("");
+  const [linkLarge, setLinkLarge] = React.useState<any>("");
   const [text2, setText2] = React.useState<any>([]);
   const [uniqs, setUniqs] = React.useState<any>([]);
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
@@ -77,7 +79,7 @@ export const Live = () => {
     // onClose();
   };
   const handleStart = () => {
-    setText("");
+    setTextMic("");
     setValue("");
     setopenmodal(true);
     recorderControls.startRecording();
@@ -123,7 +125,7 @@ export const Live = () => {
         .then((d) => {
           console.log(d);
 
-          setText(d.message);
+          setTextMic(d.message);
           setValue(d.message);
           setLoading(false);
           // console.log(openmodal);
@@ -177,7 +179,7 @@ export const Live = () => {
         .then((x) => x.json())
         .then((d) => {
           setText(d.text);
-          setLink(d.download_id);
+          setLinkLarge(d.download_id);
           setValue(d.text);
           setLoading2(false);
         })
@@ -287,21 +289,41 @@ export const Live = () => {
   //copy and download
   const handleDownload = async () => {
     try {
-      const response = await fetch(
-        `https://stt.ussistant.ir/api/download/${link}`,
-        {
-          method: "GET",
-          headers: {
-            "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
-            Accept: "application/json",
-            // "Content-Type": "multipart/form-data",
-            // "Content-Type":
-            //   "multipart/form-data; charset=utf-8; boundary=" +
-            //   Math.random().toString().substring(2),
-            // "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      let response;
+      if (tab == "large") {
+        response = await fetch(
+          `https://stt.ussistant.ir/api/download/${linkLarge}`,
+          {
+            method: "GET",
+            headers: {
+              "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+              Accept: "application/json",
+              // "Content-Type": "multipart/form-data",
+              // "Content-Type":
+              //   "multipart/form-data; charset=utf-8; boundary=" +
+              //   Math.random().toString().substring(2),
+              // "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+      } else {
+        response = await fetch(
+          `https://stt.ussistant.ir/api/download/${link}`,
+          {
+            method: "GET",
+            headers: {
+              "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+              Accept: "application/json",
+              // "Content-Type": "multipart/form-data",
+              // "Content-Type":
+              //   "multipart/form-data; charset=utf-8; boundary=" +
+              //   Math.random().toString().substring(2),
+              // "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+      }
+
       if (!response.ok) {
         throw new Error("faild");
       }
@@ -358,7 +380,7 @@ export const Live = () => {
       " سلام آقای جام بزرگ ممنون که پذیرفتین گفته بود شرکت کنین سلام عرض می کنم خدمت شما باعث افتخاره که خدمتتون به خیلی ممنون شما بیش از یک دهه است که در زیست بوم یا اکوسیستم اقتصاد دیجیتال ایران حضور دارین اصلا کلا اقتصاد دیجیتال و چه تعریفی ازش داریم یا مهم تر از اون چه عناصری و چه بخش هایی در اقتصاد دیجیتال وجود داره به عرضم به حضور شما که یک چهارچوبی رو آنکتاد استفاده می کنه توی گزارشگری هاش برای تعریف اقساط دیجیتال سه لایه عنوان می کنند برای اقساط دیجیتال یک لایه مرکزی یا هسته کره اقساط دیجیتال رو";
     if (type == "large") {
       setText(dataLarge);
-      setLink(txt);
+      setLinkLarge(txt);
       setValue(dataLarge);
     } else {
       setLink(excel);
@@ -371,6 +393,8 @@ export const Live = () => {
 
     if (!play) {
       audioRef.current?.play();
+      console.error("error");
+
       setPlay(true);
     } else {
       audioRef.current?.pause();
@@ -514,7 +538,7 @@ export const Live = () => {
             mx={"auto"}
             color={"white"}
           >
-            تست آنلاین
+            تست محصول{" "}
           </Text>
           <Box
             py={"3rem"}
@@ -553,7 +577,7 @@ export const Live = () => {
                   borderRadius={"xl"}
                   onClick={() => setTab("recognate")}
                 >
-                  گفتگو
+                  تفکیک گوینده
                 </Button>
 
                 <Button
@@ -566,7 +590,7 @@ export const Live = () => {
                   _hover={{ bgColor: "#1b1a5570" }}
                   onClick={() => setTab("large")}
                 >
-                  فایل بزرگ
+                  دریافت فایل
                 </Button>
                 <Button
                   py={"1rem"}
@@ -678,7 +702,7 @@ export const Live = () => {
                     >
                       {play ? "توقف" : " تست نمونه"}
                     </Button>
-                    <audio src="/voice.wav" ref={audioRef} />
+                    <audio src="/audio.wav" ref={audioRef} />
                   </Box>
                 ) : (
                   <>
@@ -703,7 +727,7 @@ export const Live = () => {
                             cursor: "pointer",
                             background: "#1B1A55",
                             color: "white",
-                            paddingInline: "2rem",
+                            paddingInline: "1rem",
                             paddingBlock: "0.8rem",
                             borderRadius: "10px",
                           }}
@@ -729,7 +753,7 @@ export const Live = () => {
                       >
                         {play ? "توقف" : " تست نمونه"}
                       </Button>
-                      <audio src="/voice.wav" ref={audioRef} />
+                      <audio src="/audio.wav" ref={audioRef} />
                     </Box>
                   </>
                 )}
@@ -744,11 +768,11 @@ export const Live = () => {
                   width: "2px",
                 },
                 "#scrollH::-webkit-scrollbar-track": {
-                  bgColor: "gray",
+                  bgColor: "transparent",
                   width: "2px",
                 },
                 "#scrollH::-webkit-scrollbar-thumb": {
-                  backgroundColor: "#020515",
+                  backgroundColor: "gray",
                   borderRadius: "10px",
                 },
               }}
@@ -838,12 +862,13 @@ export const Live = () => {
                     ))}
                   </Box>
                 </>
-              ) : (
+              ) : tab == "large" ? (
                 <>
                   <Textarea
+                    isReadOnly
                     style={{ direction: "rtl" }}
                     border={"none"}
-                    rows={1}
+                    rows={4}
                     color="white"
                     placeholder="متن گفتار"
                     my={"2rem"}
@@ -854,8 +879,25 @@ export const Live = () => {
                     {/* {text} */}
                   </Textarea>
                 </>
+              ) : (
+                <>
+                  <Textarea
+                    isReadOnly
+                    style={{ direction: "rtl" }}
+                    border={"none"}
+                    rows={4}
+                    color="white"
+                    placeholder="متن گفتار"
+                    my={"2rem"}
+                    borderRadius={"0"}
+                    borderBottom={"1px solid rgba(255, 255, 255, 0.15)"}
+                    value={textMic}
+                  >
+                    {/* {text} */}
+                  </Textarea>
+                </>
               )}
-              {/* buttins.. */}
+              {/* buttons.. */}
               <Box
                 color="white"
                 display={"flex"}

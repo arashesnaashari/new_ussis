@@ -14,6 +14,17 @@ import {
 import * as React from "react";
 // import { FaArrowLeft } from "react-icons/fa6/index.js";
 import { FaArrowLeft } from "react-icons/fa6/index.js";
+// سفارشی سازی برای استفاده در مقیاس
+import { FaUserCog } from "react-icons/fa/index.js";
+// تفکیک گوینده
+import { FaUsers } from "react-icons/fa/index.js";
+// تولید فایل زیرنویس آماده
+import { FaClosedCaptioning } from "react-icons/fa6/index.js";
+// اتصال به موتور جستجوی وبسایت
+import { TbDeviceDesktopSearch } from "react-icons/tb/index.js";
+// تنوع در فرمت خروجی‌های قابل ارائه
+
+import { FaFileExport } from "react-icons/fa6/index.js";
 
 export const Feature = () => {
   const handleScroll = () => {
@@ -52,6 +63,7 @@ export const Feature = () => {
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
+              fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"right"}
@@ -107,95 +119,13 @@ export const Feature = () => {
           /> */}
           </Box>
         </Box>
+
         <Box
           height={{ base: "auto", md: "500px" }}
           justifyContent={"space-around"}
           display={"flex"}
           pt={{ base: "4rem", md: "6rem" }}
           flexFlow={{ base: "column-reverse", md: "row-reverse" }}
-        >
-          <Box
-            alignItems={{ base: "self-end", md: "self-end" }}
-            transform={"scale(0.9)"}
-            width={{ base: "100%", md: "50%" }}
-            p={"1rem"}
-            display={"flex"}
-            flexFlow={"column"}
-            gap={"15px"}
-            justifyContent={"center"}
-          >
-            <Heading
-              textAlign={"right"}
-              width={{ base: "100%", md: "100%" }}
-              fontSize={{ base: "24px", md: "32px" }}
-              fontFamily={"yekan"}
-              color={"white"}
-            >
-              امکان جداسازی گوینده‌ها
-            </Heading>
-            <Text
-              fontSize={{ base: "15px", md: "19px" }}
-              py={"10px"}
-              width={{ base: "100%", md: "100%" }}
-              textAlign={"right"}
-              color={"rgba(226, 223, 223, 0.74)"}
-            >
-              علاوه بر دقت بالا در تبدیل صوت به متن، ابزار ارائه شده توسط
-              یوسیستنت قادر است عملیات جداسازی گوینده‌ها در فایل‌های صوتی را با
-              کیفیت بالا انجام دهد. این ویژگی، مزیت قابل توجهی برای تبدیل صوت‌
-              در کاربردهایی مانند مصاحبه، پادکست و جلسات به دست می‌دهد. در این
-              متن‌ها گوینده‌ها به صورت شفاف تفکیک شده و متن بسیار خواناتر و قابل
-              فهم‌تر خواهد شد.
-            </Text>
-            <Button
-              bgColor={"#535c916e"}
-              onClick={handleScroll}
-              _hover={{ bgColor: "#535C91" }}
-              border={"1px solid #535C91"}
-              borderRadius={"md"}
-              p={"24px"}
-              display={"flex"}
-              alignItems={"center"}
-              flexFlow="row"
-              gap="3px"
-              fontFamily={"yekan"}
-              color={"white"}
-            >
-              <Box transform={"scale(0.9)"}>
-                <FaArrowLeft />
-              </Box>
-              <Box fontSize={{ base: "15px", md: "20px" }} pt={"3px"}>
-                تست
-              </Box>
-            </Button>
-          </Box>
-          <Box
-            width={{ base: "100%", md: "50%" }}
-            p={"1rem"}
-            height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/sound_red.jpg)"}
-            transform={"scale(0.9)"}
-            backgroundPosition={"center"}
-            backgroundSize={"cover"}
-            borderRadius={"15px"}
-          >
-            {/* <Img
-            borderRadius={"20px"}
-            mx={"auto"}
-            width={"450px"}
-            height={"250px"}
-            objectFit={"cover"}
-            // src="/digi.png"
-            src="/meshki.jpg"
-          /> */}
-          </Box>
-        </Box>
-        <Box
-          height={{ base: "auto", md: "500px" }}
-          justifyContent={"space-around"}
-          display={"flex"}
-          pt={{ base: "4rem", md: "6rem" }}
-          flexFlow={{ base: "column-reverse", md: "row" }}
         >
           <Box
             alignItems={"flex-end"}
@@ -217,6 +147,7 @@ export const Feature = () => {
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
+              fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"right"}
@@ -255,7 +186,91 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/soorati.jpg)"}
+            backgroundImage={"url(/image/customization.jpg)"}
+            transform={"scale(0.9)"}
+            backgroundPosition={"center"}
+            backgroundSize={"cover"}
+            borderRadius={"15px"}
+          >
+            {/* <Img
+            borderRadius={"20px"}
+            mx={"auto"}
+            width={"450px"}
+            height={"250px"}
+            objectFit={"cover"}
+            // src="/digi.png"
+            src="/meshki.jpg"
+          /> */}
+          </Box>
+        </Box>
+        <Box
+          height={{ base: "auto", md: "500px" }}
+          justifyContent={"space-around"}
+          display={"flex"}
+          pt={{ base: "4rem", md: "6rem" }}
+          flexFlow={{ base: "column-reverse", md: "row" }}
+        >
+          <Box
+            alignItems={{ base: "self-end", md: "self-end" }}
+            transform={"scale(0.9)"}
+            width={{ base: "100%", md: "50%" }}
+            p={"1rem"}
+            display={"flex"}
+            flexFlow={"column"}
+            gap={"15px"}
+            justifyContent={"center"}
+          >
+            <Heading
+              textAlign={"right"}
+              width={{ base: "100%", md: "100%" }}
+              fontSize={{ base: "24px", md: "32px" }}
+              fontFamily={"yekan"}
+              color={"white"}
+            >
+              امکان جداسازی گوینده‌ها
+            </Heading>
+            <Text
+              fontSize={{ base: "15px", md: "19px" }}
+              fontFamily={"yekan"}
+              py={"10px"}
+              width={{ base: "100%", md: "100%" }}
+              textAlign={"right"}
+              color={"rgba(226, 223, 223, 0.74)"}
+            >
+              علاوه بر دقت بالا در تبدیل صوت به متن، ابزار ارائه شده توسط
+              یوسیستنت قادر است عملیات جداسازی گوینده‌ها در فایل‌های صوتی را با
+              کیفیت بالا انجام دهد. این ویژگی، مزیت قابل توجهی برای تبدیل صوت‌
+              در کاربردهایی مانند مصاحبه، پادکست و جلسات به دست می‌دهد. در این
+              متن‌ها گوینده‌ها به صورت شفاف تفکیک شده و متن بسیار خواناتر و قابل
+              فهم‌تر خواهد شد.
+            </Text>
+            <Button
+              bgColor={"#535c916e"}
+              onClick={handleScroll}
+              _hover={{ bgColor: "#535C91" }}
+              border={"1px solid #535C91"}
+              borderRadius={"md"}
+              p={"24px"}
+              display={"flex"}
+              alignItems={"center"}
+              flexFlow="row"
+              gap="3px"
+              fontFamily={"yekan"}
+              color={"white"}
+            >
+              <Box transform={"scale(0.9)"}>
+                <FaArrowLeft />
+              </Box>
+              <Box fontSize={{ base: "15px", md: "20px" }} pt={"3px"}>
+                تست
+              </Box>
+            </Button>
+          </Box>
+          <Box
+            width={{ base: "100%", md: "50%" }}
+            p={"1rem"}
+            height={{ base: "230px", md: "auto" }}
+            backgroundImage={"url(/image/speaker.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -301,6 +316,7 @@ export const Feature = () => {
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
+              fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"right"}
@@ -338,7 +354,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/goosh.png)"}
+            backgroundImage={"url(/image/infrastructure.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -364,7 +380,7 @@ export const Feature = () => {
         py={{ base: "3rem", md: "3rem" }}
         bgColor={"#020515"}
       >
-        <Box width={"100%"} py={"2rem"}>
+        <Box width={"100%"} py={"2rem"} mb={"1rem"}>
           <Text
             fontSize={{ base: "20px", md: "32px" }}
             fontFamily={"yekan"}
@@ -380,81 +396,127 @@ export const Feature = () => {
           mb={"5rem"}
           py={"3rem"}
           display={"flex"}
-          flexFlow={"column"}
-          alignItems={"center"}
+          flexFlow={"row-reverse"}
+          justifyContent={"space-around"}
           borderRadius={"md"}
           width={{ base: "100%", md: "70%" }}
           gap={{ base: "0rem", md: "2rem" }}
           mx={"auto"}
           bgColor={"rgba(217, 217, 217, 0.06)"}
         >
-          <Box width={"70%"} justifyContent={"space-around"} display={"flex"}>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
+          <Box
+            // width={"90%"}
+            gap={"10px"}
+            flexFlow={"column"}
+            alignSelf={"baseline"}
+            display={"flex"}
+          >
+            <Box
+              alignItems={"end"}
+              gap={"1rem"}
+              p={"20px"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <FaUserCog color="#ABABAB" />
+              </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
                 fontSize={{ base: "17px", md: "20px" }}
+                textAlign={"right"}
                 fontFamily={"yekan"}
               >
-                مزیت
+                سفارشی سازی برای استفاده در مقیاس
               </Text>
             </Box>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
+            <Box
+              alignItems={"end"}
+              gap={"1rem"}
+              p={"20px"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <FaUsers color="#ABABAB" />
+              </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
                 fontSize={{ base: "17px", md: "20px" }}
+                textAlign={"right"}
                 fontFamily={"yekan"}
               >
-                مزیت
+                تفکیک گوینده
               </Text>
             </Box>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
+            <Box
+              alignItems={"end"}
+              gap={"1rem"}
+              p={"20px"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <FaClosedCaptioning color="#ABABAB" />
+              </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
+                fontSize={{ base: "15px", md: "20px" }}
+                textAlign={"right"}
                 fontFamily={"yekan"}
               >
-                مزیت
+                تولید فایل زیرنویس آماده
               </Text>
             </Box>
           </Box>
-          <Box width={"70%"} justifyContent={"space-around"} display={"flex"}>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
+          <Box
+            // width={"90%"}
+            gap={"10px"}
+            flexFlow={"column"}
+            alignSelf={"baseline"}
+            display={"flex"}
+          >
+            <Box
+              alignItems={"end"}
+              gap={"1rem"}
+              p={"20px"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <TbDeviceDesktopSearch color="#ABABAB" />
+              </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
                 fontSize={{ base: "17px", md: "20px" }}
+                textAlign={"right"}
                 fontFamily={"yekan"}
               >
-                مزیت
+                اتصال به موتور جستجوی وبسایت
               </Text>
             </Box>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
+            <Box
+              alignItems={"end"}
+              gap={"1rem"}
+              p={"20px"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <FaFileExport color="#ABABAB" />
+              </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
                 fontSize={{ base: "17px", md: "20px" }}
+                textAlign={"right"}
                 fontFamily={"yekan"}
               >
-                مزیت
-              </Text>
-            </Box>
-            <Box p={"20px"} display={"flex"} flexDir={"column"}>
-              <Img src="/icon.svg" width={{ base: "40px", md: "50px" }} />
-              <Text
-                color={"#ABABAB"}
-                pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
-                fontFamily={"yekan"}
-              >
-                مزیت
+                تنوع در فرمت خروجی‌های قابل ارائه
               </Text>
             </Box>
           </Box>
