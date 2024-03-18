@@ -66,8 +66,9 @@ export const Feature = () => {
               fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
-              textAlign={"right"}
+              textAlign={"justify"}
               color={"rgba(226, 223, 223, 0.74)"}
+              style={{ direction: "rtl" }}
             >
               ابزار تبدیل صوت به متن یوسیستنت، با تکیه بر به‌روزترین مدل‌ها و
               دانش هوش مصنوعی عملکرد بسیار بهتری در مقایسه با ابزارهای تبدیل صوت
@@ -102,7 +103,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/meshki.jpg)"}
+            backgroundImage={"url(/image/1.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -119,7 +120,6 @@ export const Feature = () => {
           /> */}
           </Box>
         </Box>
-
         <Box
           height={{ base: "auto", md: "500px" }}
           justifyContent={"space-around"}
@@ -150,8 +150,9 @@ export const Feature = () => {
               fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
-              textAlign={"right"}
+              textAlign={"justify"}
               color={"rgba(226, 223, 223, 0.74)"}
+              style={{ direction: "rtl" }}
             >
               یوسیستنت می‌تواند برای کسب و کار شما ابزار تبدیل گفتار سفارشی سازی
               شده ارائه دهد. مدل تبدیل صوت به متن یوسیستنت می‌تواند به سرعت و با
@@ -186,7 +187,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/image/customization.jpg)"}
+            backgroundImage={"url(/image/2.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -234,8 +235,9 @@ export const Feature = () => {
               fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
-              textAlign={"right"}
+              textAlign={"justify"}
               color={"rgba(226, 223, 223, 0.74)"}
+              style={{ direction: "rtl" }}
             >
               علاوه بر دقت بالا در تبدیل صوت به متن، ابزار ارائه شده توسط
               یوسیستنت قادر است عملیات جداسازی گوینده‌ها در فایل‌های صوتی را با
@@ -270,7 +272,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/image/speaker.jpg)"}
+            backgroundImage={"url(/image/3.jpeg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -319,8 +321,9 @@ export const Feature = () => {
               fontFamily={"yekan"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
-              textAlign={"right"}
+              textAlign={"justify"}
               color={"rgba(226, 223, 223, 0.74)"}
+              style={{ direction: "rtl" }}
             >
               ابزار تبدیل صوت به متن یوسیستنت می‌تواند برای همخوانی بیشتر با
               بستر نرم‌افزاری و سخت‌افزاری مورد نیاز کسب و کار شما توسعه داده
@@ -354,7 +357,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/image/infrastructure.jpg)"}
+            backgroundImage={"url(/image/4.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -396,7 +399,7 @@ export const Feature = () => {
           mb={"5rem"}
           py={"3rem"}
           display={"flex"}
-          flexFlow={"row-reverse"}
+          flexFlow={"column"}
           justifyContent={"space-around"}
           borderRadius={"md"}
           width={{ base: "100%", md: "70%" }}
@@ -407,119 +410,196 @@ export const Feature = () => {
           <Box
             // width={"90%"}
             gap={"10px"}
-            flexFlow={"column"}
+            flexFlow={"row"}
+            justifyContent={"center"}
             alignSelf={"baseline"}
+            width={"100%"}
+            flexWrap={"wrap"}
             display={"flex"}
+            px={"20px"}
           >
             <Box
-              alignItems={"end"}
+              alignItems={"center"}
+              // alignSelf="center"
+              transform={"scale(0.9)"}
               gap={"1rem"}
               p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
               display={"flex"}
               flexDir={"column"}
             >
-              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
                 <FaUserCog color="#ABABAB" />
               </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
-                textAlign={"right"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
                 fontFamily={"yekan"}
               >
                 سفارشی سازی برای استفاده در مقیاس
               </Text>
             </Box>
             <Box
-              alignItems={"end"}
+              alignItems={"center"}
+              // alignSelf="center"
+              transform={"scale(0.9)"}
               gap={"1rem"}
               p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
               display={"flex"}
               flexDir={"column"}
             >
-              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
                 <FaUsers color="#ABABAB" />
               </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
-                textAlign={"right"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
                 fontFamily={"yekan"}
               >
                 تفکیک گوینده
               </Text>
             </Box>
             <Box
-              alignItems={"end"}
+              alignItems={"center"}
+              // alignSelf="center"
+              transform={"scale(0.9)"}
               gap={"1rem"}
               p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
               display={"flex"}
               flexDir={"column"}
             >
-              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
                 <FaClosedCaptioning color="#ABABAB" />
               </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "15px", md: "20px" }}
-                textAlign={"right"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
                 fontFamily={"yekan"}
               >
                 تولید فایل زیرنویس آماده
               </Text>
             </Box>
-          </Box>
-          <Box
-            // width={"90%"}
-            gap={"10px"}
-            flexFlow={"column"}
-            alignSelf={"baseline"}
-            display={"flex"}
-          >
             <Box
-              alignItems={"end"}
+              alignItems={"center"}
+              // alignSelf="center"
+              transform={"scale(0.9)"}
               gap={"1rem"}
               p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
               display={"flex"}
               flexDir={"column"}
             >
-              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
                 <TbDeviceDesktopSearch color="#ABABAB" />
               </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
-                textAlign={"right"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
                 fontFamily={"yekan"}
               >
                 اتصال به موتور جستجوی وبسایت
               </Text>
             </Box>
             <Box
-              alignItems={"end"}
+              alignItems={"center"}
+              // alignSelf="center"
+              transform={"scale(0.9)"}
               gap={"1rem"}
               p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
               display={"flex"}
               flexDir={"column"}
             >
-              <Box mr={"14px"} transform={{ base: "scale(2)", md: "scale(3)" }}>
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
                 <FaFileExport color="#ABABAB" />
               </Box>
               <Text
                 color={"#ABABAB"}
                 pt={"10px"}
-                fontSize={{ base: "17px", md: "20px" }}
-                textAlign={"right"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
                 fontFamily={"yekan"}
               >
                 تنوع در فرمت خروجی‌های قابل ارائه
               </Text>
             </Box>
           </Box>
+          {/* <Box
+            // width={"90%"}
+            gap={"10px"}
+            justifyContent={"center"}
+            flexFlow={"row"}
+            alignSelf={"baseline"}
+            width={"100%"}
+            display={"flex"}
+          >
+            <Box
+              alignItems={"center"}
+              gap={"1rem"}
+              p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <TbDeviceDesktopSearch color="#ABABAB" />
+              </Box>
+              <Text
+                color={"#ABABAB"}
+                pt={"10px"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
+                fontFamily={"yekan"}
+              >
+                اتصال به موتور جستجوی وبسایت
+              </Text>
+            </Box>
+            <Box
+              alignItems={"center"}
+              gap={"1rem"}
+              p={"20px"}
+              background={"rgba(217, 217, 217, 0.06)"}
+              width={"190px"}
+              borderRadius={"md"}
+              display={"flex"}
+              flexDir={"column"}
+            >
+              <Box transform={{ base: "scale(2)", md: "scale(3)" }}>
+                <FaFileExport color="#ABABAB" />
+              </Box>
+              <Text
+                color={"#ABABAB"}
+                pt={"10px"}
+                fontSize={{ base: "13px", md: "15px" }}
+                textAlign={"center"}
+                fontFamily={"yekan"}
+              >
+                تنوع در فرمت خروجی‌های قابل ارائه
+              </Text>
+            </Box>
+          </Box> */}
         </Box>
       </Box>
     </>

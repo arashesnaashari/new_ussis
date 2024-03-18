@@ -70,19 +70,25 @@ export const Header = () => {
                 textAlign={"center"}
                 _hover={{ color: "#ffffd5" }}
                 fontSize={"18px"}
+                fontFamily={"yekan"}
+                fontWeight={"bold"}
                 py={"10px"}
                 px={"7px"}
               >
                 <a href="https://ussistant.ir/">خانه</a>
               </Text>
               {/* <Text textAlign={"center"}
-              _hover={{color:"#ffffd5"}} fontSize={"18px"} py={"10px"} px={"7px"} onMouseEnter={}>
+              _hover={{color:"#ffffd5"}} fontSize={"18px"}
+              fontFamily={"yekan"}
+              fontWeight={"bold"} py={"10px"} px={"7px"} onMouseEnter={}>
           <a href="#">محصولات</a>
         </Text> */}
               <Text
                 textAlign={"center"}
                 _hover={{ color: "#ffffd5" }}
                 fontSize={"18px"}
+                fontFamily={"yekan"}
+                fontWeight={"bold"}
                 py={"10px"}
                 px={"7px"}
               >
@@ -93,6 +99,8 @@ export const Header = () => {
                 textAlign={"center"}
                 _hover={{ color: "#ffffd5" }}
                 fontSize={"18px"}
+                fontFamily={"yekan"}
+                fontWeight={"bold"}
                 py={"10px"}
                 px={"7px"}
               >

@@ -36,6 +36,7 @@ export const Live = () => {
   const [loading2, setLoading2] = React.useState<boolean>(false);
 
   const [text, setText] = React.useState<string>("");
+  // const [src, setText] = React.useState<string>("");
   const [textMic, setTextMic] = React.useState<string>("");
   const [link, setLink] = React.useState<any>("");
   const [linkLarge, setLinkLarge] = React.useState<any>("");
@@ -153,44 +154,66 @@ export const Live = () => {
     var fd = new FormData();
     fd.append("file", file);
     setLoading2(true);
-    if (
-      file.size < 10000000 &&
-      (file.type == "audio/wav" ||
-        file.type == "audio/mp3" ||
-        file.type == "audio/webm" ||
-        file.type == "audio/ogg" ||
-        file.type == "audio/flac" ||
-        file.type == "audio/aac")
-    ) {
-      //file.size < 2000000
-      fetch("https://stt.ussistant.ir/api/transcript_large", {
-        method: "POST",
-        headers: {
-          "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
-          // Accept: "application/json",
-          // "Content-Type": "multipart/form-data",
-          // "Content-Type":
-          //   "multipart/form-data; charset=utf-8; boundary=" +
-          //   Math.random().toString().substring(2),
-          // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: fd,
-      })
-        .then((x) => x.json())
-        .then((d) => {
-          setText(d.text);
-          setLinkLarge(d.download_id);
-          setValue(d.text);
-          setLoading2(false);
-        })
-        .catch((err) => {
-          //, setLoading2(false), setopenmodal(false);
-          console.log(err), setLoading2(false);
-        });
-    } else {
-      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
-      setLoading2(false);
+    const url = URL.createObjectURL(file);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.style.filter = "opacity(0.5)";
+    audio.controls = true;
+    let myNode = document.body.querySelector(".playme_large");
+    while (myNode?.firstChild) {
+      myNode.removeChild(myNode?.lastChild);
     }
+
+    document.body.querySelector(".playme_large")?.appendChild(audio);
+    // if (
+    //   file.size < 10000000 &&
+    //   (file.type == "audio/wav" ||
+    //     file.type == "audio/mp3" ||
+    //     file.type == "audio/webm" ||
+    //     file.type == "audio/ogg" ||
+    //     file.type == "audio/flac" ||
+    //     file.type == "audio/aac")
+    // ) {
+    //   //file.size < 2000000
+    //   fetch("https://stt.ussistant.ir/api/transcript_large", {
+    //     method: "POST",
+    //     headers: {
+    //       "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+    //       // Accept: "application/json",
+    //       // "Content-Type": "multipart/form-data",
+    //       // "Content-Type":
+    //       //   "multipart/form-data; charset=utf-8; boundary=" +
+    //       //   Math.random().toString().substring(2),
+    //       // "Content-Type": "application/x-www-form-urlencoded",
+    //     },
+    //     body: fd,
+    //   })
+    //     .then((x) => x.json())
+    //     .then((d) => {
+    //       setText(d.text);
+    //       setLinkLarge(d.download_id);
+    //       setValue(d.text);
+    //       setLoading2(false);
+    //       // const url = URL.createObjectURL(file);
+    //       // const audio = document.createElement("audio");
+    //       // audio.src = url;
+    //       // audio.style.filter = "opacity(0.5)";
+    //       // audio.controls = true;
+    //       // let myNode = document.body.querySelector(".playme_large");
+    //       // while (myNode?.firstChild) {
+    //       //   myNode.removeChild(myNode?.lastChild);
+    //       // }
+
+    //       // document.body.querySelector(".playme_large")?.appendChild(audio);
+    //     })
+    //     .catch((err) => {
+    //       //, setLoading2(false), setopenmodal(false);
+    //       console.log(err), setLoading2(false);
+    //     });
+    // } else {
+    //   alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+    //   setLoading2(false);
+    // }
   };
 
   // recognate
@@ -275,6 +298,17 @@ export const Live = () => {
           setUniqs(unique);
 
           setLoading2(false);
+          const url = URL.createObjectURL(file);
+          const audio = document.createElement("audio");
+          audio.src = url;
+          audio.style.filter = "opacity(0.5)";
+          audio.controls = true;
+          let myNode = document.body.querySelector(".playme_reco");
+          while (myNode?.firstChild) {
+            myNode.removeChild(myNode?.lastChild);
+          }
+
+          document.body.querySelector(".playme_reco")?.appendChild(audio);
         })
         .catch((err) => {
           //, setLoading(false), setopenmodal(false);
@@ -382,6 +416,17 @@ export const Live = () => {
       setText(dataLarge);
       setLinkLarge(txt);
       setValue(dataLarge);
+
+      const audio = document.createElement("audio");
+      audio.src = "/audio.wav";
+      audio.style.filter = "opacity(0.5)";
+      audio.controls = true;
+      let myNode = document.body.querySelector(".playme_large");
+      while (myNode?.firstChild) {
+        myNode.removeChild(myNode?.lastChild);
+      }
+
+      document.body.querySelector(".playme_large")?.appendChild(audio);
     } else {
       setLink(excel);
       var x = dataSpeaker;
@@ -389,18 +434,29 @@ export const Live = () => {
       var y = x.map((t: any) => t.speaker);
       let unique = [...new Set(y)];
       setUniqs(unique);
+
+      const audio = document.createElement("audio");
+      audio.src = "/audio.wav";
+      audio.style.filter = "opacity(0.5)";
+      audio.controls = true;
+      let myNode = document.body.querySelector(".playme_reco");
+      while (myNode?.firstChild) {
+        myNode.removeChild(myNode?.lastChild);
+      }
+
+      document.body.querySelector(".playme_reco")?.appendChild(audio);
     }
 
-    if (!play) {
-      audioRef.current?.play();
-      console.error("error");
+    // if (!play) {
+    //   audioRef.current;
+    //   // console.error("error");
 
-      setPlay(true);
-    } else {
-      audioRef.current?.pause();
-      // audioRef.current?.currentTime = 0;
-      setPlay(false);
-    }
+    //   setPlay(true);
+    // } else {
+    //   // audioRef.current?.pause();
+    //   // audioRef.current?.currentTime = 0;
+    //   setPlay(false);
+    // }
     //set Text equls to sample
     //play the real audio
   };
@@ -685,7 +741,7 @@ export const Live = () => {
                       </label>
                     </Box>
                     <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
-                      یا
+                      {/* یا */}
                     </Box>
                     <Button
                       onClick={() => handleTestSample("large")}
@@ -700,9 +756,9 @@ export const Live = () => {
                       paddingBlock="1.5rem"
                       borderRadius="10px"
                     >
-                      {play ? "توقف" : " تست نمونه"}
+                      تست نمونه{" "}
                     </Button>
-                    <audio src="/audio.wav" ref={audioRef} />
+                    {/* <audio src="/audio.wav" ref={audioRef} /> */}
                   </Box>
                 ) : (
                   <>
@@ -727,16 +783,16 @@ export const Live = () => {
                             cursor: "pointer",
                             background: "#1B1A55",
                             color: "white",
-                            paddingInline: "1rem",
+                            paddingInline: "2rem",
                             paddingBlock: "0.8rem",
                             borderRadius: "10px",
                           }}
                         >
-                          آپلود فایل گوینده
+                          آپلود فایل
                         </label>
                       </Box>
                       <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
-                        یا
+                        {/* یا */}
                       </Box>
                       <Button
                         onClick={() => handleTestSample("speaker")}
@@ -751,9 +807,9 @@ export const Live = () => {
                         paddingBlock="1.5rem"
                         borderRadius="10px"
                       >
-                        {play ? "توقف" : " تست نمونه"}
+                        تست نمونه{" "}
                       </Button>
-                      <audio src="/audio.wav" ref={audioRef} />
+                      {/* <audio src="/audio.wav" ref={audioRef} /> */}
                     </Box>
                   </>
                 )}
@@ -865,6 +921,7 @@ export const Live = () => {
               ) : tab == "large" ? (
                 <>
                   <Textarea
+                    fontFamily={"yekan"}
                     isReadOnly
                     style={{ direction: "rtl" }}
                     border={"none"}
@@ -892,26 +949,31 @@ export const Live = () => {
                     borderRadius={"0"}
                     borderBottom={"1px solid rgba(255, 255, 255, 0.15)"}
                     value={textMic}
+                    fontFamily={"yekan"}
                   >
                     {/* {text} */}
                   </Textarea>
                 </>
               )}
+
               {/* buttons.. */}
               <Box
                 color="white"
                 display={"flex"}
                 // border={"1px rgba(255, 255, 255, 0.15) solid"}
                 borderRadius={"md"}
-                flexFlow={"row"}
+                flexFlow={{ base: "row", md: "row" }}
                 fontFamily={"yekan"}
                 width={"100%"}
                 px={"8px"}
                 py={"2px"}
                 alignItems={"center"}
+                flexWrap={"wrap"}
+                gap={"10px"}
                 justifyContent={"space-between"}
               >
                 <Button
+                  order={1}
                   // border={"2px #1B1A55 solid"}
                   color={"rgba(255, 255, 255, 0.8)"}
                   // bgColor={"#1313136e"}
@@ -931,7 +993,33 @@ export const Live = () => {
                     <GoDownload />
                   </Box>
                 </Button>
+                {tab == "large" ? (
+                  <Box
+                    hidden={text == "" ? true : false}
+                    order={{ base: 3, md: 2 }}
+                    transform={"scale(0.8)"}
+                    background="midnightblue"
+                    borderRadius="34px"
+                    color={"white"}
+                    className="playme_large"
+                  ></Box>
+                ) : tab == "recognate" ? (
+                  <Box
+                    hidden={text2 == "" ? true : false}
+                    order={{ base: 3, md: 2 }}
+                    transform={"scale(0.8)"}
+                    background="midnightblue"
+                    borderRadius="34px"
+                    color={"white"}
+                    className="playme_reco"
+                  >
+                    {/* <audio ></audio> */}
+                  </Box>
+                ) : (
+                  <></>
+                )}
                 <Button
+                  order={{ base: 2, md: 3 }}
                   height={"30px"}
                   color={"rgba(255, 255, 255, 0.8)"}
                   fontSize={"10px"}

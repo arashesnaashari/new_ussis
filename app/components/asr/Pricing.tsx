@@ -116,7 +116,7 @@ export const Pricing = () => (
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
+            <Tr borderBottom={"1px solid #8080800d"}>
               <Th
                 border={"none"}
                 color={"white"}
@@ -178,7 +178,7 @@ export const Pricing = () => (
                 دقیقه‌ای ۱۵۰ تومان
               </Td>
             </Tr>
-            <Tr>
+            <Tr borderBottom={"1px solid #8080800d"}>
               <Th
                 border={"none"}
                 color={"white"}
@@ -240,7 +240,7 @@ export const Pricing = () => (
                 دقیقه‌ای ۲۰۰ تومان
               </Td>
             </Tr>
-            <Tr>
+            <Tr borderBottom={"1px solid #8080800d"}>
               <Th
                 border={"none"}
                 color={"white"}
@@ -372,8 +372,10 @@ export const Pricing = () => (
         textAlign={"end"}
         fontFamily={"yekan"}
         mt={"1rem"}
+        fontWeight={"bold"}
       >
         امکان طراحی پیشنهاد اختصاصی جهت استفاده در مقیاس‌ بالا مخصوص کسب و کارها
+        وجود دارد
       </Box>
     </Box>
 
@@ -389,10 +391,11 @@ export const Pricing = () => (
           textAlign={"center"}
           color={"#C9C5C5"}
           fontSize={{ base: "17px", md: "25px" }}
+          style={{ direction: "rtl" }}
         >
-          ما بر این باوریم که هر برندی باید صدایی داشته باشد و هر فردی باید
-          بتواند به طور طبیعی با محصولات اطراف خود تعامل داشته باشد - فقط با
-          صحبت کردن.
+          ما در یوسیستنت به دنبال ارائه سرویس‌های نوآور با کیفیت جهانی برای
+          استفاده فارسی زبانان و شرکت‌ها به جهت خلق ارزش بهبود تجربه کاربران
+          هستیم.
         </Text>
       </Box>
       <Box
@@ -404,6 +407,8 @@ export const Pricing = () => (
         textAlign={"center"}
       >
         <Button
+          display={{ base: "flex", md: "none" }}
+          mx={"auto"}
           px={"5rem"}
           _hover={{ bgColor: "#1b1a5570" }}
           py={{ base: "1.5rem", md: "2rem" }}
