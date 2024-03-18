@@ -38,7 +38,7 @@ export const Pricing = () => (
       px={{ base: "1.2rem", md: "3rem" }}
       py={{ base: "3rem", md: "3rem" }}
     >
-      <Box width={"100%"} py={"2rem"}>
+      <Box maxW={"2000px"} mx={"auto"} width={"100%"} py={"2rem"}>
         <Text
           fontSize={{ base: "20px", md: "32px" }}
           fontFamily={"yekan"}
@@ -52,6 +52,8 @@ export const Pricing = () => (
         </Text>
       </Box>
       <Box
+        maxW={"2000px"}
+        mx={"auto"}
         id="scrollH"
         style={{ direction: "rtl" }}
         overflowX={{ base: "scroll", md: "auto" }}
@@ -365,11 +367,12 @@ export const Pricing = () => (
         </Table>
       </Box>
       <Box
+        maxW={"2000px"}
         mb="5rem"
         width={{ base: "100%", md: "70%" }}
         mx={"auto"}
         color={"white"}
-        textAlign={"end"}
+        textAlign={"center"}
         fontFamily={"yekan"}
         mt={"1rem"}
         fontWeight={"bold"}
@@ -382,6 +385,8 @@ export const Pricing = () => (
     {/* About */}
     <Box
       width={"100%"}
+      maxW={"2000px"}
+      mx={"auto"}
       fontFamily={"yekan"}
       py={{ base: "3rem", md: "6rem" }}
       px={{ base: "1rem", md: "2rem" }}

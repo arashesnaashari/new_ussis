@@ -35,7 +35,12 @@ export const Feature = () => {
   };
   return (
     <>
-      <Box p={{ base: "0.5em", md: "2rem" }} mx={"auto"} width={"100%"}>
+      <Box
+        p={{ base: "0.5em", md: "2rem" }}
+        maxW={"2000px"}
+        mx={"auto"}
+        width={"100%"}
+      >
         <Box
           justifyContent={"space-around"}
           height={{ base: "auto", md: "500px" }}
@@ -383,7 +388,7 @@ export const Feature = () => {
         py={{ base: "3rem", md: "3rem" }}
         bgColor={"#020515"}
       >
-        <Box width={"100%"} py={"2rem"} mb={"1rem"}>
+        <Box maxW={"2000px"} mx={"auto"} width={"100%"} py={"2rem"} mb={"1rem"}>
           <Text
             fontSize={{ base: "20px", md: "32px" }}
             fontFamily={"yekan"}
@@ -396,6 +401,8 @@ export const Feature = () => {
           </Text>
         </Box>
         <Box
+          maxW={"2000px"}
+          mx={"auto"}
           mb={"5rem"}
           py={"3rem"}
           display={"flex"}
@@ -404,7 +411,7 @@ export const Feature = () => {
           borderRadius={"md"}
           width={{ base: "100%", md: "70%" }}
           gap={{ base: "0rem", md: "2rem" }}
-          mx={"auto"}
+          // mx={"auto"}
           bgColor={"rgba(217, 217, 217, 0.06)"}
         >
           <Box

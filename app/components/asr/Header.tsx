@@ -47,76 +47,76 @@ export const Header = () => {
           <a href="#call">تماس با ما</a>
         </Text>
       </Box>
-      <Box
-        borderBottom={"1px solid #ffffff1f"}
-        fontFamily={"yekan"}
-        display={"flex"}
-        flexFlow={"row"}
-        justifyContent={"space-between"}
-        color={"white"}
-        bgColor={"#020512"}
-        width={"100%"}
-        p={"1rem"}
-        boxShadow={"0px 6px white"}
-      >
-        <Box rowGap={"1rem"} display={"flex"} flexFlow={"row"}>
-          {isMobile ? (
-            <Box transform={"scale(2)"} onClick={() => setModal((p) => !p)}>
-              <FiMenu />
-            </Box>
-          ) : (
-            <>
-              <Text
-                textAlign={"center"}
-                _hover={{ color: "#ffffd5" }}
-                fontSize={"18px"}
-                fontFamily={"yekan"}
-                fontWeight={"bold"}
-                py={"10px"}
-                px={"7px"}
-              >
-                <a href="https://ussistant.ir/">خانه</a>
-              </Text>
-              {/* <Text textAlign={"center"}
+      <Box bgColor={"#020512"} width={"100%"} boxShadow={"0px 6px white"}>
+        <Box
+          fontFamily={"yekan"}
+          display={"flex"}
+          flexFlow={"row"}
+          justifyContent={"space-between"}
+          color={"white"}
+          p={"1rem"}
+          maxW={"2000px"}
+          mx={"auto"}
+        >
+          <Box rowGap={"1rem"} display={"flex"} flexFlow={"row"}>
+            {isMobile ? (
+              <Box transform={"scale(2)"} onClick={() => setModal((p) => !p)}>
+                <FiMenu />
+              </Box>
+            ) : (
+              <>
+                <Text
+                  textAlign={"center"}
+                  _hover={{ color: "#ffffd5" }}
+                  fontSize={"18px"}
+                  fontFamily={"yekan"}
+                  fontWeight={"bold"}
+                  py={"10px"}
+                  px={"7px"}
+                >
+                  <a href="https://ussistant.ir/">خانه</a>
+                </Text>
+                {/* <Text textAlign={"center"}
               _hover={{color:"#ffffd5"}} fontSize={"18px"}
               fontFamily={"yekan"}
               fontWeight={"bold"} py={"10px"} px={"7px"} onMouseEnter={}>
           <a href="#">محصولات</a>
         </Text> */}
-              <Text
-                textAlign={"center"}
-                _hover={{ color: "#ffffd5" }}
-                fontSize={"18px"}
-                fontFamily={"yekan"}
-                fontWeight={"bold"}
-                py={"10px"}
-                px={"7px"}
-              >
-                <a href="https://ussistant.ir/about"> درباره ما</a>
-              </Text>
+                <Text
+                  textAlign={"center"}
+                  _hover={{ color: "#ffffd5" }}
+                  fontSize={"18px"}
+                  fontFamily={"yekan"}
+                  fontWeight={"bold"}
+                  py={"10px"}
+                  px={"7px"}
+                >
+                  <a href="https://ussistant.ir/about"> درباره ما</a>
+                </Text>
 
-              <Text
-                textAlign={"center"}
-                _hover={{ color: "#ffffd5" }}
-                fontSize={"18px"}
-                fontFamily={"yekan"}
-                fontWeight={"bold"}
-                py={"10px"}
-                px={"7px"}
-              >
-                <a href="#call">تماس با ما</a>
-              </Text>
-            </>
-          )}
-        </Box>
-        <Box display={"flex"}>
-          <Img
-            mx={"auto"}
-            style={{
-              width: "7rem",
-            }}
-            src="/ussis.svg"
-          />
+                <Text
+                  textAlign={"center"}
+                  _hover={{ color: "#ffffd5" }}
+                  fontSize={"18px"}
+                  fontFamily={"yekan"}
+                  fontWeight={"bold"}
+                  py={"10px"}
+                  px={"7px"}
+                >
+                  <a href="#call">تماس با ما</a>
+                </Text>
+              </>
+            )}
+          </Box>
+          <Box display={"flex"}>
+            <Img
+              mx={"auto"}
+              style={{
+                width: "7rem",
+              }}
+              src="/ussis.svg"
+            />
+          </Box>
         </Box>
       </Box>
     </>

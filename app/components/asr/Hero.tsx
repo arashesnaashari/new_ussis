@@ -28,11 +28,11 @@ export const Hero = () => {
     }
   };
   return (
-    <>
+    <Box bgColor={"#020515"} w={"100%"}>
       <Box
         fontFamily={"yekan"}
-        bgColor={"#020515"}
-        w={"100%"}
+        maxW={"2000px"}
+        mx={"auto"}
         display={"flex"}
         flexFlow={{ base: "column", md: "row" }}
         overflow={"hidden"}
@@ -166,6 +166,6 @@ export const Hero = () => {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };

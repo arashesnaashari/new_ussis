@@ -581,6 +581,8 @@ export const Live = () => {
       <Box
         id="test"
         width={"100%"}
+        maxW={"2000px"}
+        mx={"auto"}
         px={{ base: "1.2rem", md: "3rem" }}
         py={{ base: "3rem", md: "3rem" }}
       >
