@@ -72,7 +72,7 @@ export default function App() {
           color={"white"}
           fontSize={"32px"}
           fontWeight={"bold"}
-          fontFamily={"yekan"}
+          fontFamily={"vazir"}
         >
           Live Demo .. !
         </Box>

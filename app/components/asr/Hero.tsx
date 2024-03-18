@@ -30,7 +30,7 @@ export const Hero = () => {
   return (
     <Box bgColor={"#020515"} w={"100%"}>
       <Box
-        fontFamily={"yekan"}
+        fontFamily={"vazir"}
         maxW={"2000px"}
         mx={"auto"}
         display={"flex"}
@@ -114,20 +114,21 @@ export const Hero = () => {
           <Heading
             textAlign={"end"}
             fontSize={{ base: "27px", md: "36px" }}
-            fontFamily={"yekan"}
+            fontFamily={"vazir"}
             color={"white"}
           >
             سرویس تایپ صوتی یوسیستنت با امکان سفارشی‌سازی
           </Heading>
           <Box display={"flex"} flexFlow={"row"} justifyContent={"right"}>
             <Text
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               fontSize={{ base: "16px", md: "20px" }}
               width={{ base: "95%", md: "90%" }}
               // textAlign={"right"}
-              color={"rgba(226, 223, 223, 0.74)"}
+              color={"rgba(226, 223, 223, 0.60)"}
               textAlign={"justify"}
               style={{ direction: "rtl" }}
+              fontWeight={"lighter"}
             >
               سرویس صوت به متن یوسیستنت با تکیه بر حجم عظیمی از داده‌های
               محاوره‌ای و به‌روزترین الگوریتم‌های هوش مصنوعی توسعه یافته است.

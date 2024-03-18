@@ -485,7 +485,7 @@ export const Live = () => {
           borderRadius={"md"}
           px={"2rem"}
           py={"2rem"}
-          fontFamily={"yekan"}
+          fontFamily={"vazir"}
           // zIndex={"22"}
           pos={"absolute"}
           width={{ base: "90vw", sm: "60vw", md: "40vw", lg: "30vw" }}
@@ -589,7 +589,7 @@ export const Live = () => {
         <Box width={"100%"} py={"2rem"}>
           <Text
             fontSize={{ base: "20px", md: "32px" }}
-            fontFamily={"yekan"}
+            fontFamily={"vazir"}
             fontWeight={{ base: "bold", md: "normal" }}
             textAlign={"center"}
             pb={"2rem"}
@@ -627,7 +627,7 @@ export const Live = () => {
               >
                 <Button
                   py={"1rem"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   _hover={{ bgColor: "#1b1a5570" }}
                   color={"white"}
                   px={"1rem"}
@@ -640,7 +640,7 @@ export const Live = () => {
 
                 <Button
                   py={"1rem"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   color={"white"}
                   px={"1rem"}
                   bgColor={tab == "large" ? "#1B1A55" : "transparent"}
@@ -653,7 +653,7 @@ export const Live = () => {
                 <Button
                   py={"1rem"}
                   zIndex={"1"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   color={"white"}
                   px={"1rem"}
                   bgColor={tab == "mic" ? "#1B1A55" : "transparent"}
@@ -676,7 +676,7 @@ export const Live = () => {
                 px={"1rem"}
                 py={"10px"}
                 display={"flex"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 mt={"2rem"}
               >
                 <Box color={"white"} fontSize={"1rem"} mr={"15px"}>
@@ -729,7 +729,7 @@ export const Live = () => {
                       <label
                         htmlFor="upload"
                         style={{
-                          fontFamily: "yekan",
+                          fontFamily: "vazir",
                           fontWeight: "bold",
                           cursor: "pointer",
                           background: "#1B1A55",
@@ -742,13 +742,13 @@ export const Live = () => {
                         آپلود فایل
                       </label>
                     </Box>
-                    <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
+                    <Box mx={"12px"} fontFamily={"vazir"} color={"white"}>
                       {/* یا */}
                     </Box>
                     <Button
                       onClick={() => handleTestSample("large")}
                       _hover={{ bgColor: "#1313136e" }}
-                      fontFamily="yekan"
+                      fontFamily="vazir"
                       fontWeight="bold"
                       cursor="pointer"
                       background="transparent"
@@ -780,7 +780,7 @@ export const Live = () => {
                         <label
                           htmlFor="uploadReco"
                           style={{
-                            fontFamily: "yekan",
+                            fontFamily: "vazir",
                             fontWeight: "bold",
                             cursor: "pointer",
                             background: "#1B1A55",
@@ -793,13 +793,13 @@ export const Live = () => {
                           آپلود فایل
                         </label>
                       </Box>
-                      <Box mx={"12px"} fontFamily={"yekan"} color={"white"}>
+                      <Box mx={"12px"} fontFamily={"vazir"} color={"white"}>
                         {/* یا */}
                       </Box>
                       <Button
                         onClick={() => handleTestSample("speaker")}
                         _hover={{ bgColor: "#1313136e" }}
-                        fontFamily="yekan"
+                        fontFamily="vazir"
                         fontWeight="bold"
                         cursor="pointer"
                         background="transparent"
@@ -853,7 +853,7 @@ export const Live = () => {
                           px={"7px"}
                           py={"7px"}
                           fontSize={"12px"}
-                          fontFamily={"yekan"}
+                          fontFamily={"vazir"}
                           bgColor={
                             e == 0
                               ? "#020515"
@@ -898,7 +898,7 @@ export const Live = () => {
                     {text2.map((e: any) => (
                       <Box
                         mx={"1rem"}
-                        fontFamily={"yekan"}
+                        fontFamily={"vazir"}
                         color={"white"}
                         my={"10px"}
                         bgColor={
@@ -923,7 +923,7 @@ export const Live = () => {
               ) : tab == "large" ? (
                 <>
                   <Textarea
-                    fontFamily={"yekan"}
+                    fontFamily={"vazir"}
                     isReadOnly
                     style={{ direction: "rtl" }}
                     border={"none"}
@@ -951,7 +951,7 @@ export const Live = () => {
                     borderRadius={"0"}
                     borderBottom={"1px solid rgba(255, 255, 255, 0.15)"}
                     value={textMic}
-                    fontFamily={"yekan"}
+                    fontFamily={"vazir"}
                   >
                     {/* {text} */}
                   </Textarea>
@@ -965,7 +965,7 @@ export const Live = () => {
                 // border={"1px rgba(255, 255, 255, 0.15) solid"}
                 borderRadius={"md"}
                 flexFlow={{ base: "row", md: "row" }}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 width={"100%"}
                 px={"8px"}
                 py={"2px"}
@@ -976,23 +976,22 @@ export const Live = () => {
               >
                 <Button
                   order={1}
-                  // border={"2px #1B1A55 solid"}
+                  height={"30px"}
                   color={"rgba(255, 255, 255, 0.8)"}
-                  // bgColor={"#1313136e"}
                   fontSize={"10px"}
                   display={"flex"}
                   flexFlow={"row"}
-                  alignItems={"center"}
-                  height={"30px"}
                   bgColor={"#535c916e"}
-                  onClick={handleDownload}
                   _hover={{ bgColor: "#535C91" }}
                   border={"1px solid #535C91"}
-                  isDisabled={tab == "mic" ? true : false}
+                  alignItems={"center"}
+                  onClick={onCopy}
                 >
-                  <Box>دانلود فایل</Box>
-                  <Box pl={"4px"} transform={"scale(1.2)"}>
-                    <GoDownload />
+                  <Box display={"flex"} flexFlow={"row"} alignItems={"center"}>
+                    <Box>{hasCopied ? "! کپی شد" : "کپی متن"}</Box>
+                    <Box pl={"4px"} transform={"scale(1.2)"}>
+                      <GoCopy />
+                    </Box>
                   </Box>
                 </Button>
                 {tab == "large" ? (
@@ -1020,24 +1019,26 @@ export const Live = () => {
                 ) : (
                   <></>
                 )}
+
                 <Button
                   order={{ base: 2, md: 3 }}
-                  height={"30px"}
+                  // border={"2px #1B1A55 solid"}
                   color={"rgba(255, 255, 255, 0.8)"}
+                  // bgColor={"#1313136e"}
                   fontSize={"10px"}
                   display={"flex"}
                   flexFlow={"row"}
+                  alignItems={"center"}
+                  height={"30px"}
                   bgColor={"#535c916e"}
+                  onClick={handleDownload}
                   _hover={{ bgColor: "#535C91" }}
                   border={"1px solid #535C91"}
-                  alignItems={"center"}
-                  onClick={onCopy}
+                  hidden={tab == "mic" ? true : false}
                 >
-                  <Box display={"flex"} flexFlow={"row"} alignItems={"center"}>
-                    <Box>{hasCopied ? "! کپی شد" : "کپی متن"}</Box>
-                    <Box pl={"4px"} transform={"scale(1.2)"}>
-                      <GoCopy />
-                    </Box>
+                  <Box>دانلود فایل</Box>
+                  <Box pl={"4px"} transform={"scale(1.2)"}>
+                    <GoDownload />
                   </Box>
                 </Button>
               </Box>

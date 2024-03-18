@@ -41,7 +41,7 @@ export const Pricing = () => (
       <Box maxW={"2000px"} mx={"auto"} width={"100%"} py={"2rem"}>
         <Text
           fontSize={{ base: "20px", md: "32px" }}
-          fontFamily={"yekan"}
+          fontFamily={"vazir"}
           fontWeight={{ base: "bold", md: "normal" }}
           textAlign={"center"}
           mx={"auto"}
@@ -70,7 +70,7 @@ export const Pricing = () => (
               <Th
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "3rem" }}
                 textAlign={"center"}
@@ -83,7 +83,7 @@ export const Pricing = () => (
                 fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 width={"200px"}
               >
                 امکانات
@@ -93,7 +93,7 @@ export const Pricing = () => (
                 fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 ماهانه تا ۱۰ دقیقه
               </Th>
@@ -102,7 +102,7 @@ export const Pricing = () => (
                 fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 ماهانه ۱۰ تا ۱۰۰ دقیقه‌
               </Th>
@@ -111,7 +111,7 @@ export const Pricing = () => (
                 fontSize={{ base: "12px", md: "15px" }}
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 ماهانه بیش از ۱۰۰ دقیقه
               </Th>
@@ -122,7 +122,7 @@ export const Pricing = () => (
               <Th
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 bgColor={"rgba(217, 217, 217, 0.01)"}
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
@@ -134,7 +134,7 @@ export const Pricing = () => (
               <Td
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 style={{ direction: "rtl" }}
                 width={"300px"}
@@ -152,7 +152,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
               >
                 رایگان
@@ -161,7 +161,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -172,7 +172,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -184,7 +184,7 @@ export const Pricing = () => (
               <Th
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 bgColor={"rgba(217, 217, 217, 0.01)"}
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
@@ -197,7 +197,7 @@ export const Pricing = () => (
               <Td
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 style={{ direction: "rtl" }}
                 display={"flex"}
@@ -214,7 +214,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
               >
                 رایگان
@@ -222,7 +222,7 @@ export const Pricing = () => (
               <Td
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 style={{ direction: "rtl" }}
                 fontSize={{ base: "15px", md: "17px" }}
@@ -233,7 +233,7 @@ export const Pricing = () => (
               <Td
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 style={{ direction: "rtl" }}
                 fontSize={{ base: "15px", md: "17px" }}
@@ -246,7 +246,7 @@ export const Pricing = () => (
               <Th
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 bgColor={"rgba(217, 217, 217, 0.01)"}
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
@@ -259,7 +259,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 display={"flex"}
                 flexFlow={"column"}
@@ -274,7 +274,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
               >
                 رایگان
@@ -283,7 +283,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -294,7 +294,7 @@ export const Pricing = () => (
                 style={{ direction: "rtl" }}
                 border={"none"}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -306,7 +306,7 @@ export const Pricing = () => (
               <Th
                 border={"none"}
                 color={"white"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 bgColor={"rgba(217, 217, 217, 0.01)"}
                 py={{ base: "2rem", md: "2.5rem" }}
                 px={{ base: "1rem", md: "0rem" }}
@@ -319,7 +319,7 @@ export const Pricing = () => (
                 border={"none"}
                 style={{ direction: "rtl" }}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 display={"flex"}
                 flexFlow={"column"}
@@ -335,7 +335,7 @@ export const Pricing = () => (
                 border={"none"}
                 style={{ direction: "rtl" }}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
               >
                 رایگان
@@ -344,7 +344,7 @@ export const Pricing = () => (
                 border={"none"}
                 style={{ direction: "rtl" }}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -355,7 +355,7 @@ export const Pricing = () => (
                 border={"none"}
                 style={{ direction: "rtl" }}
                 color={"#ABABAB"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
                 textAlign={"center"}
                 fontSize={{ base: "15px", md: "17px" }}
                 // fontWeight={"bold"}
@@ -371,9 +371,9 @@ export const Pricing = () => (
         mb="5rem"
         width={{ base: "100%", md: "70%" }}
         mx={"auto"}
-        color={"white"}
+        color={"rgba(226, 223, 223, 0.60)"}
         textAlign={"center"}
-        fontFamily={"yekan"}
+        fontFamily={"vazir"}
         mt={"1rem"}
         fontWeight={"bold"}
       >
@@ -387,7 +387,7 @@ export const Pricing = () => (
       width={"100%"}
       maxW={"2000px"}
       mx={"auto"}
-      fontFamily={"yekan"}
+      fontFamily={"vazir"}
       py={{ base: "3rem", md: "6rem" }}
       px={{ base: "1rem", md: "2rem" }}
     >
@@ -406,7 +406,7 @@ export const Pricing = () => (
       <Box
         id="call"
         py={"2rem"}
-        fontFamily={"yekan"}
+        fontFamily={"vazir"}
         width={{ base: "100%", md: "70%" }}
         mx={"auto"}
         textAlign={"center"}
@@ -435,7 +435,7 @@ export const Pricing = () => (
         flexFlow={{ base: "column-reverse", md: "row" }}
         justifyContent={"space-around"}
         alignItems={"end"}
-        color={"rgba(226, 223, 223, 0.74)"}
+        color={"rgba(226, 223, 223, 0.60)"}
       >
         <Box display={"flex"} mt={{ base: "1rem", md: "auto" }}>
           <Box> ussistant.ai@gmail.com</Box>

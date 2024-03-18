@@ -31,7 +31,7 @@ export const Header = () => {
         left={"0"}
         color={"white"}
         p={"2rem"}
-        fontFamily={"yekan"}
+        fontFamily={"vazir"}
       >
         <Text textAlign={"center"} py={"16px"} px={"7px"}>
           <a href="https://ussistant.ir/">خانه</a>
@@ -49,7 +49,7 @@ export const Header = () => {
       </Box>
       <Box bgColor={"#020512"} width={"100%"} boxShadow={"0px 6px white"}>
         <Box
-          fontFamily={"yekan"}
+          fontFamily={"vazir"}
           display={"flex"}
           flexFlow={"row"}
           justifyContent={"space-between"}
@@ -69,7 +69,7 @@ export const Header = () => {
                   textAlign={"center"}
                   _hover={{ color: "#ffffd5" }}
                   fontSize={"18px"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   fontWeight={"bold"}
                   py={"10px"}
                   px={"7px"}
@@ -78,7 +78,7 @@ export const Header = () => {
                 </Text>
                 {/* <Text textAlign={"center"}
               _hover={{color:"#ffffd5"}} fontSize={"18px"}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               fontWeight={"bold"} py={"10px"} px={"7px"} onMouseEnter={}>
           <a href="#">محصولات</a>
         </Text> */}
@@ -86,7 +86,7 @@ export const Header = () => {
                   textAlign={"center"}
                   _hover={{ color: "#ffffd5" }}
                   fontSize={"18px"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   fontWeight={"bold"}
                   py={"10px"}
                   px={"7px"}
@@ -98,7 +98,7 @@ export const Header = () => {
                   textAlign={"center"}
                   _hover={{ color: "#ffffd5" }}
                   fontSize={"18px"}
-                  fontFamily={"yekan"}
+                  fontFamily={"vazir"}
                   fontWeight={"bold"}
                   py={"10px"}
                   px={"7px"}

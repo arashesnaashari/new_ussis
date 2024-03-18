@@ -60,7 +60,7 @@ export const Feature = () => {
           >
             <Heading
               fontSize={{ base: "24px", md: "32px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
               textAlign={"right"}
             >
@@ -68,11 +68,11 @@ export const Feature = () => {
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"justify"}
-              color={"rgba(226, 223, 223, 0.74)"}
+              color={"rgba(226, 223, 223, 0.60)"}
               style={{ direction: "rtl" }}
             >
               ابزار تبدیل صوت به متن یوسیستنت، با تکیه بر به‌روزترین مدل‌ها و
@@ -93,7 +93,7 @@ export const Feature = () => {
               alignItems={"center"}
               flexFlow="row"
               gap="3px"
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
             >
               <Box transform={"scale(0.9)"}>
@@ -144,7 +144,7 @@ export const Feature = () => {
           >
             <Heading
               fontSize={{ base: "24px", md: "32px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
               textAlign={"right"}
             >
@@ -152,11 +152,11 @@ export const Feature = () => {
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"justify"}
-              color={"rgba(226, 223, 223, 0.74)"}
+              color={"rgba(226, 223, 223, 0.60)"}
               style={{ direction: "rtl" }}
             >
               یوسیستنت می‌تواند برای کسب و کار شما ابزار تبدیل گفتار سفارشی سازی
@@ -178,7 +178,7 @@ export const Feature = () => {
               alignItems={"center"}
               flexFlow="row"
               gap="3px"
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
             >
               <Box transform={"scale(0.9)"}>
                 <FaArrowLeft />
@@ -230,18 +230,18 @@ export const Feature = () => {
               textAlign={"right"}
               width={{ base: "100%", md: "100%" }}
               fontSize={{ base: "24px", md: "32px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
             >
               امکان جداسازی گوینده‌ها
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"justify"}
-              color={"rgba(226, 223, 223, 0.74)"}
+              color={"rgba(226, 223, 223, 0.60)"}
               style={{ direction: "rtl" }}
             >
               علاوه بر دقت بالا در تبدیل صوت به متن، ابزار ارائه شده توسط
@@ -262,7 +262,7 @@ export const Feature = () => {
               alignItems={"center"}
               flexFlow="row"
               gap="3px"
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
             >
               <Box transform={"scale(0.9)"}>
@@ -316,18 +316,18 @@ export const Feature = () => {
               textAlign={"right"}
               width={{ base: "100%", md: "100%" }}
               fontSize={{ base: "24px", md: "32px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
             >
               امکان یکپارچه‌گی با زیرساخت‌ها و سخت‌افزار مورد استفاده شما
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               py={"10px"}
               width={{ base: "100%", md: "100%" }}
               textAlign={"justify"}
-              color={"rgba(226, 223, 223, 0.74)"}
+              color={"rgba(226, 223, 223, 0.60)"}
               style={{ direction: "rtl" }}
             >
               ابزار تبدیل صوت به متن یوسیستنت می‌تواند برای همخوانی بیشتر با
@@ -347,7 +347,7 @@ export const Feature = () => {
               alignItems={"center"}
               flexFlow="row"
               gap="3px"
-              fontFamily={"yekan"}
+              fontFamily={"vazir"}
               color={"white"}
             >
               <Box transform={"scale(0.9)"}>
@@ -391,7 +391,7 @@ export const Feature = () => {
         <Box maxW={"2000px"} mx={"auto"} width={"100%"} py={"2rem"} mb={"1rem"}>
           <Text
             fontSize={{ base: "20px", md: "32px" }}
-            fontFamily={"yekan"}
+            fontFamily={"vazir"}
             fontWeight={{ base: "bold", md: "normal" }}
             textAlign={"center"}
             mx={"auto"}
@@ -445,7 +445,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 سفارشی سازی برای استفاده در مقیاس
               </Text>
@@ -470,7 +470,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 تفکیک گوینده
               </Text>
@@ -495,7 +495,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 تولید فایل زیرنویس آماده
               </Text>
@@ -520,7 +520,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 اتصال به موتور جستجوی وبسایت
               </Text>
@@ -545,7 +545,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 تنوع در فرمت خروجی‌های قابل ارائه
               </Text>
@@ -578,7 +578,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 اتصال به موتور جستجوی وبسایت
               </Text>
@@ -601,7 +601,7 @@ export const Feature = () => {
                 pt={"10px"}
                 fontSize={{ base: "13px", md: "15px" }}
                 textAlign={"center"}
-                fontFamily={"yekan"}
+                fontFamily={"vazir"}
               >
                 تنوع در فرمت خروجی‌های قابل ارائه
               </Text>

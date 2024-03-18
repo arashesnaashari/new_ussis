@@ -16,6 +16,7 @@ import styles from "~/../public/style.css";
 import { useContext, useEffect, useState } from "react";
 import PinarStyle from "~/assets/pinar.css";
 import YekanStyle from "~/assets/yekan.css";
+import VazirStyle from "~/assets/vazir.css";
 
 export let links: LinksFunction = () => {
   return [
@@ -25,6 +26,7 @@ export let links: LinksFunction = () => {
     { rel: "stylesheet", href: styles },
     { rel: "stylesheet", href: PinarStyle },
     { rel: "stylesheet", href: YekanStyle },
+    { rel: "stylesheet", href: VazirStyle },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "preconnect", href: "https://fonts.gstatic.com" },
     {
