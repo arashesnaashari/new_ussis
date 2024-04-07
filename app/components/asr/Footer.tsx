@@ -30,7 +30,7 @@ export const Footer = () => (
       <Box width={{ base: "100%", md: "70%" }} mx={"auto"}>
         <Text
           textAlign={"center"}
-          color={"#C9C5C5"}
+          color={"rgba(226, 223, 223, 0.60)"}
           fontSize={{ base: "17px", md: "25px" }}
           style={{ direction: "rtl" }}
         >

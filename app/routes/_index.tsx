@@ -48,7 +48,10 @@ import { Header } from "~/components/asr/Header";
 import { Live } from "~/components/asr/Live";
 import { Footer } from "~/components/asr/Footer";
 export const meta: MetaFunction = () => {
-  return [{ title: "Usisstant" }, { name: "ASR", content: "!" }];
+  return [
+    { title: "سرویس صوت به متن یوسیستنت" },
+    { name: "ASR", content: "!" },
+  ];
 };
 
 export default function App() {

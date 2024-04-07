@@ -117,7 +117,7 @@ export const Hero = () => {
             fontFamily={"vazir"}
             color={"white"}
           >
-            سرویس تایپ صوتی یوسیستنت با امکان سفارشی‌سازی
+            سرویس صوت به متن یوسیستنت با امکان سفارشی‌سازی
           </Heading>
           <Box display={"flex"} flexFlow={"row"} justifyContent={"right"}>
             <Text

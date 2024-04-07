@@ -319,7 +319,7 @@ export const Feature = () => {
               fontFamily={"vazir"}
               color={"white"}
             >
-              امکان یکپارچه‌گی با زیرساخت‌ها و سخت‌افزار مورد استفاده شما
+              امکان یکپارچگی با زیرساخت‌ها و سخت‌افزار مورد استفاده شما
             </Heading>
             <Text
               fontSize={{ base: "15px", md: "19px" }}

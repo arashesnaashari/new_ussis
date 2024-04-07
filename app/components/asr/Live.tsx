@@ -25,6 +25,15 @@ import { useIsMobile } from "../../hooks";
 import { FaMicrophone } from "react-icons/fa/index.js";
 
 export const Live = () => {
+  const colorsOfSpeaker = [
+    "#020515",
+    "#535C91",
+    "#1B1A55",
+    "#0F1221",
+    "blue",
+    "lightblue",
+  ];
+
   //
   const { onCopy, value, setValue, hasCopied } = useClipboard("");
   // for all
@@ -37,7 +46,9 @@ export const Live = () => {
   const [loading2, setLoading2] = React.useState<boolean>(false);
 
   const [text, setText] = React.useState<string>("");
+  const [stateSpeaker, setStateSpeaker] = React.useState<number>(-1);
   // const [src, setText] = React.useState<string>("");
+
   const [textMic, setTextMic] = React.useState<string>("");
   const [link, setLink] = React.useState<any>("");
   const [linkLarge, setLinkLarge] = React.useState<any>("");
@@ -248,8 +259,10 @@ export const Live = () => {
     setLoading2(true);
     // console.log(file.type);
 
-    if (
-      file &&
+    if (!file) {
+      alert("فایل رو آپلود کنید");
+      setLoading2(false);
+    } else if (
       file.size < 10000000 &&
       (file.type == "audio/wav" ||
         file.type == "audio/mp3" ||
@@ -871,10 +884,12 @@ export const Live = () => {
                           }}
                         >
                           <option
+                            id="option"
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="1"
                           >
@@ -884,7 +899,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="2"
                           >
@@ -894,7 +910,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="3"
                           >
@@ -904,7 +921,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="4"
                           >
@@ -914,7 +932,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="5"
                           >
@@ -924,7 +943,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="6"
                           >
@@ -934,7 +954,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="7"
                           >
@@ -944,7 +965,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="8"
                           >
@@ -954,7 +976,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="9"
                           >
@@ -964,7 +987,8 @@ export const Live = () => {
                             style={{
                               color: "black",
                               backgroundColor: "gray",
-                              fontFamily: "10px",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
                             }}
                             value="10"
                           >
@@ -975,7 +999,7 @@ export const Live = () => {
                           htmlFor="cars"
                           style={{
                             color: "white",
-                            fontSize: "13px",
+                            fontSize: "15px",
                             direction: "rtl",
                           }}
                         >
@@ -991,6 +1015,12 @@ export const Live = () => {
             <Box
               width={{ base: "90%", md: "70%" }}
               sx={{
+                "#option:hover": {
+                  background: "red",
+                },
+                "#option": {
+                  background: "green",
+                },
                 "#scrollH::-webkit-scrollbar": {
                   height: "5px",
                   width: "2px",
@@ -1017,6 +1047,11 @@ export const Live = () => {
                     {uniqs.map((e: any) => {
                       return (
                         <Box
+                          cursor={"pointer"}
+                          onMouseEnter={() => setStateSpeaker(e)}
+                          onMouseLeave={() => setStateSpeaker(-1)}
+                          onTouchStart={() => setStateSpeaker(e)}
+                          onTouchCancel={() => setStateSpeaker(-1)}
                           color={"white"}
                           borderRadius={"md"}
                           mr={"7px"}
@@ -1057,7 +1092,7 @@ export const Live = () => {
                     id="scrollH"
                     style={{ direction: "rtl" }}
                     border={"none"}
-                    height={"100px"}
+                    height={"max-content"}
                     overflowY={"scroll"}
                     color="white"
                     my={"2rem"}
@@ -1066,27 +1101,45 @@ export const Live = () => {
                   >
                     {/* {text2} */}
                     {text2.map((e: any) => (
-                      <Box
-                        mx={"1rem"}
-                        fontFamily={"vazir"}
-                        color={"white"}
-                        my={"10px"}
-                        bgColor={
-                          e.speaker == 0
-                            ? "#020515"
-                            : e.speaker == 1
-                            ? "#535C91"
-                            : e.speaker == 2
-                            ? "#1B1A55"
-                            : e.speaker == 3
-                            ? "#0F1221"
-                            : e.speaker == 4
-                            ? "blue"
-                            : "lightblue"
-                        }
-                      >
-                        {e.text_chunk}
-                      </Box>
+                      <>
+                        {stateSpeaker !== -1 ? (
+                          <Box
+                            mx={"1rem"}
+                            fontFamily={"vazir"}
+                            color={"white"}
+                            my={"10px"}
+                            bgColor={
+                              e.speaker == stateSpeaker
+                                ? colorsOfSpeaker[stateSpeaker]
+                                : "transparent"
+                            }
+                          >
+                            {e.text_chunk}
+                          </Box>
+                        ) : (
+                          <Box
+                            mx={"1rem"}
+                            fontFamily={"vazir"}
+                            color={"white"}
+                            my={"10px"}
+                            bgColor={
+                              e.speaker == 0
+                                ? "#020515"
+                                : e.speaker == 1
+                                ? "#535C91"
+                                : e.speaker == 2
+                                ? "#1B1A55"
+                                : e.speaker == 3
+                                ? "#0F1221"
+                                : e.speaker == 4
+                                ? "blue"
+                                : "lightblue"
+                            }
+                          >
+                            {e.text_chunk}
+                          </Box>
+                        )}
+                      </>
                     ))}
                   </Box>
                 </>
