@@ -46,6 +46,7 @@ import { Feature } from "../components/asr/Feature";
 import { Pricing } from "../components/asr/Pricing";
 import { Header } from "~/components/asr/Header";
 import { Live } from "~/components/asr/Live";
+import { Footer } from "~/components/asr/Footer";
 export const meta: MetaFunction = () => {
   return [{ title: "Usisstant" }, { name: "ASR", content: "!" }];
 };
@@ -77,9 +78,10 @@ export default function App() {
           Live Demo .. !
         </Box>
       </Box> */}
-      <Live />
-      {/* Pricing */} {/* About */}
       <Pricing />
+      <Live />
+      <Footer />
+      {/* Pricing */} {/* About */}
     </Box>
   );
 }

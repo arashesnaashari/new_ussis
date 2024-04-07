@@ -52,13 +52,14 @@ export const Header = () => {
           fontFamily={"vazir"}
           display={"flex"}
           flexFlow={"row"}
-          justifyContent={"space-between"}
+          justifyContent={{ base: "space-between", md: "end" }}
           color={"white"}
           p={"1rem"}
+          gap={"10px"}
           maxW={"2000px"}
           mx={"auto"}
         >
-          <Box rowGap={"1rem"} display={"flex"} flexFlow={"row"}>
+          <Box rowGap={"1rem"} display={"flex"} flexFlow={"row-reverse"}>
             {isMobile ? (
               <Box transform={"scale(2)"} onClick={() => setModal((p) => !p)}>
                 <FiMenu />
@@ -67,24 +68,26 @@ export const Header = () => {
               <>
                 <Text
                   textAlign={"center"}
-                  _hover={{ color: "#ffffd5" }}
+                  _hover={{ color: "white" }}
                   fontSize={"18px"}
                   fontFamily={"vazir"}
                   fontWeight={"bold"}
                   py={"10px"}
                   px={"7px"}
+                  color={"rgba(226, 223, 223, 0.60)"}
                 >
                   <a href="https://ussistant.ir/">خانه</a>
                 </Text>
                 {/* <Text textAlign={"center"}
-              _hover={{color:"#ffffd5"}} fontSize={"18px"}
+              _hover={{color:"white"}} fontSize={"18px"}
               fontFamily={"vazir"}
               fontWeight={"bold"} py={"10px"} px={"7px"} onMouseEnter={}>
           <a href="#">محصولات</a>
         </Text> */}
                 <Text
                   textAlign={"center"}
-                  _hover={{ color: "#ffffd5" }}
+                  color={"rgba(226, 223, 223, 0.60)"}
+                  _hover={{ color: "white" }}
                   fontSize={"18px"}
                   fontFamily={"vazir"}
                   fontWeight={"bold"}
@@ -96,7 +99,8 @@ export const Header = () => {
 
                 <Text
                   textAlign={"center"}
-                  _hover={{ color: "#ffffd5" }}
+                  color={"rgba(226, 223, 223, 0.60)"}
+                  _hover={{ color: "white" }}
                   fontSize={"18px"}
                   fontFamily={"vazir"}
                   fontWeight={"bold"}
@@ -113,6 +117,7 @@ export const Header = () => {
               mx={"auto"}
               style={{
                 width: "7rem",
+                paddingBottom: "5px",
               }}
               src="/ussis.svg"
             />

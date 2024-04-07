@@ -14,6 +14,7 @@ import {
   Button,
   HStack,
   Spinner,
+  Select,
 } from "@chakra-ui/react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { LiaTimesSolid } from "react-icons/lia/index.js";
@@ -40,8 +41,10 @@ export const Live = () => {
   const [textMic, setTextMic] = React.useState<string>("");
   const [link, setLink] = React.useState<any>("");
   const [linkLarge, setLinkLarge] = React.useState<any>("");
+  const [fileGeneral, setFileGeneral] = React.useState<any>("");
   const [text2, setText2] = React.useState<any>([]);
   const [uniqs, setUniqs] = React.useState<any>([]);
+  const [speakerCount, setSpeakerCount] = React.useState<any>("");
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
   const recorderControls = useAudioRecorder(
     {
@@ -147,6 +150,8 @@ export const Live = () => {
   };
   // large file
   const handleUploadFile = () => {
+    console.log("uploadFile");
+
     const input = document.getElementById("upload");
     let file = new File([input?.files[0]], `filename.${input?.files[0].type}`, {
       type: input?.files[0].type,
@@ -165,77 +170,90 @@ export const Live = () => {
     }
 
     document.body.querySelector(".playme_large")?.appendChild(audio);
-    // if (
-    //   file.size < 10000000 &&
-    //   (file.type == "audio/wav" ||
-    //     file.type == "audio/mp3" ||
-    //     file.type == "audio/webm" ||
-    //     file.type == "audio/ogg" ||
-    //     file.type == "audio/flac" ||
-    //     file.type == "audio/aac")
-    // ) {
-    //   //file.size < 2000000
-    //   fetch("https://stt.ussistant.ir/api/transcript_large", {
-    //     method: "POST",
-    //     headers: {
-    //       "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
-    //       // Accept: "application/json",
-    //       // "Content-Type": "multipart/form-data",
-    //       // "Content-Type":
-    //       //   "multipart/form-data; charset=utf-8; boundary=" +
-    //       //   Math.random().toString().substring(2),
-    //       // "Content-Type": "application/x-www-form-urlencoded",
-    //     },
-    //     body: fd,
-    //   })
-    //     .then((x) => x.json())
-    //     .then((d) => {
-    //       setText(d.text);
-    //       setLinkLarge(d.download_id);
-    //       setValue(d.text);
-    //       setLoading2(false);
-    //       // const url = URL.createObjectURL(file);
-    //       // const audio = document.createElement("audio");
-    //       // audio.src = url;
-    //       // audio.style.filter = "opacity(0.5)";
-    //       // audio.controls = true;
-    //       // let myNode = document.body.querySelector(".playme_large");
-    //       // while (myNode?.firstChild) {
-    //       //   myNode.removeChild(myNode?.lastChild);
-    //       // }
-
-    //       // document.body.querySelector(".playme_large")?.appendChild(audio);
-    //     })
-    //     .catch((err) => {
-    //       //, setLoading2(false), setopenmodal(false);
-    //       console.log(err), setLoading2(false);
-    //     });
-    // } else {
-    //   alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
-    //   setLoading2(false);
-    // }
-  };
-
-  // recognate
-  const handleUploadFileReco = () => {
-    // alert("Www");
-    console.log("aaaaa");
-
-    const input = document.getElementById("uploadReco");
-
-    let file = new File([input?.files[0]], `filename.${input?.files[0].type}`, {
-      type: input?.files[0].type,
-    });
-    var fd = new FormData();
-    fd.append("file", file);
-    fd.append("num_speakers", "");
-    setLoading2(true);
-    console.log(file.type);
-
     if (
       file.size < 10000000 &&
       (file.type == "audio/wav" ||
         file.type == "audio/mp3" ||
+        file.type == "audio/mpeg" ||
+        file.type == "audio/webm" ||
+        file.type == "audio/ogg" ||
+        file.type == "audio/flac" ||
+        file.type == "audio/aac")
+    ) {
+      //file.size < 2000000
+      fetch("https://stt.ussistant.ir/api/transcript_large", {
+        method: "POST",
+        headers: {
+          "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+          // Accept: "application/json",
+          // "Content-Type": "multipart/form-data",
+          // "Content-Type":
+          //   "multipart/form-data; charset=utf-8; boundary=" +
+          //   Math.random().toString().substring(2),
+          // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: fd,
+      })
+        .then((x) => x.json())
+        .then((d) => {
+          setText(d.text);
+          setLinkLarge(d.download_id);
+          setValue(d.text);
+          setLoading2(false);
+          // const url = URL.createObjectURL(file);
+          // const audio = document.createElement("audio");
+          // audio.src = url;
+          // audio.style.filter = "opacity(0.5)";
+          // audio.controls = true;
+          // let myNode = document.body.querySelector(".playme_large");
+          // while (myNode?.firstChild) {
+          //   myNode.removeChild(myNode?.lastChild);
+          // }
+
+          // document.body.querySelector(".playme_large")?.appendChild(audio);
+        })
+        .catch((err) => {
+          //, setLoading2(false), setopenmodal(false);
+          console.log(err), setLoading2(false);
+        });
+    } else {
+      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+      setLoading2(false);
+    }
+  };
+  // let fileGeneral: any;
+  // recognate
+  const handleUploadFileReco = (state: Boolean, cc: string) => {
+    // alert("Www");
+    console.log("aaaaa");
+
+    const input = document.getElementById("uploadReco");
+    let file;
+    if (state) {
+      file = new File([input?.files[0]], `filename.${input?.files[0].type}`, {
+        type: input?.files[0].type,
+      });
+      setFileGeneral(file);
+      // fileGeneral = file;
+    } else {
+      console.log("FFFF");
+      console.log(fileGeneral);
+
+      file = fileGeneral;
+    }
+
+    var fd = new FormData();
+    fd.append("file", file);
+    fd.append("num_speakers", `${speakerCount ? cc : speakerCount}`);
+    setLoading2(true);
+    // console.log(file.type);
+
+    if (
+      file &&
+      file.size < 10000000 &&
+      (file.type == "audio/wav" ||
+        file.type == "audio/mp3" ||
+        file.type == "audio/mpeg" ||
         file.type == "audio/webm" ||
         file.type == "audio/ogg" ||
         file.type == "audio/flac" ||
@@ -460,6 +478,16 @@ export const Live = () => {
     //set Text equls to sample
     //play the real audio
   };
+  const handleCountSpeaker = (e: any) => {
+    console.log(e);
+
+    setSpeakerCount(e);
+    handleUploadFileReco(false, e);
+
+    //upload again
+    // first scenario : we have uploaded a file    save to state
+    // second we dont have uploaded file    save in state
+  };
 
   return (
     <>
@@ -579,6 +607,7 @@ export const Live = () => {
         </Box>
       </Box>
       <Box
+        bgColor={"#020515"}
         id="test"
         width={"100%"}
         maxW={"2000px"}
@@ -766,52 +795,193 @@ export const Live = () => {
                   <>
                     <Box
                       display={"flex"}
-                      flexFlow={"row-reverse"}
-                      alignItems={"baseline"}
+                      flexFlow={"column"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
                     >
-                      {" "}
-                      <Box>
-                        <Input
-                          type="file"
-                          id="uploadReco"
-                          hidden
-                          onChange={handleUploadFileReco}
-                        />
-                        <label
-                          htmlFor="uploadReco"
-                          style={{
-                            fontFamily: "vazir",
-                            fontWeight: "bold",
-                            cursor: "pointer",
-                            background: "#1B1A55",
-                            color: "white",
-                            paddingInline: "2rem",
-                            paddingBlock: "0.8rem",
-                            borderRadius: "10px",
+                      <Box
+                        display={"flex"}
+                        flexFlow={"row-reverse"}
+                        alignItems={"baseline"}
+                      >
+                        {" "}
+                        <Box>
+                          <Input
+                            type="file"
+                            id="uploadReco"
+                            hidden
+                            onChange={() => handleUploadFileReco(true, "")}
+                          />
+                          <label
+                            htmlFor="uploadReco"
+                            style={{
+                              fontFamily: "vazir",
+                              fontWeight: "bold",
+                              cursor: "pointer",
+                              background: "#1B1A55",
+                              color: "white",
+                              paddingInline: "2rem",
+                              paddingBlock: "0.8rem",
+                              borderRadius: "10px",
+                            }}
+                          >
+                            آپلود فایل
+                          </label>
+                        </Box>
+                        <Box mx={"12px"} fontFamily={"vazir"} color={"white"}>
+                          {/* یا */}
+                        </Box>
+                        <Button
+                          onClick={() => handleTestSample("speaker")}
+                          _hover={{ bgColor: "#1313136e" }}
+                          fontFamily="vazir"
+                          fontWeight="bold"
+                          cursor="pointer"
+                          background="transparent"
+                          border={"1px solid #1B1A55"}
+                          color="white"
+                          paddingInline="2rem"
+                          paddingBlock="1.5rem"
+                          borderRadius="10px"
+                        >
+                          تست نمونه{" "}
+                        </Button>
+                        {/* <audio src="/audio.wav" ref={audioRef} /> */}
+                      </Box>
+                      <Box
+                        width={"100%"}
+                        display={"flex"}
+                        flexFlow={"row"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        mt={"1rem"}
+                      >
+                        <Select
+                          value={speakerCount}
+                          border={"none"}
+                          background={"gray"}
+                          // placeholder="انتخاب"
+                          mr={"10px"}
+                          width={"20%"}
+                          name="cars"
+                          color={"black"}
+                          id="cars"
+                          onChange={(e) => {
+                            handleCountSpeaker(e.target.value);
                           }}
                         >
-                          آپلود فایل
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="1"
+                          >
+                            ۱
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="2"
+                          >
+                            ۲
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="3"
+                          >
+                            ۳
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="4"
+                          >
+                            ۴
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="5"
+                          >
+                            ۵
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="6"
+                          >
+                            ۶
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="7"
+                          >
+                            ۷
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="8"
+                          >
+                            ۸
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="9"
+                          >
+                            ۹
+                          </option>
+                          <option
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "10px",
+                            }}
+                            value="10"
+                          >
+                            ۱۰
+                          </option>
+                        </Select>
+                        <label
+                          htmlFor="cars"
+                          style={{
+                            color: "white",
+                            fontSize: "13px",
+                            direction: "rtl",
+                          }}
+                        >
+                          بالا بردن دقت با انتخاب تعداد اسپیکر
                         </label>
                       </Box>
-                      <Box mx={"12px"} fontFamily={"vazir"} color={"white"}>
-                        {/* یا */}
-                      </Box>
-                      <Button
-                        onClick={() => handleTestSample("speaker")}
-                        _hover={{ bgColor: "#1313136e" }}
-                        fontFamily="vazir"
-                        fontWeight="bold"
-                        cursor="pointer"
-                        background="transparent"
-                        border={"1px solid #1B1A55"}
-                        color="white"
-                        paddingInline="2rem"
-                        paddingBlock="1.5rem"
-                        borderRadius="10px"
-                      >
-                        تست نمونه{" "}
-                      </Button>
-                      {/* <audio src="/audio.wav" ref={audioRef} /> */}
                     </Box>
                   </>
                 )}

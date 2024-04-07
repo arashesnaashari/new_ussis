@@ -24,6 +24,7 @@ export let links: LinksFunction = () => {
       ? { rel: "stylesheet", href: cssBundleHref }
       : { rel: "stylesheet", href: "" },
     { rel: "stylesheet", href: styles },
+    { rel: "icon", href: "/title.svg" },
     { rel: "stylesheet", href: PinarStyle },
     { rel: "stylesheet", href: YekanStyle },
     { rel: "stylesheet", href: VazirStyle },

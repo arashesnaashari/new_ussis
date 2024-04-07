@@ -277,7 +277,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/image/3.jpeg)"}
+            backgroundImage={"url(/image/speaker.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
@@ -362,7 +362,7 @@ export const Feature = () => {
             width={{ base: "100%", md: "50%" }}
             p={"1rem"}
             height={{ base: "230px", md: "auto" }}
-            backgroundImage={"url(/image/4.jpg)"}
+            backgroundImage={"url(/image/infrastructure.jpg)"}
             transform={"scale(0.9)"}
             backgroundPosition={"center"}
             backgroundSize={"cover"}
