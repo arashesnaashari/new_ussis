@@ -34,13 +34,18 @@ export const Header = () => {
         fontFamily={"vazir"}
       >
         <Text textAlign={"center"} py={"16px"} px={"7px"}>
-          <a href="https://ussistant.ir/">خانه</a>
+          <a target="_blank" href="https://ussistant.ir/">
+            خانه
+          </a>
         </Text>
         {/* <Text textAlign={"center"} py={"16px"} px={"7px"} onMouseEnter={}>
-          <a href="#">محصولات</a>
+          <a target="_blank" href="#">محصولات</a>
         </Text> */}
         <Text textAlign={"center"} py={"16px"} px={"7px"}>
-          <a href="https://ussistant.ir/about"> درباره ما</a>
+          <a target="_blank" href="https://ussistant.ir/about">
+            {" "}
+            درباره ما
+          </a>
         </Text>
 
         <Text textAlign={"center"} py={"16px"} px={"7px"}>
@@ -76,13 +81,15 @@ export const Header = () => {
                   px={"7px"}
                   color={"rgba(226, 223, 223, 0.60)"}
                 >
-                  <a href="https://ussistant.ir/">خانه</a>
+                  <a target="_blank" href="https://ussistant.ir/">
+                    خانه
+                  </a>
                 </Text>
                 {/* <Text textAlign={"center"}
               _hover={{color:"white"}} fontSize={"18px"}
               fontFamily={"vazir"}
               fontWeight={"bold"} py={"10px"} px={"7px"} onMouseEnter={}>
-          <a href="#">محصولات</a>
+          <a target="_blank" href="#">محصولات</a>
         </Text> */}
                 <Text
                   textAlign={"center"}
@@ -94,7 +101,10 @@ export const Header = () => {
                   py={"10px"}
                   px={"7px"}
                 >
-                  <a href="https://ussistant.ir/about"> درباره ما</a>
+                  <a target="_blank" href="https://ussistant.ir/about">
+                    {" "}
+                    درباره ما
+                  </a>
                 </Text>
 
                 <Text

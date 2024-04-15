@@ -49,6 +49,7 @@ export default function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [a, setA] = React.useState(false);
   const [text, setText] = React.useState<string>();
+  const [text2, setText2] = React.useState<string>();
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [b, setB] = React.useState<boolean>(true);
@@ -73,7 +74,8 @@ export default function App() {
 
   const handleSearch = (s: string) => {
     if (typeof window !== "undefined" && window !== null) {
-      window.open(`https://www.digikala.com/search/?q=${s}`, "_blank").focus();
+      window.open(`https://www.digikala.com/search/?q=${s}`, "_blank");
+      // window.open(`https://www.digikala.com/search/?q=${s}`, "_blank").focus();
     }
   };
 
@@ -92,7 +94,7 @@ export default function App() {
     fd.append("file", file);
     fd.append("query_id", text?.id ?? "");
     if (file.size < 2000000) {
-      fetch("https://asr.ussistant.ir/api/digikala/transcript", {
+      fetch("https://asr.ussistant.ir/api/v2/digikala/transcript", {
         method: "POST",
         headers: {
           "X-API-Key": "akljnv13bvi2vfo0b0bw",
@@ -107,12 +109,13 @@ export default function App() {
       })
         .then((x) => x.json())
         .then((d) => {
-          setText(d.message);
+          setText(d.asr_text);
+          setText2(d.search_optimized);
           setLoading(false);
           // console.log(openmodal);
 
-          if (d.message.length > 1 && openmodal) {
-            handleSearch(d.message);
+          if (d.search_optimized.length > 1 && openmodal) {
+            handleSearch(d.search_optimized);
           }
           setopenmodal(false);
 
@@ -195,7 +198,7 @@ export default function App() {
                       marginTop: "1.5rem",
                     }}
                     // src="/digi.png"
-                    src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
+                    src="https://www.digikala.com/statics/img/svg/logo.svg"
                   />
                   <Box
                     color={"gray.600"}
@@ -297,6 +300,32 @@ export default function App() {
                       src="/ussis.png"
                     />
                   </Box>
+                  <Stack spacing="2">
+                    <HStack
+                      borderRadius={"md"}
+                      py={"1px"}
+                      // border={"1px solid #f0f0f1"}
+                      float={"right"}
+                      background={"white"}
+                      style={{ direction: "rtl" }}
+                      mt={"1"}
+                    >
+                      <Box>
+                        <Text
+                          fontWeight={"600"}
+                          color={"blue.600"}
+                          fontStyle={"italic"}
+                        >
+                          <a
+                            target="_blank"
+                            href={`https://www.digikala.com/search/?q=${text2}`}
+                          >
+                            {text2}
+                          </a>
+                        </Text>
+                      </Box>
+                    </HStack>
+                  </Stack>
                 </Stack>
                 <Stack spacing="8">
                   <HStack

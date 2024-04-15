@@ -179,12 +179,12 @@ export default function App() {
                   mx={"auto"}
                   style={{
                     paddingLeft: "1rem",
-                    width: "145px",
-                    height: "122px",
+                    width: "180px",
+                    height: "140px",
                     marginBottom: "-0.5rem",
                     marginTop: "-0.5rem",
                   }}
-                  src="https://cdn.worldvectorlogo.com/logos/digikala-3.svg"
+                  src="https://www.digikala.com/statics/img/svg/logo.svg"
                 />
                 <Stack spacing="8" pos={"relative"}>
                   <HStack

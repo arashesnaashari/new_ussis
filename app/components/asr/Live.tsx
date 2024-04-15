@@ -26,10 +26,10 @@ import { FaMicrophone } from "react-icons/fa/index.js";
 
 export const Live = () => {
   const colorsOfSpeaker = [
-    "#020515",
-    "#535C91",
     "#1B1A55",
+    "#535C91",
     "#0F1221",
+    "#020515",
     "blue",
     "lightblue",
   ];
@@ -257,7 +257,9 @@ export const Live = () => {
     fd.append("file", file);
     fd.append("num_speakers", `${speakerCount ? cc : speakerCount}`);
     setLoading2(true);
-    // console.log(file.type);
+    console.log("DDDD");
+
+    console.log(file.type);
 
     if (!file) {
       alert("فایل رو آپلود کنید");
@@ -270,6 +272,7 @@ export const Live = () => {
         file.type == "audio/webm" ||
         file.type == "audio/ogg" ||
         file.type == "audio/flac" ||
+        file.type == "audio/x-m4a" ||
         file.type == "audio/aac")
     ) {
       //file.size < 2 000 000
@@ -733,26 +736,54 @@ export const Live = () => {
                 {tab == "mic" ? (
                   <>
                     {/* CTA */}
-                    {a && (
-                      <Button
-                        _hover={{ bgColor: "#1b1a5570" }}
-                        bgColor={"#1B1A55"}
-                        px={"1.5rem"}
-                        py={"2rem"}
-                        borderRadius={"50px"}
-                        boxShadow={"sm"}
-                        onClick={handleStart}
+                    <Box
+                      display={"flex"}
+                      flexFlow={"column"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                    >
+                      <Box
+                        width={"100%"}
+                        display={"flex"}
+                        flexFlow={"row"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
                       >
-                        <Icon
-                          // _hover={{
-                          //   color: "black",
-                          // }}
-                          color={"white"}
-                          transform={"scale(1.2)"}
-                          as={FaMicrophone}
-                        />
-                      </Button>
-                    )}
+                        {" "}
+                        {a && (
+                          <Button
+                            _hover={{ bgColor: "#1b1a5570" }}
+                            bgColor={"#1B1A55"}
+                            px={"1.5rem"}
+                            py={"2rem"}
+                            borderRadius={"50px"}
+                            boxShadow={"sm"}
+                            onClick={handleStart}
+                          >
+                            <Icon
+                              // _hover={{
+                              //   color: "black",
+                              // }}
+                              color={"white"}
+                              transform={"scale(1.2)"}
+                              as={FaMicrophone}
+                            />
+                          </Button>
+                        )}
+                      </Box>
+                      <Box
+                        width={"100%"}
+                        display={"flex"}
+                        flexFlow={"row"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        mt={"1rem"}
+                      >
+                        <Text fontFamily={"vazir"} color={"white"}>
+                          برای ضبط صدا روی میکروفون کلیک کنید
+                        </Text>
+                      </Box>
+                    </Box>
                   </>
                 ) : tab == "large" ? (
                   <Box
@@ -1061,11 +1092,11 @@ export const Live = () => {
                           fontFamily={"vazir"}
                           bgColor={
                             e == 0
-                              ? "#020515"
+                              ? "#1B1A55"
                               : e == 1
                               ? "#535C91"
                               : e == 2
-                              ? "#1B1A55"
+                              ? "#020515"
                               : e == 3
                               ? "#0F1221"
                               : e == 4
@@ -1124,11 +1155,11 @@ export const Live = () => {
                             my={"10px"}
                             bgColor={
                               e.speaker == 0
-                                ? "#020515"
+                                ? "#1B1A55"
                                 : e.speaker == 1
                                 ? "#535C91"
                                 : e.speaker == 2
-                                ? "#1B1A55"
+                                ? "#020515"
                                 : e.speaker == 3
                                 ? "#0F1221"
                                 : e.speaker == 4
@@ -1147,7 +1178,8 @@ export const Live = () => {
                 <>
                   <Textarea
                     fontFamily={"vazir"}
-                    isReadOnly
+                    // isReadOnly
+                    onChange={(e) => setText(e.target.value)}
                     style={{ direction: "rtl" }}
                     border={"none"}
                     rows={4}
@@ -1164,7 +1196,8 @@ export const Live = () => {
               ) : (
                 <>
                   <Textarea
-                    isReadOnly
+                    // isReadOnly
+                    onChange={(e) => setTextMic(e.target.value)}
                     style={{ direction: "rtl" }}
                     border={"none"}
                     rows={4}
