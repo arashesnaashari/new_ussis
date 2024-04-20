@@ -57,6 +57,8 @@ export const Live = () => {
   const [uniqs, setUniqs] = React.useState<any>([]);
   const [speakerCount, setSpeakerCount] = React.useState<any>("");
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
+
+  ///////////////////// MIC THINGS ///////////////////////////////
   const recorderControls = useAudioRecorder(
     {
       noiseSuppression: true,
@@ -73,17 +75,6 @@ export const Live = () => {
   }, []);
   const handleFinish = async () => {
     recorderControls.stopRecording();
-    //................. show loading
-
-    //.................  API :: send file to get test
-    //...............  cloze modal
-    // onClose();
-    //................   cloze loading
-    // setLoading(false);
-    // .............   update text value
-
-    // ............  search in newTab
-    // handleSearch();
   };
   const handleClozee = () => {
     recorderControls.stopRecording();
@@ -118,9 +109,11 @@ export const Live = () => {
       file.size < 10000000 &&
       (file.type == "audio/wav" ||
         file.type == "audio/mp3" ||
+        file.type == "audio/mpeg" ||
         file.type == "audio/webm" ||
         file.type == "audio/ogg" ||
         file.type == "audio/flac" ||
+        file.type == "audio/x-m4a" ||
         file.type == "audio/aac")
     ) {
       fetch("https://stt.ussistant.ir/api/transcript", {
@@ -159,7 +152,8 @@ export const Live = () => {
         });
     }
   };
-  // large file
+  ///////////////////MIC THINGS ////////////////////////////////////////
+  // ##2 large file
   const handleUploadFile = () => {
     console.log("uploadFile");
 
@@ -169,6 +163,8 @@ export const Live = () => {
     });
     var fd = new FormData();
     fd.append("file", file);
+    console.log(file.type);
+
     setLoading2(true);
     const url = URL.createObjectURL(file);
     const audio = document.createElement("audio");
@@ -181,59 +177,68 @@ export const Live = () => {
     }
 
     document.body.querySelector(".playme_large")?.appendChild(audio);
-    if (
-      file.size < 10000000 &&
-      (file.type == "audio/wav" ||
-        file.type == "audio/mp3" ||
-        file.type == "audio/mpeg" ||
-        file.type == "audio/webm" ||
-        file.type == "audio/ogg" ||
-        file.type == "audio/flac" ||
-        file.type == "audio/aac")
-    ) {
-      //file.size < 2000000
-      fetch("https://stt.ussistant.ir/api/transcript_large", {
-        method: "POST",
-        headers: {
-          "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
-          // Accept: "application/json",
-          // "Content-Type": "multipart/form-data",
-          // "Content-Type":
-          //   "multipart/form-data; charset=utf-8; boundary=" +
-          //   Math.random().toString().substring(2),
-          // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: fd,
-      })
-        .then((x) => x.json())
-        .then((d) => {
-          setText(d.text);
-          setLinkLarge(d.download_id);
-          setValue(d.text);
-          setLoading2(false);
-          // const url = URL.createObjectURL(file);
-          // const audio = document.createElement("audio");
-          // audio.src = url;
-          // audio.style.filter = "opacity(0.5)";
-          // audio.controls = true;
-          // let myNode = document.body.querySelector(".playme_large");
-          // while (myNode?.firstChild) {
-          //   myNode.removeChild(myNode?.lastChild);
-          // }
-
-          // document.body.querySelector(".playme_large")?.appendChild(audio);
+    if (confirm("ارسال فایل انجام شود ؟")) {
+      if (
+        file.size < 10000000 &&
+        (file.type == "audio/wav" ||
+          file.type == "audio/mp3" ||
+          file.type == "audio/mpeg" ||
+          file.type == "audio/webm" ||
+          file.type == "audio/ogg" ||
+          file.type == "audio/flac" ||
+          file.type == "audio/x-m4a" ||
+          file.type == "audio/aac")
+      ) {
+        //file.size < 2000000
+        fetch("https://stt.ussistant.ir/api/transcript_large", {
+          method: "POST",
+          headers: {
+            "X-API-Key": "3f0737b3-b4be-45ef-8749-d5c19bc830bb",
+            // Accept: "application/json",
+            // "Content-Type": "multipart/form-data",
+            // "Content-Type":
+            //   "multipart/form-data; charset=utf-8; boundary=" +
+            //   Math.random().toString().substring(2),
+            // "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: fd,
         })
-        .catch((err) => {
-          //, setLoading2(false), setopenmodal(false);
-          console.log(err), setLoading2(false);
-        });
+          .then((x) => x.json())
+          .then((d) => {
+            setText(d.text);
+            setLinkLarge(d.download_id);
+            setValue(d.text);
+            setLoading2(false);
+            // const url = URL.createObjectURL(file);
+            // const audio = document.createElement("audio");
+            // audio.src = url;
+            // audio.style.filter = "opacity(0.5)";
+            // audio.controls = true;
+            // let myNode = document.body.querySelector(".playme_large");
+            // while (myNode?.firstChild) {
+            //   myNode.removeChild(myNode?.lastChild);
+            // }
+            if (d.detail) {
+              alert(d.detail);
+            }
+
+            // document.body.querySelector(".playme_large")?.appendChild(audio);
+          })
+          .catch((err) => {
+            //, setLoading2(false), setopenmodal(false);
+            console.log("Catch error");
+
+            console.log(err), setLoading2(false);
+          });
+      } else {
+        alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+        setLoading2(false);
+      }
     } else {
-      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
       setLoading2(false);
     }
   };
-  // let fileGeneral: any;
-  // recognate
+  // ##3 speaker dizartion
   const handleUploadFileReco = (state: Boolean, cc: string) => {
     // alert("Www");
     console.log("aaaaa");
@@ -263,6 +268,8 @@ export const Live = () => {
 
     if (!file) {
       alert("فایل رو آپلود کنید");
+      setLoading2(false);
+    } else if (!confirm("ارسال فایل انجام شود ؟")) {
       setLoading2(false);
     } else if (
       file.size < 10000000 &&
@@ -322,27 +329,30 @@ export const Live = () => {
             },
           ];
 
-          setLink(d.download_id);
-          var x = d.speakers;
-          setText2(d.speakers);
+          if (d.detail) {
+            setLoading2(false);
+          } else {
+            // var x = xx;
+            setLink(d.download_id);
+            var x = d.speakers;
+            setText2(d.speakers);
+            var y = x.map((t: any) => t.speaker);
+            let unique = [...new Set(y)];
+            setUniqs(unique);
 
-          // var x = xx;
-          var y = x.map((t: any) => t.speaker);
-          let unique = [...new Set(y)];
-          setUniqs(unique);
+            setLoading2(false);
+            const url = URL.createObjectURL(file);
+            const audio = document.createElement("audio");
+            audio.src = url;
+            audio.style.filter = "opacity(0.5)";
+            audio.controls = true;
+            let myNode = document.body.querySelector(".playme_reco");
+            while (myNode?.firstChild) {
+              myNode.removeChild(myNode?.lastChild);
+            }
 
-          setLoading2(false);
-          const url = URL.createObjectURL(file);
-          const audio = document.createElement("audio");
-          audio.src = url;
-          audio.style.filter = "opacity(0.5)";
-          audio.controls = true;
-          let myNode = document.body.querySelector(".playme_reco");
-          while (myNode?.firstChild) {
-            myNode.removeChild(myNode?.lastChild);
+            document.body.querySelector(".playme_reco")?.appendChild(audio);
           }
-
-          document.body.querySelector(".playme_reco")?.appendChild(audio);
         })
         .catch((err) => {
           //, setLoading(false), setopenmodal(false);
@@ -411,8 +421,7 @@ export const Live = () => {
       console.error("error");
     }
   };
-  const audioRef = React.useRef(null);
-  const [play, setPlay] = React.useState(false);
+  //test file
   const handleTestSample = (type: string) => {
     const dataSpeaker = [
       {
@@ -480,29 +489,13 @@ export const Live = () => {
 
       document.body.querySelector(".playme_reco")?.appendChild(audio);
     }
-
-    // if (!play) {
-    //   audioRef.current;
-    //   // console.error("error");
-
-    //   setPlay(true);
-    // } else {
-    //   // audioRef.current?.pause();
-    //   // audioRef.current?.currentTime = 0;
-    //   setPlay(false);
-    // }
-    //set Text equls to sample
-    //play the real audio
   };
+  //when change count of speaker
   const handleCountSpeaker = (e: any) => {
     console.log(e);
 
     setSpeakerCount(e);
     handleUploadFileReco(false, e);
-
-    //upload again
-    // first scenario : we have uploaded a file    save to state
-    // second we dont have uploaded file    save in state
   };
 
   return (
@@ -833,7 +826,6 @@ export const Live = () => {
                     >
                       تست نمونه{" "}
                     </Button>
-                    {/* <audio src="/audio.wav" ref={audioRef} /> */}
                   </Box>
                 ) : (
                   <>
@@ -854,7 +846,7 @@ export const Live = () => {
                             type="file"
                             id="uploadReco"
                             hidden
-                            onChange={() => handleUploadFileReco(true, "")}
+                            onChange={() => handleUploadFileReco(true, "0")}
                           />
                           <label
                             htmlFor="uploadReco"
@@ -922,6 +914,18 @@ export const Live = () => {
                               fontFamily: "yekan",
                               fontSize: "12px",
                             }}
+                            value="0"
+                          >
+                            نامشخص
+                          </option>
+                          <option
+                            id="option"
+                            style={{
+                              color: "black",
+                              backgroundColor: "gray",
+                              fontFamily: "yekan",
+                              fontSize: "12px",
+                            }}
                             value="1"
                           >
                             ۱
@@ -969,61 +973,6 @@ export const Live = () => {
                             value="5"
                           >
                             ۵
-                          </option>
-                          <option
-                            style={{
-                              color: "black",
-                              backgroundColor: "gray",
-                              fontFamily: "yekan",
-                              fontSize: "12px",
-                            }}
-                            value="6"
-                          >
-                            ۶
-                          </option>
-                          <option
-                            style={{
-                              color: "black",
-                              backgroundColor: "gray",
-                              fontFamily: "yekan",
-                              fontSize: "12px",
-                            }}
-                            value="7"
-                          >
-                            ۷
-                          </option>
-                          <option
-                            style={{
-                              color: "black",
-                              backgroundColor: "gray",
-                              fontFamily: "yekan",
-                              fontSize: "12px",
-                            }}
-                            value="8"
-                          >
-                            ۸
-                          </option>
-                          <option
-                            style={{
-                              color: "black",
-                              backgroundColor: "gray",
-                              fontFamily: "yekan",
-                              fontSize: "12px",
-                            }}
-                            value="9"
-                          >
-                            ۹
-                          </option>
-                          <option
-                            style={{
-                              color: "black",
-                              backgroundColor: "gray",
-                              fontFamily: "yekan",
-                              fontSize: "12px",
-                            }}
-                            value="10"
-                          >
-                            ۱۰
                           </option>
                         </Select>
                         <label
