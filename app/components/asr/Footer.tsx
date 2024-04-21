@@ -20,11 +20,12 @@ export const Footer = () => (
   <>
     {/* About */}
     <Box
+      id="call"
       width={"100%"}
       maxW={"2000px"}
       mx={"auto"}
       fontFamily={"vazir"}
-      py={{ base: "3rem", md: "6rem" }}
+      py={{ base: "3rem", md: "6rem", "2xl": "10rem" }}
       px={{ base: "1rem", md: "2rem" }}
     >
       <Box width={{ base: "100%", md: "70%" }} mx={"auto"}>
@@ -40,7 +41,6 @@ export const Footer = () => (
         </Text>
       </Box>
       <Box
-        id="call"
         py={"2rem"}
         fontFamily={"vazir"}
         width={{ base: "100%", md: "70%" }}

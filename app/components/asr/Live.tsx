@@ -23,6 +23,7 @@ import { GoCopy } from "react-icons/go/index.js";
 import { GoDownload } from "react-icons/go/index.js";
 import { useIsMobile } from "../../hooks";
 import { FaMicrophone } from "react-icons/fa/index.js";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Live = () => {
   const colorsOfSpeaker = [
@@ -55,7 +56,7 @@ export const Live = () => {
   const [fileGeneral, setFileGeneral] = React.useState<any>("");
   const [text2, setText2] = React.useState<any>([]);
   const [uniqs, setUniqs] = React.useState<any>([]);
-  const [speakerCount, setSpeakerCount] = React.useState<any>("");
+  const [speakerCount, setSpeakerCount] = React.useState<any>("0");
   const [openmodal, setopenmodal] = React.useState<boolean>(false);
 
   ///////////////////// MIC THINGS ///////////////////////////////
@@ -136,12 +137,25 @@ export const Live = () => {
           setTextMic(d.message);
           setValue(d.message);
           setLoading(false);
+          if (d.detail) {
+            toast.warning(d.detail, {
+              position: "bottom-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              // transition: Slide,
+            });
+          }
           // console.log(openmodal);
 
-          if (d.message.length > 1 && openmodal) {
-            // handleSearch(d.messag;
-            // alert("new tab");
-          }
+          // if (d.message.length > 1 && openmodal) {
+          //   // handleSearch(d.messag;
+          //   // alert("new tab");
+          // }
           setopenmodal(false);
 
           // location.reload();
@@ -219,7 +233,18 @@ export const Live = () => {
             //   myNode.removeChild(myNode?.lastChild);
             // }
             if (d.detail) {
-              alert(d.detail);
+              toast.warning(d.detail, {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                // transition: Slide,
+              });
+              // alert(d.detail);
             }
 
             // document.body.querySelector(".playme_large")?.appendChild(audio);
@@ -231,7 +256,17 @@ export const Live = () => {
             console.log(err), setLoading2(false);
           });
       } else {
-        alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+        toast.error("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          // transition: Slide,
+        });
         setLoading2(false);
       }
     } else {
@@ -260,14 +295,29 @@ export const Live = () => {
 
     var fd = new FormData();
     fd.append("file", file);
-    fd.append("num_speakers", `${speakerCount ? cc : speakerCount}`);
+    console.log("speakerCount");
+    console.log(speakerCount);
+    console.log("cc");
+    console.log(cc);
+
+    fd.append("num_speakers", `${cc == "0" ? speakerCount : cc}`);
     setLoading2(true);
     console.log("DDDD");
 
     console.log(file.type);
 
     if (!file) {
-      alert("فایل رو آپلود کنید");
+      toast.warning("فایل رو آپلود کنید", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        // transition: Slide,
+      });
       setLoading2(false);
     } else if (!confirm("ارسال فایل انجام شود ؟")) {
       setLoading2(false);
@@ -359,7 +409,18 @@ export const Live = () => {
           console.log(err), setLoading2(false);
         });
     } else {
-      alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
+      toast.error("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        // transition: Slide,
+      });
+      // alert("فرمت یا حجم فایل با فیلتر های سمت ما مغایرت دارد");
       setLoading2(false);
     }
   };
@@ -500,6 +561,7 @@ export const Live = () => {
 
   return (
     <>
+      <ToastContainer />
       <Box
         display={openmodal ? "flex" : "none"}
         justifyContent={"center"}
@@ -623,6 +685,7 @@ export const Live = () => {
         mx={"auto"}
         px={{ base: "1.2rem", md: "3rem" }}
         py={{ base: "3rem", md: "3rem" }}
+        pb={{ "2xl": "10rem" }}
       >
         <Box width={"100%"} py={"2rem"}>
           <Text

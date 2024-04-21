@@ -17,6 +17,7 @@ import { useContext, useEffect, useState } from "react";
 import PinarStyle from "~/assets/pinar.css";
 import YekanStyle from "~/assets/yekan.css";
 import VazirStyle from "~/assets/vazir.css";
+import "react-toastify/ReactToastify.css";
 
 export let links: LinksFunction = () => {
   return [
