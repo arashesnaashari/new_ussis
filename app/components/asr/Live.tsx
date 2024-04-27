@@ -357,7 +357,7 @@ export const Live = () => {
             setText2(d.speakers);
             var y = x.map((t: any) => t.speaker);
             let unique = [...new Set(y)];
-            setUniqs(unique);
+            setUniqs(unique.sort().reverse());
 
             setLoading2(false);
             const url = URL.createObjectURL(file);
@@ -514,7 +514,7 @@ export const Live = () => {
       setText2(dataSpeaker);
       var y = x.map((t: any) => t.speaker);
       let unique = [...new Set(y)];
-      setUniqs(unique);
+      setUniqs(unique.sort().reverse());
 
       const audio = document.createElement("audio");
       audio.src = "/3speaker.mp3";
@@ -1124,6 +1124,7 @@ export const Live = () => {
                       <>
                         {stateSpeaker !== -1 ? (
                           <Box
+                            contentEditable="true"
                             mx={"1rem"}
                             fontFamily={"vazir"}
                             color={"white"}
@@ -1138,6 +1139,7 @@ export const Live = () => {
                           </Box>
                         ) : (
                           <Box
+                            contentEditable="true"
                             mx={"1rem"}
                             fontFamily={"vazir"}
                             color={"white"}
